@@ -42,20 +42,22 @@ Job = [
   ('1','レジ','1','10','9:00','22:00'),
   ('2','サッカー','2','9','10:00','22:00'),
   ('3','食レジ応援','1','11','21:00','22:00'),
-  ('4','発注','1','6','17:00','22:00'),
+  ('4','発注','1','6','9:00','22:00'),
+  ('5','品出し','1','5','9:00','22:00'),
+  ('6','商品整理','1','4','9:00','22:00'),
 ]
 job_id = 0
 job_name = 1
 required_number = 2
-priority = 3
+job_weight = 3
 job_start_time = 4
 job_end_time = 5
 
 
 SpecialJob = [
-  ('1','meating','赤木','11:00','15:30'),
-  ('2','レジ応援','吉田','18:00','19:00'),
-  ('3','レジ応援','宮城','17:00','19:00'),
+  ('1','meating','赤木','11:00','15:30','12'),
+  ('2','レジ応援','吉田','18:00','19:00','11'),
+  ('3','レジ応援','宮城','17:00','19:00','11'),
 
 ]
 spjob_id = 0
@@ -63,14 +65,18 @@ spjob_name = 1
 spworker_name = 2
 spjob_start_time = 3
 spjob_end_time = 4
+spjob_weight = 5
 
 
 shift_workername = 0
 shift_jobname = 1
 shift_starttime = 2
 shift_endtime = 3
+shift_weight = 4
 
 indiv_workername = 0
+indiv_jobname = 0
+indiv_jobweight = 1
 
 # formドロップダウン用の時間リスト作成
 from datetime import datetime,  timedelta
@@ -96,3 +102,4 @@ else:
   minuteslist.append(00)
 
 
+pminute = int(datetime.strptime(min_shift,"%H:%M").minute) if not int(datetime.strptime(min_shift,"%H:%M").minute) == 0 else int(datetime.strptime(min_shift,"%H:%M").hour*60)

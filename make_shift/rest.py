@@ -70,12 +70,12 @@ def Rest(Worker,Spshift):
                 # print(4)
                 tmp = (tmp[shift_workername],0,int(tmp[median])+tmp[difference],int(tmp[median])+1+tmp[difference],tmp[median],True,tmp[difference],False,tmp[rework_start],tmp[rework_end])
           else:
-            Restshift.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00"))
+            Restshift.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00",'0'))
             New2Worker.append((tmp[shift_workername],tmp[rework_start],str(tmp[shift_starttime])+":00",0))
             New2Worker.append((tmp[shift_workername],str(tmp[shift_endtime])+":00",tmp[rework_end],0))
             break
     if not found:
-      Restshift.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00"))
+      Restshift.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00",'0'))
       New2Worker.append((tmp[shift_workername],tmp[rework_start],str(tmp[shift_starttime])+":00",0))
       New2Worker.append((tmp[shift_workername],str(tmp[shift_endtime])+":00",tmp[rework_end],0))
 

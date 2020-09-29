@@ -16,7 +16,7 @@ def Special(Worker,Specialjob):
         starttime = datetime.strptime(spjob[spjob_start_time], '%H:%M')
         endtime = datetime.strptime(spjob[spjob_end_time], '%H:%M')
         if datetime.strptime(worker[work_start_time], '%H:%M')<=starttime and endtime<=datetime.strptime(worker[work_end_time], '%H:%M'):
-          Spshift.append((worker[worker_name],spjob[spjob_name],spjob[spjob_start_time],spjob[spjob_end_time]))
+          Spshift.append((worker[worker_name],spjob[spjob_name],spjob[spjob_start_time],spjob[spjob_end_time],spjob[spjob_weight]))
 
           # 特別シフトの時間を外し、従業員リストの仕事時間を更新する。
           NewWorker.append((worker[worker_name],worker[work_start_time],spjob[spjob_start_time],0))
