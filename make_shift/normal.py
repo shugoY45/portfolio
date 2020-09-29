@@ -1,7 +1,6 @@
 from datetime import datetime
 from setting import *
-from workweight import WorkWeight
-from classify import Classify
+from function import WorkWeight, Classify
 
 
 def Normal(Worker,Job,IndivShift):

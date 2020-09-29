@@ -1,9 +1,9 @@
 from setting import *
-from set_list import Set_list
+from function import Set_list, Classify
 from normal import Normal
 from special import Special
 from rest import Rest
-from classify import Classify
+
 
 
 IndivShift = Set_list(Worker)
@@ -31,5 +31,13 @@ Shift = NormalShift
 # print(Shift)
 
 # IndivShift = Classify(Shift,Worker)
-IndivShift = Classify(Shift,IndivShift)
-print(IndivShift)
+# IndivShift = Classify(Shift,IndivShift)
+ViewIndiv = []
+for indiv in IndivShift:
+  tmp = []
+  for ind in indiv:
+    tmp.append(ind[0])
+  ViewIndiv.append(tmp)
+  
+
+print(ViewIndiv)
