@@ -6,6 +6,7 @@ class Worker(db.Model):
   workername = db.Column(db.String(20), unique=True, nullable=False)
   starttime = db.Column(db.String(10))
   endtime = db.Column(db.String(10))
+  workerweight = db.Column(db.String(3))
 
   def __repr__(self):
-    return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}')"
+    return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}', '{self.workerweight}')"

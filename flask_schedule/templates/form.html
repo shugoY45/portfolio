@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>仮想環境</title>
+  <title>仮</title>
 </head>
 <body>
   <form method="POST" action="">
-    <!-- {{ form.hidden_tag()}} -->
+    {{ form.hidden_tag()}}
     <fieldset>
       <div>
         {{ form.workername.label()}}
         {{ form.workername() }}
+        {% if form.workername.errors %}
+          {% for error in form.workername.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+        {% endif %}
       </div>
       <div>
         {{ form.starttime_hour.label()}}
@@ -25,13 +30,9 @@
         {{ form.endtime_minutes.label()}}
         {{ form.endtime_minutes() }}
       </div>
-      <div>
-        {{ form.test.label()}}
-        {{ form.test() }}
-      </div>
     </fieldset>
     <div>
-      <button type="submit">送信</button>
+      {{ form.submit() }}
     </div>
   </form>
 </body>

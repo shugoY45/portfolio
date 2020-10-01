@@ -9,8 +9,7 @@ class WorkerForm(FlaskForm):
   endtime_hour = SelectField('終業時間',validators=[DataRequired()])
   endtime_minutes = SelectField(':',validators=[DataRequired()])
   
-  test = TimeField('test',validators=[DataRequired()])
-  submit = SubmitField('s')
+  submit = SubmitField('送信')
 
 
 
