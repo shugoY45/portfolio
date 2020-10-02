@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>仮</title>
-</head>
-<body>
-  <form method="POST" action="">
-    {{ form.hidden_tag()}}
-    <fieldset>
-      <div>
-        {{ form.workername.label()}}
-        {{ form.workername() }}
-        {% if form.workername.errors %}
-          {% for error in form.workername.errors %}
-            <span>{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-      <div>
-        {{ form.starttime_hour.label()}}
-        {{ form.starttime_hour() }}
-        {{ form.starttime_minutes.label()}}
-        {{ form.starttime_minutes() }}
-      </div>
-      <div>
-        {{ form.endtime_hour.label()}}
-        {{ form.endtime_hour() }}
-        {{ form.endtime_minutes.label()}}
-        {{ form.endtime_minutes() }}
-      </div>
-    </fieldset>
-    <div>
-      {{ form.submit() }}
-    </div>
-  </form>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+  
+{% endblock %}

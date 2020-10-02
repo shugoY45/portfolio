@@ -33,5 +33,21 @@ def hello():
 
 @app.route('/worker', methods=['GET', 'POST'])
 def worker():
+  workers = Worker.query.all()
+  form = WorkerForm()
+  hour = hourlist
+  minutes = minuteslist
+  form.starttime_hour.choices = hourlist
+  form.starttime_minutes.choices = minuteslist
+  form.endtime_hour.choices = hourlist
+  form.endtime_minutes.choices = minuteslist
+  if request.method == "GET":
+    return render_template('worker.html',form=form,workers=workers)
+  if request.method == 'POST':
+    if form.validate_on_submit():
+      # flash('Your post has been created!', 'success')
+      worker = Worker(workername=form.workername.data, starttime=form.starttime_hour.data+':'+form.starttime_minutes.data, endtime=form.endtime_hour.data+':'+form.endtime_minutes.data, workerweight='0')
+      db.session.add(worker)
+      db.session.commit()
       workers = Worker.query.all()
-      return render_template('worker.html',workers=workers)
+      return render_template('worker.html',form=form,workers=workers)
