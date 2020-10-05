@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, TimeField
+from wtforms import StringField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Length
 
 class WorkerForm(FlaskForm):
@@ -10,6 +10,18 @@ class WorkerForm(FlaskForm):
   endtime_minutes = SelectField(':',validators=[DataRequired()])
   
   submit = SubmitField('送信')
+
+class JobForm(FlaskForm):
+  workername = StringField('名前',validators=[DataRequired(), Length(min=2, max=20)])
+  starttime_hour = SelectField('始業時間',validators=[DataRequired()])
+  starttime_minutes = SelectField(':',validators=[DataRequired()])
+  endtime_hour = SelectField('終業時間',validators=[DataRequired()])
+  endtime_minutes = SelectField(':',validators=[DataRequired()])
+  required_number = IntegerField('必要人数', validators=[DataRequired()])
+  priorty = SelectField('仕事の重要度',validators=[DataRequired()])
+
+  submit = SubmitField('送信')
+
 
 
 

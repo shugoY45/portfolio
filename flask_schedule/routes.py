@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request
 from flask_schedule import app, db
-from flask_schedule.forms import WorkerForm
+from flask_schedule.forms import WorkerForm ,JobForm
 from make_shift.setting import hourlist,minuteslist
-from flask_schedule.models import Worker
+from flask_schedule.models import Worker ,Job
 
 
 
@@ -51,3 +51,25 @@ def worker():
       db.session.commit()
       workers = Worker.query.all()
       return render_template('worker.html',form=form,workers=workers)
+
+@app.route('/job', methods=['GET', 'POST'])
+def job():
+  jobs = Job.query.all()
+  form = JobForm()
+  hour = hourlist
+  minutes = minuteslist
+  form.starttime_hour.choices = hourlist
+  form.starttime_minutes.choices = minuteslist
+  form.endtime_hour.choices = hourlist
+  form.endtime_minutes.choices = minuteslist
+  if request.method == "GET":
+    return render_template('job.html',form=form,jobs=jobs)
+  if request.method == 'POST':
+    if form.validate_on_submit():
+      # flash('Your post has been created!', 'success')
+      job = Job(jobname=form.jobname.data, starttime=form.starttime_hour.data+':'+form.starttime_minutes.data, endtime=form.endtime_hour.data+':'+form.endtime_minutes.data, weight=weight , required_number=required_number)
+      db.session.add(job)
+      db.session.commit()
+      jobs = Job.query.all()
+      return render_template('job.html',form=form,jobs=jobs)
+
