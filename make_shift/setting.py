@@ -22,6 +22,9 @@ resttime = 1
 # 休憩の名前
 restname = "休憩"
 
+# 仕事の重要度　最大値
+priorty_max = 15
+
 
 Worker = [
   ('吉田','17:00','22:00','0'),
@@ -87,7 +90,7 @@ closetime = datetime.strptime(store_closetime, '%H:%M')
 
 
 hourlist = []
-minuteslist = []
+minuteslist = ["00"]
 
 for hour in range(int(opentime.hour),int(closetime.hour)+1):
   hourlist.append(hour)
@@ -96,10 +99,12 @@ for hour in range(int(opentime.hour),int(closetime.hour)+1):
 if not td_shift.minute == 0:
   if 60 % float(td_shift.minute) == 0:
     div = 60 / float(td_shift.minute)
-  for minutes in range(0,int(div)):
+  for minutes in range(1,int(div)):
     minuteslist.append(minutes*int(td_shift.minute))
-else:
-  minuteslist.append(00)
 
 
 pminute = int(datetime.strptime(min_shift,"%H:%M").minute) if not int(datetime.strptime(min_shift,"%H:%M").minute) == 0 else int(datetime.strptime(min_shift,"%H:%M").hour*60)
+
+priorty_list = []
+for i in range(0,priorty_max):
+  priorty_list.append(i)
