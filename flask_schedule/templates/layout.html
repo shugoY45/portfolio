@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
-  <title>Document</title>
+  <title>シフト作成</title>
 </head>
 <body>
   <header class="site-header">
@@ -20,14 +20,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
+          {% if session.logged_in %}
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{{ url_for('hello') }}">Home</a>
-            <a class="nav-item nav-link" href="{{ url_for('hello') }}">About</a>
-          </div>
+            <a class="nav-item nav-link" href="{{ url_for('index') }}">ホーム</a>
+            <a class="nav-item nav-link" href="{{ url_for('job') }}">仕事</a>
+            <a class="nav-item nav-link" href="{{ url_for('worker') }}">従業員</a> 
+          </div> 
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{{ url_for('job') }}">Job</a>
-            <a class="nav-item nav-link" href="{{ url_for('worker') }}">Worker</a> 
+            <a class="nav-item nav-link" href="{{ url_for('logout') }}">ログアウト</a> 
+          </div> 
+          {% else %}
+          <div class="navbar-nav mr-auto"></div>
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{{ url_for('login') }}">ログイン</a>
+          {% endif %}
           </div> 
         </div>
       </div>

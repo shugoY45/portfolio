@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import WorkerForm ,JobForm
 from make_shift.setting import hourlist,minuteslist, priorty_list
@@ -8,28 +8,30 @@ from flask_schedule.models import Worker ,Job
 
 
 @app.route("/", methods=["GET", "POST"])
-def hello():
-  form = WorkerForm()
-  hour = hourlist
-  minutes = minuteslist
-  form.starttime_hour.choices = hourlist
-  form.starttime_minutes.choices = minuteslist
-  form.endtime_hour.choices = hourlist
-  form.endtime_minutes.choices = minuteslist
+def index():
+  if not session.get('logged_in'):
+    return redirect(url_for('login'))
+  return render_template("index.html")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  error = None
   if request.method == 'POST':
-    # print(1)
-    if form.validate_on_submit():
-      # print(2)
-      flash('Your post has been created!', 'success')
-      # print(type(form.starttime_hour.data))
-      worker = Worker(workername=form.workername.data, starttime=form.starttime_hour.data+':'+form.starttime_minutes.data, endtime=form.endtime_hour.data+':'+form.endtime_minutes.data, workerweight='0')
-      db.session.add(worker)
-      db.session.commit()
+    if request.form['username'] != app.config['USERNAME']:
+      flash('ユーザ名が異なります',"danger")
+    elif request.form['password'] != app.config['PASSWORD']:
+      flash('パスワードが異なります',"danger")
+    else:
+      session['logged_in'] = True
+      flash('ログインしました',"success")
+      return redirect(url_for('index'))
+  return render_template('login.html')
 
-      return redirect(url_for('worker'))
-  return render_template("form.html", form=form)
-  # return render_template("form.html")
-
+@app.route('/logout')
+def logout():
+  session.pop('logged_in', None)
+  flash('ログアウトしました',"success")
+  return redirect(url_for('index'))
 
 @app.route('/worker', methods=['GET', 'POST'])
 def worker():
