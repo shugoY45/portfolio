@@ -1,25 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-  <table class="table table-bordered content-section">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">名前</th>
-        <th scope="col">始業時間</th>
-        <th scope="col">終業時間</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for worker in workers %}
-      <tr>
-        <th scope="row">{{ worker.id }}</th>
-        <td>{{ worker.workername }}</td>
-        <td>{{ worker.starttime }}</td>
-        <td>{{ worker.endtime }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
   <div class="content-section">
     <form method="POST" action="">
       {{ form.hidden_tag()}}
