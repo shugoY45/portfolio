@@ -55,3 +55,18 @@ def edit_worker(id):
     form.endtime_minutes.data = worker.endtime.split(':')[1]
     flash('編集します', 'warning')
     return render_template('worker/edit.html',form=form,worker=worker)
+
+
+@app.route('/worker/<int:id>/delete', methods=['GET', 'POST'])
+def delete_worker(id):
+  if not session.get('logged_in'):
+    return redirect(url_for('login'))
+  worker = Worker.query.get_or_404(id)
+  if request.method == "POST":
+    flash('削除しました', 'success')
+    db.session.delete(worker)
+    db.session.commit()
+    return redirect(url_for('worker'))
+  elif request.method == "GET":
+    flash('削除しますか？', 'warning')
+    return render_template('worker/delete.html',worker=worker)

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+  <table class="table table-bordered content-section">
+    <legend>従業員</legend>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">名前</th>
+        <th scope="col">始業時間</th>
+        <th scope="col">終業時間</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{ worker.id }}</th>
+        <td>{{ worker.workername }}</td>
+        <td>{{ worker.starttime }}</td>
+        <td>{{ worker.endtime }}</td>
+      </tr>
+    </tbody>
+    <form action="" method="POST">
+      <button type="submit" class="btn btn-danger">削除</button>
+    </form>
+  </table>
+{% endblock %}

@@ -1,3 +1,5 @@
-a = ("9:00")
+from flask_schedule import db
+from flask_schedule.models import Worker
 
-print(a.split(':')[0])
+workers = Worker.query.all()
+print(workers)
