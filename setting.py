@@ -11,7 +11,7 @@ store_closetime = '22:00'
 job_divtime = 1
 
 # シフトの最小時間
-min_shift = "0:15"
+min_shift = "1:00"
 
 # 休憩が必要になる最小労働時間
 restnd_mint = 6

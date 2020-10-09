@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import WorkerForm 
-from make_shift.setting import hourlist,minuteslist
+from setting import hourlist,minuteslist
 from flask_schedule.models import Worker
 
 @app.route('/worker', methods=['GET', 'POST'])

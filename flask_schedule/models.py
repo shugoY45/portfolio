@@ -20,4 +20,4 @@ class Job(db.Model):
   required_number = db.Column(db.Integer)
 
   def __repr__(self):
-    return ('{self.id}','{self.jobname}','{self.required_number}','{self.priorty}','{self.starttime}', '{self.endtime}')
+    return f"Job('{self.jobname}','{self.starttime}','{self.endtime}')"

@@ -1,6 +1,5 @@
 from setting import *
 
-
 # 個人シフトを作成
 def Set_list(Worker):
 
