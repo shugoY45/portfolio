@@ -2,26 +2,26 @@ from datetime import datetime
 import copy
 from setting import *
 
-def Special(Worker,Specialjob):
-  Spshift = []
-  NewWorker = copy.copy(Worker)
+def special(workers,specialjobs):
+  spshifts = []
+  newworkers = copy.copy(workers)
   # 特別シフトの従業員を従業員リストから探索
-  # print(Worker)
-  for spjob in Specialjob:
+  # print(workers)
+  for spjob in specialjobs:
     found = False
-    for worker in Worker:
+    for worker in workers:
       if spjob[spworker_name] == worker[worker_name]:
         found = True
         # 特別シフト作成
         starttime = datetime.strptime(spjob[spjob_start_time], '%H:%M')
         endtime = datetime.strptime(spjob[spjob_end_time], '%H:%M')
         if datetime.strptime(worker[work_start_time], '%H:%M')<=starttime and endtime<=datetime.strptime(worker[work_end_time], '%H:%M'):
-          Spshift.append((worker[worker_name],spjob[spjob_name],spjob[spjob_start_time],spjob[spjob_end_time],spjob[spjob_weight]))
+          spshifts.append((worker[worker_name],spjob[spjob_name],spjob[spjob_start_time],spjob[spjob_end_time],spjob[spjob_weight]))
 
           # 特別シフトの時間を外し、従業員リストの仕事時間を更新する。
-          NewWorker.append((worker[worker_name],worker[work_start_time],spjob[spjob_start_time],0))
-          NewWorker.append((worker[worker_name],spjob[spjob_end_time],worker[work_end_time],0))
-          NewWorker.remove(worker)
+          newworkers.append((worker[worker_name],worker[work_start_time],spjob[spjob_start_time],0))
+          newworkers.append((worker[worker_name],spjob[spjob_end_time],worker[work_end_time],0))
+          newworkers.remove(worker)
           break
         # else :
           # print(worker)
@@ -32,10 +32,10 @@ def Special(Worker,Specialjob):
       print(spjob[spworker_name])
       raise Exception('本日、'+str(spjob[spworker_name])+'さんは出勤ではありません')
 
-  return NewWorker,Spshift
+  return newworkers,spshifts
 
-  # print(Spshift)
-  # print(NewWorker)
+  # print(spshifts)
+  # print(newworkers)
 
 
 

@@ -20,6 +20,16 @@
         <td>{{ job.endtime }}</td>
         <td>{{ job.priorty }}</td>
         <td>{{ job.required_number }}</td>
+        <td>
+          <div class="btn-group">
+            <form action="{{ url_for('edit_job',id = job.id)}}" method="GET">
+              <button type="submit" class="btn btn-secondary">編集</button>
+            </form>
+            <form action="{{ url_for('delete_job',id = job.id)}}" method="GET">
+              <button type="submit" class="btn btn-danger" style="margin-left: 5px;" style="margin-right: 5px;">削除</button>
+            </form>
+          </div>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

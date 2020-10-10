@@ -21,3 +21,10 @@ class Job(db.Model):
 
   def __repr__(self):
     return f"Job('{self.jobname}','{self.starttime}','{self.endtime}')"
+
+
+class SpcialJob(Job):
+  workername = db.Column(db.String(20))
+
+  def __repr__(self):
+    return f"SpecialJob('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}')"

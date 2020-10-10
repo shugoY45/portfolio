@@ -9,4 +9,4 @@ app.config.from_object('flask_schedule.config')
 db = SQLAlchemy(app)
 
 # from models import Worker
-from flask_schedule.views import views, login, worker
+from flask_schedule.views import views, login, worker, job

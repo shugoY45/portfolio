@@ -9,38 +9,38 @@ def main():
   workers = Worker.query.all()
   jobs = Job.query.all()
 
-  indivshift = set_list(workers)
+  indivshifts = set_list(workers)
 
-  _ , spshift = special(workers,specialjobs)
-  # print(SpShift)
+  _ , spshifts = special(workers,specialjobs)
+  # print(spshifts)
 
-  worker2, restshift = Rest(worker,spshift)
-  # print(Worker2)
-  # print(RestShift)
+  workers2, restshifts = rest(workers,spshifts)
+  # print(workers2)
+  # print(restshifts)
 
-  Shift = RestShift + SpShift
-  IndivShift = Classify(Shift,IndivShift)
+  shifts = restshifts + spshifts
+  indivshifts = classify(shifts,indivshifts)
 
 
-  Worker3, _ = Special(Worker2,SpecialJob)
-  # print(Worker3)
+  workers3, _ = special(workers2,specialjobs)
+  # print(workers3)
 
-  NormalShift = Normal(Worker3,Job,IndivShift)
-  # print(NormalShift)
+  normalshifts = normal(workers3,Jobs,indivshifts)
+  # print(normalshifts)
 
-  shift = NormalShift
-  # Shift = NormalShift + RestShift + SpShift
+  shift = normalshifts
+  # shifts = normalshifts + restshifts + spshifts
 
-  # print(Shift)
+  # print(shifts)
 
-  # IndivShift = Classify(Shift,Worker)
-  # IndivShift = Classify(Shift,IndivShift)
+  # indivshifts = Classify(shifts,Worker)
+  # indivshifts = Classify(shifts,indivshifts)
   viewindivs = []
-  for indivs in indivshift:
+  for indivs in indivshifts:
     tmp = []
     for inds in indivs:
       tmp.append(ind[0])
-    viewindiv.append(tmp)
+    viewindivs.append(tmp)
     
 
   # print(viewindivs)
