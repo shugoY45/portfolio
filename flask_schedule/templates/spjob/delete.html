@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+  <table class="table table-bordered content-section">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">指定従業員</th>
+        <th scope="col">仕事名</th>
+        <th scope="col">開始時間</th>
+        <th scope="col">終了時間</th>
+        <th scope="col">仕事の重要度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{ spjob.id }}</th>
+        <td>{{ spjob.workername }}</td>
+        <td>{{ spjob.jobname }}</td>
+        <td>{{ spjob.starttime }}</td>
+        <td>{{ spjob.endtime }}</td>
+        <td>{{ spjob.priorty }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <form action="" method="POST">
+    <button type="submit" class="btn btn-danger">削除</button>
+  </form>
+{% endblock %}
