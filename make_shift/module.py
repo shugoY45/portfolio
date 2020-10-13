@@ -20,3 +20,6 @@ class Worker:
 
   def __repr__(self):
     return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}', '{self.workerweight}')"
+
+class Needrest(Worker):
+  i = 1

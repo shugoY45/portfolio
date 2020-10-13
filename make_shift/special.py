@@ -1,7 +1,7 @@
 from datetime import datetime
 import copy
 from setting import *
-from make_shift.module import Shift,Worker
+from flask_schedule.models import Shift
 
 def special(workers,specialjobs):
   spshifts = []
@@ -16,16 +16,18 @@ def special(workers,specialjobs):
         # 特別シフト作成
         starttime = datetime.strptime(spjob.starttime, '%H:%M')
         endtime = datetime.strptime(spjob.endtime, '%H:%M')
-        if datetime.strptime(worker.starttime, '%H:%M')<=starttime and endtime<=datetime.strptime(worker.endtime, '%H:%M'):
-          shift = Shift(worker.workername,spjob.jobname,spjob.starttime,spjob.endtime,spjob.priorty)
+        # if datetime.strptime(worker.starttime, '%H:%M')<=starttime and endtime<=datetime.strptime(worker.endtime, '%H:%M'):
+        if worker.be_free(starttime,endtime):
+          shift = Shift(worker.workername,spjob.jobname,starttime,endtime,spjob.priorty)
           spshifts.append(shift)
+          worker.add_shift(shift)
 
           # 特別シフトの時間を外し、従業員リストの仕事時間を更新する。
-          newworker = Worker(worker.workername,worker.starttime,spjob.starttime)
-          newworkers.append(newworker)
-          newworker = Worker(worker.workername,spjob.endtime,worker.endtime)
-          newworkers.append(newworker)
-          newworkers.remove(worker)
+          # newworker = Worker(worker.workername,worker.starttime,spjob.starttime)
+          # newworkers.append(newworker)
+          # newworker = Worker(worker.workername,spjob.endtime,worker.endtime)
+          # newworkers.append(newworker)
+          # newworkers.remove(worker)
           break
         else :
           # print(worker)
@@ -39,7 +41,7 @@ def special(workers,specialjobs):
   # print(spshifts)
   # print(newworkers)
 
-  return newworkers,spshifts
+  return spshifts
 
 
 

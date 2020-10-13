@@ -9,10 +9,15 @@ def main():
   workers = Worker.query.all()
   jobs = Job.query.all()
   specialjobs = SpecialJob.query.all()
+  for worker in workers:
+    worker.init_freetime()
 
-  indivshifts = set_list(workers)
+  # indivshifts = set_list(workers)
+  print(workers[3].workername,workers[3].freetimeops)
 
-  _ , spshifts = special(workers,specialjobs)
+  spshifts = special(workers,specialjobs)
+
+  print(workers[3].workername,workers[3].freetimeops)
   # print(spshifts)
 
   # workers2, restshifts = rest(workers,spshifts)

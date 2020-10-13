@@ -1,7 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.models import Worker ,Job
-from test import test
 import make_shift
 
 
