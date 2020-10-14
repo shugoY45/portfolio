@@ -1,86 +1,64 @@
 from setting import *
-# from special import spshifts, NewWorker
 from datetime import datetime, timedelta
 from flask_schedule.models import Shift
 
 
 # 休憩シフト作成
-def rest(workers,spshifts):
+def rest(workers):
 
-  # 休憩が必要な人のリスト作成。かつ始業時間と終業時間の平均時間を追加
-  needrests = []
+  # 休憩が必要な人を探し、かつ始業時間と終業時間の平均時間を追加
   store_median = (datetime.strptime(store_opentime, '%H:%M').hour+datetime.strptime(store_closetime, '%H:%M').hour)/2
   for worker in workers:
     if datetime.strptime(worker.endtime, '%H:%M')-datetime.strptime(worker.starttime, '%H:%M') > timedelta(hours=restnd_mint) :
       worker.time_median = ((datetime.strptime(worker.starttime, '%H:%M').hour+datetime.strptime(worker.endtime, '%H:%M').hour)+((datetime.strptime(worker.starttime, '%H:%M').minute+datetime.strptime(worker.endtime, '%H:%M').minute)/60))/2
-      # worker.append(store_median-worker[-1])
-      # worker.differ_store_median = store_median-worker.time_median
-      # needrests.append((worker))
       worker.need_rest = True
-      needrests.append(worker)
-    # else:
-    #   newworkers.append(worker)
-  # リストの中央値を用いて、営業時間の中央値に近い順に並び替える
 
-  workers_sorted = sorted(needrests,key=lambda x:abs(store_median-x.time_median))
-  print(workers_sorted)
+  # 従業員の就業時間の中央値を用いて、営業時間の中央値に近い順に並び替える
+  workers = sorted(workers,key=lambda x:abs(store_median-x.time_median))
+  # print(workers_sorted)
 
-
-  # リストの中央値の付近から休憩の時間を見つけ出す
+  # 就業時間の中央値の付近から休憩の時間を見つけ出す
   restshifts = []
-  tmp_restshifts = []
-  for needrest in workers_sorted:
-    tmp_restshifts.append([needrest[worker_name],0,int(needrest[-2]),int(needrest[-2]+1),needrest[-2],False,0,False,needrest.starttime,needrest.endtime])
-
-  median = 4
-  done_Rounding = 5
-  difference = 6
-  reverse = 7
-  rework_start = 8
-  rework_end = 9
-
-  # # print(tmp_restshifts)
-  # # その時間に特別シフトに入っていないか確認する
-  # for tmp in tmp_restshifts:
-  #   found = False
-  #   for spshift in spshifts:
-  #     if tmp[worker_name] == spshift[shift_workername]:
-  #       found = True
-  #       while True:
-  #         # a<x<b,c<y<dのときx,yが重なるのはc<b<d or c<a<d or (a<c and d<b)
-  #         a = datetime.strptime(spshift[shift_starttime], '%H:%M')
-  #         b = datetime.strptime(spshift[shift_endtime], '%H:%M')
-  #         c = datetime.strptime(str(tmp[shift_starttime])+":00", '%H:%M')
-  #         d = datetime.strptime(str(tmp[shift_endtime])+":00", '%H:%M')
-  #         if (c<b and b<d) or (c<a and a<d) or (a<c and d<b) or a==c or b == d:
-  #           # print(tmp)
-  #           if not tmp[done_Rounding]:
-  #             if int(tmp[median]+0.5) == tmp[shift_starttime]:
-  #               # print(1)
-  #               tmp = (tmp[shift_workername],0,tmp[shift_starttime]-1,tmp[shift_endtime]-1,tmp[median],True,-1,False,tmp[rework_start],tmp[rework_end])
-                
-  #             else:
-  #               # print(2)
-  #               tmp = (tmp[shift_workername],0,tmp[shift_starttime]+1,tmp[shift_endtime]+1,tmp[median],True,1,False,tmp[rework_start],tmp[rework_end])
-                
-  #           else:
-  #             if not tmp[reverse]:
-  #               # print(3)
-  #               tmp = (tmp[shift_workername],0,int(tmp[median])-tmp[difference],int(tmp[median])+1-tmp[difference],tmp[median],True,tmp[difference]+1,True,tmp[rework_start],tmp[rework_end])
-                
-  #             else:
-  #               # print(4)
-  #               tmp = (tmp[shift_workername],0,int(tmp[median])+tmp[difference],int(tmp[median])+1+tmp[difference],tmp[median],True,tmp[difference],False,tmp[rework_start],tmp[rework_end])
-  #         else:
-  #           restshifts.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00",'0'))
-  #           newworkers.append((tmp[shift_workername],tmp[rework_start],str(tmp[shift_starttime])+":00",0))
-  #           newworkers.append((tmp[shift_workername],str(tmp[shift_endtime])+":00",tmp[rework_end],0))
-  #           break
-  #   if not found:
-  #     restshifts.append((tmp[shift_workername],restname,str(tmp[shift_starttime])+":00",str(tmp[shift_endtime])+":00",'0'))
-  #     newworkers.append((tmp[shift_workername],tmp[rework_start],str(tmp[shift_starttime])+":00",0))
-  #     newworkers.append((tmp[shift_workername],str(tmp[shift_endtime])+":00",tmp[rework_end],0))
-
-  # # print(restshifts)
-  # # print(newworkers)
-  return 0,0
+  for worker in workers:
+    if worker.need_rest:  # 休憩が必要か
+      worker.tmp_reststart = datetime.strptime(str(int(worker.time_median))+":00", '%H:%M')
+      worker.tmp_restend = datetime.strptime(str(int(worker.time_median)+1)+":00", '%H:%M')
+      First = True # 最初のループか
+      # 休憩を入れたい時間にすでに仕事が入っている場合、休憩を他の時間に変える
+      while not worker.be_free(worker.tmp_reststart,worker.tmp_restend):
+        if First:
+          First = False
+          # 就業時間の中央値をもとに、休憩時間のずらす方向を前後に変える。
+          if int(worker.time_median+0.5) == int(worker.time_median):
+            worker.diffrence = -1
+            worker.tmp_reststart = worker.tmp_reststart + timedelta(hours=worker.difference) 
+            worker.tmp_restend = worker.tmp_restend + timedelta(hours=worker.difference) 
+          else:
+            worker.diffrence = 1
+            worker.tmp_reststart = worker.tmp_reststart + timedelta(hours=worker.difference) 
+            worker.tmp_restend = worker.tmp_restend + timedelta(hours=worker.difference) 
+        else:
+          # 上でずらした前後方向とは反対方向にずらす
+          if not worker.done_reversed:
+            worker.tmp_reststart = datetime.strptime(str(int(worker.time_median))+":00", '%H:%M')
+            worker.tmp_restend = datetime.strptime(str(int(worker.time_median)+1)+":00", '%H:%M')
+            worker.tmp_reststart = worker.tmp_reststart - timedelta(hours=worker.difference) 
+            worker.tmp_restend = worker.tmp_restend - timedelta(hours=worker.difference) 
+            worker.done_reversed = True
+          # ずらす幅を大きくし動作を繰り返す
+          else:
+            if worker.difference > 0:
+              worker.difference = worker.difference + 1
+            else :
+              worker.difference = worker.difference - 1
+            worker.tmp_reststart = datetime.strptime(str(int(worker.time_median))+":00", '%H:%M')
+            worker.tmp_restend = datetime.strptime(str(int(worker.time_median)+1)+":00", '%H:%M')
+            worker.tmp_reststart = worker.tmp_reststart + timedelta(hours=worker.difference) 
+            worker.tmp_restend = worker.tmp_restend + timedelta(hours=worker.difference) 
+            worker.done_reversed = False
+      shift = Shift(worker.workername,restname,worker.tmp_reststart,worker.tmp_restend,0)
+      worker.add_shift(shift)
+      restshifts.append(shift)
+  # print(restshifts)
+  # print(newworkers)
+  return restshifts

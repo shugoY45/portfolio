@@ -10,28 +10,20 @@ def main():
   jobs = Job.query.all()
   specialjobs = SpecialJob.query.all()
   for worker in workers:
-    worker.init_freetime()
-
-  # indivshifts = set_list(workers)
-  print(workers[3].workername,workers[3].freetimeops)
+    worker.init()
 
   spshifts = special(workers,specialjobs)
 
-  print(workers[3].workername,workers[3].freetimeops)
   # print(spshifts)
 
-  # workers2, restshifts = rest(workers,spshifts)
-  # # print(workers2)
-  # # print(restshifts)
+  restshifts = rest(workers)
 
-  # shifts = restshifts + spshifts
-  # indivshifts = classify(shifts,indivshifts)
+  # for worker in workers:
+  #   print(worker.workername,worker.indivshifts)
+  # print(restshifts)
 
 
-  # workers3, _ = special(workers2,specialjobs)
-  # # print(workers3)
-
-  # normalshifts = normal(workers3,Jobs,indivshifts)
+  normalshifts = normal(workers,Jobs)
   # # print(normalshifts)
 
   # shift = normalshifts

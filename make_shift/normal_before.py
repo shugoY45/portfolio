@@ -5,7 +5,7 @@ from make_shift.function import workweight, classify
 
 def normal(workers,jobs,indivshifts):
   normalshifts = []
-  # 時間を一時間ごとに分割する
+  # 時間を一定間隔に分割する
   opentime = datetime.strptime(store_opentime, '%H:%M')
   closetime = datetime.strptime(store_closetime, '%H:%M')
   for hour in range(opentime.hour,closetime.hour):
@@ -14,16 +14,16 @@ def normal(workers,jobs,indivshifts):
     td_end = datetime.strptime(str(hour+job_divtime), '%H')
 
     # 分割時間ごとの仕事の抽出
-    td_job = []
+    td_jobs = []
     for job in jobs:
-      start_time = datetime.strptime(job[job_start_time], '%H:%M')
-      end_time = datetime.strptime(job[job_end_time], '%H:%M')
-      if (start_time <= td_start and end_time >= td_end ):
-        for _ in range(0,int(job[required_number])):
-          td_job.append(job)
+      start_time = datetime.strptime(job.starttime, '%H:%M')
+      end_time = datetime.strptime(job.endtime, '%H:%M')
+      if (start_time <= td_start and td_end <= end_time ):
+        for i in range(0,int(job.required_number)):
+          td_jobs.append(job)
 
     # 仕事の優先度ソート
-    job_sorted = sorted(td_job,key=lambda x:int(x[job_weight]),reverse=True)
+    job_sorted = sorted(td_jobs,key=lambda x:int(x.priority),reverse=True)
     # print(job_sorted)
 
 
