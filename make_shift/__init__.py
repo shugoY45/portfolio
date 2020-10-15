@@ -28,24 +28,7 @@ def main():
 
   for worker in workers:
     print(worker.workername,worker.indivshifts)
-
-
-  # shift = normalshifts
-  # # shifts = normalshifts + restshifts + spshifts
-
-  # # print(shifts)
-
-  # # indivshifts = Classify(shifts,Worker)
-  # # indivshifts = Classify(shifts,indivshifts)
-  # viewindivs = []
-  # for indivs in indivshifts:
-  #   tmp = []
-  #   for inds in indivs:
-  #     tmp.append(ind[0])
-  #   viewindivs.append(tmp)
     
-
-  # print(viewindivs)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 from flask_schedule import db
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Worker(db.Model):
@@ -73,8 +73,31 @@ class Worker(db.Model):
         self.freetimeeds.remove(ed)
     self.indivshifts.append(shift)
   
-  def make_aptitude(self):
-    i = 1
+  def make_aptitude(self,td_start,td_end,jobname):
+    self.aptitude = 0
+    for shift in self.indivshifts:
+      if td_end < shift.endtime:
+        td = shift.endtime - td_end
+        m,s = divmod(td.seconds,60)
+        b = m
+        td = shift.starttime - td_end
+        m,s = divmod(td.seconds,60)
+        a = m
+      else:
+        td = td_start - shift.starttime
+        m,s = divmod(td.seconds,60)
+        b = m
+        td = td_start - shift.endtime
+        m,s = divmod(td.seconds,60)
+        a = m
+      function = -b*b+1440*b+a*a-1440*a
+      if jobname == shift.jobname:
+        self.aptitude = self.aptitude + function * int(shift.jobweight) * 5
+      else:
+        self.aptitude = self.aptitude + function * int(shift.jobweight)
+    # print(self.indivshifts)
+
+
 
 
 
@@ -92,6 +115,8 @@ class Shift():
 
   def __repr__(self):
     return f"Shift('{self.workername}','{self.jobname}','{self.veiwstarttime}','{self.veiwendtime}','{self.jobweight}')"
+  # def __repr__(self):
+  #   return f"Shift('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}','{self.jobweight}')"
 
   def remove(self):
     i = 1
