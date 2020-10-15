@@ -18,7 +18,7 @@
         <td>{{ job.jobname }}</td>
         <td>{{ job.starttime }}</td>
         <td>{{ job.endtime }}</td>
-        <td>{{ job.priorty }}</td>
+        <td>{{ job.priority }}</td>
         <td>{{ job.required_number }}</td>
         <td>
           <div class="btn-group">
@@ -63,11 +63,11 @@
             {{ form.endtime_minutes() }}
           </div>
           <div class="form-group">
-            {{ form.priorty.label(class="form-control-label")}}
-            {{ form.priorty(class="form-control form-control-lg") }}
-            {% if form.priorty.errors %}
+            {{ form.priority.label(class="form-control-label")}}
+            {{ form.priority(class="form-control form-control-lg") }}
+            {% if form.priority.errors %}
             <div class="invalid-feedback">
-              {% for error in form.priorty.errors %}
+              {% for error in form.priority.errors %}
               <span>{{ error }}</span>
               {% endfor %}
             </div>

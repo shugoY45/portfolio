@@ -23,8 +23,12 @@ def main():
   # print(restshifts)
 
 
-  normalshifts = normal(workers,Jobs)
-  # # print(normalshifts)
+  normalshifts = normal(workers,jobs)
+  # print(normalshifts)
+
+  for worker in workers:
+    print(worker.workername,worker.indivshifts)
+
 
   # shift = normalshifts
   # # shifts = normalshifts + restshifts + spshifts

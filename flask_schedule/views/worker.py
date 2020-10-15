@@ -21,7 +21,7 @@ def worker():
   if request.method == 'POST':
     if form.validate_on_submit():
       flash('従業員を追加しました', 'success')
-      worker = Worker(workername=form.workername.data, starttime=form.starttime_hour.data+':'+form.starttime_minutes.data, endtime=form.endtime_hour.data+':'+form.endtime_minutes.data, workerweight='0')
+      worker = Worker(workername=form.workername.data, starttime=form.starttime_hour.data+':'+form.starttime_minutes.data, endtime=form.endtime_hour.data+':'+form.endtime_minutes.data)
       db.session.add(worker)
       db.session.commit()
       workers = Worker.query.all()

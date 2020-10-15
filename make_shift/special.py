@@ -18,7 +18,7 @@ def special(workers,specialjobs):
         endtime = datetime.strptime(spjob.endtime, '%H:%M')
         # if datetime.strptime(worker.starttime, '%H:%M')<=starttime and endtime<=datetime.strptime(worker.endtime, '%H:%M'):
         if worker.be_free(starttime,endtime):
-          shift = Shift(worker.workername,spjob.jobname,starttime,endtime,spjob.priorty)
+          shift = Shift(worker.workername,spjob.jobname,starttime,endtime,spjob.priority)
           spshifts.append(shift)
           worker.add_shift(shift)
 

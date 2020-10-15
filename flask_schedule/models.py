@@ -7,10 +7,9 @@ class Worker(db.Model):
   workername = db.Column(db.String(20), unique=True, nullable=False)
   starttime = db.Column(db.String(10))
   endtime = db.Column(db.String(10))
-  workerweight = db.Column(db.String(3))
 
   def __repr__(self):
-    return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}', '{self.workerweight}')"
+    return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}')"
 
   def init(self):
     self.freetimeops = []
@@ -24,6 +23,7 @@ class Worker(db.Model):
     self.done_reversed = False
     self.tmp_reststart = 0
     self.tmp_restend = 0
+    self.aptitude = 0
 
   def be_free(self,shift_st,shift_ed):
     for op,ed in zip(self.freetimeops,self.freetimeeds):
@@ -73,28 +73,25 @@ class Worker(db.Model):
         self.freetimeeds.remove(ed)
     self.indivshifts.append(shift)
   
-  def hello(self):
-    print(self.workername,self.freetimeops)
+  def make_aptitude(self):
+    i = 1
 
 
 
 
 class Shift():
-  workername = 0
-  jobname = 0
-  starttime = 0
-  endtime = 0
-  jobweight = 0
 
   def __init__(self,workername,jobname,starttime,endtime,jobweight):
     self.workername = workername
     self.jobname = jobname
     self.starttime = starttime
+    self.veiwstarttime = starttime.strftime("%H:%M")
     self.endtime = endtime
+    self.veiwendtime = endtime.strftime("%H:%M")
     self.jobweight = jobweight
 
   def __repr__(self):
-    return f"Shift('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}','{self.jobweight}')"
+    return f"Shift('{self.workername}','{self.jobname}','{self.veiwstarttime}','{self.veiwendtime}','{self.jobweight}')"
 
   def remove(self):
     i = 1
@@ -113,7 +110,7 @@ class Job(db.Model):
   jobname = db.Column(db.String(20), unique=True, nullable=False)
   starttime = db.Column(db.String(10))
   endtime = db.Column(db.String(10))
-  priorty = db.Column(db.String(3))
+  priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
 
   def __repr__(self):
@@ -126,7 +123,7 @@ class SpecialJob(db.Model):
   jobname = db.Column(db.String(20), nullable=False)
   starttime = db.Column(db.String(10))
   endtime = db.Column(db.String(10))
-  priorty = db.Column(db.String(3))
+  priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
 
   def __repr__(self):

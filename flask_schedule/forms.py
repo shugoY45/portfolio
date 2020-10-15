@@ -18,7 +18,7 @@ class JobForm(FlaskForm):
   endtime_hour = SelectField('終了時間',validators=[DataRequired()])
   endtime_minutes = SelectField(':',validators=[DataRequired()])
   required_number = IntegerField('必要人数', validators=[DataRequired()],default=1)
-  priorty = SelectField('仕事の重要度',validators=[DataRequired()])
+  priority = SelectField('仕事の重要度',validators=[DataRequired()])
 
   submit = SubmitField('送信')
 
@@ -30,7 +30,7 @@ class SpJobForm(FlaskForm):
   starttime_minutes = SelectField(':',validators=[DataRequired()])
   endtime_hour = SelectField('終了時間',validators=[DataRequired()])
   endtime_minutes = SelectField(':',validators=[DataRequired()])
-  priorty = SelectField('仕事の重要度',validators=[DataRequired()])
+  priority = SelectField('仕事の重要度',validators=[DataRequired()])
 
   submit = SubmitField('送信')
 

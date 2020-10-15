@@ -12,8 +12,8 @@ st = datetime.strptime("19:00","%H:%M")
 ed = datetime.strptime("22:00","%H:%M")
 shift = Shift("sasaki","reji",st,ed,10)
 workers[0].add_shift(shift)
-print(workers[0].workername,workers[0].be_free(st,ed),workers[0].freetimeops,workers[0].freetimeeds)
-
+# print(workers[0].workername,workers[0].be_free(st,ed),workers[0].freetimeops,workers[0].freetimeeds)
+print(st.strftime("%H:%M"))
 
 
 
