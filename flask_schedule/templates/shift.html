@@ -1,4 +1,50 @@
 {% extends "layout.html" %}
 {% block content %}
-  シフトができません
+<div class="content-section">
+  <h1>シフト表</h1><hr>
+  <div class="row x_data_area">
+    <div class="lock_box">
+      <table class="width300 data">
+        <tr>
+            <th>名前</th>
+        </tr>
+        {% for worker in workers %}
+          <tr>
+              <td class="workername">{{ worker.workername }}</td> 
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  <div class="row x_scroll_box">
+    <table class="width2500 data">
+      {% for i in range(9,22): %}
+          <th class="time">{{ i }}:00</th>
+      {% endfor %}
+      {% for worker in workers :%}
+        <tr>
+          {% for i in range(9,22): %}
+          {% set ns = namespace(found = False) %}
+          {% set ns = namespace(working = Flase) %}
+          {% if worker.d_st.hour < i and i < worker.d_ed.hour: %}
+            {% set ns = namespace(working = True) %}
+          {% endif %}
+          {% for shift in worker.indivshifts: %}
+            {% if shift.starttime.hour == i :%}
+              {% set ns.found = True %}
+              <td class="working">{{ shift.jobname }}</td> 
+            {% endif %}
+          {% endfor %}
+          {% if not ns.found :%}
+            {% if not ns.working :%}
+            <td class="not_working"></td>
+            {% else: %}
+            <td class="working"></td>
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
 {% endblock %}

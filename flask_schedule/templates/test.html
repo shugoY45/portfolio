@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Horizontal Scroll</title>
+  <style>
+    table{
+      width: 1800px;
+    }
+    th,td{
+      width: 300px;
+      height: 100px;
+      vertical-align: middle;
+      padding: 0 15px;
+      border: 1px solid #ccc;
+    }
+    .fixed01,
+    .fixed02{
+      position: sticky;
+      top: 0;
+      left: 0;
+      color: #fff;
+      background: #333;
+    }
+    .fixed01{
+      z-index: 2;
+    }
+    .fixed02{
+      z-index: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th class="fixed01">見出し</th>
+      <th class="fixed02">見出し</th>
+      <th class="fixed02">見出し</th>
+      <th class="fixed02">見出し</th>
+      <th class="fixed02">見出し</th>
+      <th class="fixed02">見出し</th>
+    </tr>
+    <tr>
+      <th class="fixed02">見出し</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th class="fixed02">見出し</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </table>
+</body>
+</html>

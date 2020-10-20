@@ -27,7 +27,11 @@ def main():
   # print(normalshifts)
 
   for worker in workers:
-    print(worker.workername,worker.indivshifts)
+    worker.indivshifts = sorted(worker.indivshifts,key=lambda x:(x.starttime))
+  
+
+  # for worker in workers:
+  #   print(worker.workername,worker.indivshifts)
     
 
 

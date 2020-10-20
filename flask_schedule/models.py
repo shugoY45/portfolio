@@ -14,6 +14,8 @@ class Worker(db.Model):
   def init(self):
     self.freetimeops = []
     self.freetimeeds = []
+    self.d_st = datetime.strptime(self.starttime,"%H:%M")
+    self.d_ed = datetime.strptime(self.endtime,"%H:%M")
     self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
     self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
     self.indivshifts = []
