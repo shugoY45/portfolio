@@ -1,3 +1,23 @@
+@page {
+  size: auto;
+}
+
+@media print{
+  * {
+    background: #d13030;
+    color: #df5c5c;
+  }
+
+  .not-print {
+    display: none;
+  }
+  .shift-print {
+    overflow: visible;
+  }
+  .container {
+    width: 100%;
+  }
+}
 
 body {
   background: #fafafa;
@@ -14,9 +34,6 @@ h6 {
   color: #444444;
 }
 
-/* .bg-steel {
-  background-color: #5f788a;
-} */
 
 .bg-steel {
   background-color: #13a08d;
@@ -40,85 +57,8 @@ h6 {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
-
-div.x_data_area {
-width: 900px;
-overflow: hidden; /* floatさせた要素を内包しているため指定 */
-border-right: 1px solid #CCC;
-border-bottom: 1px solid #CCC;
-border-left: 1px solid #CCC;
-}
-
-/* ロック部分 */
-div.lock_box {
-  float: left;
-  width: 120px;
-  overflow: hidden;
-}
-
-/* 横スクロール部分 */
-div.x_scroll_box {
-  float: left;
-  width: 599px;
-  border-left: 1px solid #CCC;
-  overflow-y: hidden; /* 縦スクロール非表示 */
-  overflow-x: scroll; /* 横スクロール */
-}
-
-/* テーブル */
-.width300 {
-  width: 300px;
-}
-
-.width2500 {
-  width: 2500px;
-}
-
-table.data {
-  table-layout: fixed; /* 内容を固定 */
-  border-collapse: separate;
-  border-spacing: 0; /* tableのcellspacing="0"の代わり */
-}
-
-table.data th,
-table.data td {
-  padding: 2px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-table.data th {
-  border-top: 1px solid black;
-  background: #8fbbf1;
-}
-
-table.data th,
-table.data td {
-  overflow: hidden; /* データが幅を超えたとき非表示に */
-  white-space: nowrap; /* データの折り返しを防止 */
-}
-
-table.data td p {
-  margin: 0; /* 余分なマージンを消去 */
-}
-
-/* IE6 */
-table.data {
-  _border-collapse: collapse; /* IE6がborder-spacing: 0;に対応していないので */
-}
-
-/* IE7 */
-*:first-child+html table.data {
-  border-collapse: collapse; /* IE7がborder-spacing: 0;に対応していないので */
-}
-.workername , time {
-  background-color:  #8fbbf1;
-  /* border: black solid 1px; */
-}
 
 .working {
   background-color: white;
@@ -126,4 +66,9 @@ table.data {
 
 .not_working {
   background-color: silver;
+}
+
+.table-fixed th:first-child, td:first-child {
+  position: sticky;  position: -webkit-sticky;
+  left: 0;
 }

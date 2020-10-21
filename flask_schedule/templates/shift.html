@@ -1,27 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section">
+
+
+<div class="content-section text-nowrap">
   <h1>シフト表</h1><hr>
-  <div class="row x_data_area">
-    <div class="lock_box">
-      <table class="width300 data">
-        <tr>
-            <th>名前</th>
-        </tr>
-        {% for worker in workers %}
-          <tr>
-              <td class="workername">{{ worker.workername }}</td> 
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-  <div class="row x_scroll_box">
-    <table class="width2500 data">
+    <table class="table-responsive table-bordered table-fixed shift-print">
+      <th class="table-primary">名前</th>
       {% for i in range(9,22): %}
-          <th class="time">{{ i }}:00</th>
+          <th class="table-primary">{{ i }}:00</th>
       {% endfor %}
+      
       {% for worker in workers :%}
         <tr>
+          <td class="table-primary">{{ worker.workername }}</td> 
           {% for i in range(9,22): %}
           {% set ns = namespace(found = False) %}
           {% set ns = namespace(working = Flase) %}

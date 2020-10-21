@@ -4,7 +4,7 @@
 
 
 # シフト開始時間と終了時間
-store_opentime = '17:00'
+store_opentime = '9:00'
 store_closetime = '22:00'
 
 # シフトを区切る時間(hour)　この場合は一時間交代
