@@ -1,0 +1,75 @@
+<div class="content-section text-nowrap">
+  <h1>シフト表</h1><hr>
+    <table class="table-responsive table-bordered table-fixed shift-print">
+      <th class="table-primary">名前</th>
+      {% for i in range(540,1320): %}
+        {% if i%60 == 0:%}
+          <th colspan="60" class="table-primary">{{ i/60 }}:00</th>
+        {% endif %}
+      {% endfor %}
+      
+      {% for worker in workers :%}
+        <tr>
+          <td class="table-primary">{{ worker.workername }}</td> 
+          {% set ns = namespace(i = 540) %}
+          {% for _ in range(540,1320): %}
+          {% if ns.i > 1320 %}{%  %}{% endif %}
+          {% set ns = namespace(found = False) %}
+          {% set ns = namespace(working = Flase) %}
+          {% if (worker.d_st.hour * 60 + worker.d_st.minute) < ns.i and ns.i < (worker.d_ed.hour * 60 + worker.d_ed.minute): %}
+            {% set ns = namespace(working = True) %}
+          {% endif %}
+          {% for shift in worker.indivshifts: %}
+            {% if (shift.starttime.hour * 60 + shift.starttime.minute) == ns.i :%}
+              {% set ns.found = True %}
+              <td colspan="60" class="working">{{ shift.jobname }}</td>
+              {% set ns.i = ns.i+59 %}
+            {% endif %}
+          {% endfor %}
+          {% if not ns.found :%}
+            {% if not ns.working :%}
+            <td class="not_working"></td>
+            {% else: %}
+            <td class="working"></td>
+            {% endif %}
+          {% endif %}
+          {% set ns.i = ns.i+1 %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% for worker in workers :%}
+        <tr>
+          <td class="table-primary">{{ worker.workername }}</td> 
+          {% set nc = namespace(cnt = 540) %}
+          {% for _ in range(540,1320): %}
+          
+          {% set ns = namespace(found = False) %}
+          {% set ns = namespace(working = Flase) %}
+          {% if worker.d_st.hour * 60 + worker.d_st.minute < nc.cnt and nc.cnt < worker.d_ed.hour * 60 + worker.d_ed.minute: %}
+            {% set ns = namespace(working = True) %}
+          {% endif %}
+          {% for shift in worker.indivshifts: %}
+            {% if (shift.starttime.hour * 60 + shift.starttime.minute) == nc.cnt :%}
+              {% set ns.found = True %}
+              <td colspan="60" class="working">{{ shift.jobname }}</td>
+              {% set nc.cnt = nc.cnt+59 %}
+            {% endif %}
+          {% endfor %}
+          {% if not ns.found :%}
+            {% if not ns.working :%}
+            <td class="not_working"></td>
+            {% else: %}
+            <td class="working"></td>
+            {% endif %}
+          {% endif %}
+          {% set nc.cnt = nc.cnt + 1%}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>

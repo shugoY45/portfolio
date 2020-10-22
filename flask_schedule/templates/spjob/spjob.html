@@ -14,7 +14,7 @@
     <tbody>
       {% for spjob in spjobs %}
       <tr>
-        <th scope="row">{{ spjob.id }}</th>
+        <th scope="row">{{ loop.index }}</th>
         <td>{{ spjob.workername }}</td>
         <td>{{ spjob.jobname }}</td>
         <td>{{ spjob.starttime }}</td>

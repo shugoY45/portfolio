@@ -12,9 +12,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for worker in workers %}
+      {% for worker in workers: %}
       <tr>
-        <th scope="row">{{ worker.id }}</th>
+        <th scope="row">{{ loop.index }}</th>
         <td>{{ worker.workername }}</td>
         <td>{{ worker.starttime }}</td>
         <td>{{ worker.endtime }}</td>

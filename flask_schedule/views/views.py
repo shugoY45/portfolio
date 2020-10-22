@@ -25,6 +25,11 @@ def index():
   make_shift.main()
   return render_template("shift.html",workers = workers)
 
+@app.route("/test", methods=["GET", "POST"])
+def test():
+  workers = Worker.query.all()
+  make_shift.main()
+  return render_template("test.html",workers = workers)
 
 
 

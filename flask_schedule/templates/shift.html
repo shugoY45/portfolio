@@ -1,6 +1,60 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<div class="content-section text-nowrap">
+  <h1>シフト表</h1><hr>
+    <table class="table-responsive table-bordered table-fixed shift-print">
+      <th class="table-primary">名前</th>
+      {% for i in range(540,1320): %}
+        {% if i%60 == 0:%}
+        {% set j = i/60 %}
+          <th colspan="60" class="table-primary">{{ j | int }}:00</th>
+        {% endif %}
+      {% endfor %}
+      
+      {% for worker in workers :%}
+        <tr>
+          <td class="table-primary">{{ worker.workername }}</td> 
+          {% set ns = namespace(shift = False) %}
+          {% set nc = namespace(cnt = 0) %}
+          {% for i in range(540,1320): %}
+            {% set nf = namespace(found = False) %}
+            {% set nw = namespace(working = Flase) %}
+            {% if worker.d_st.hour * 60 + worker.d_st.minute < i and i < worker.d_ed.hour * 60 + worker.d_ed.minute: %}
+              {% set nw.working = True %}
+            {% endif %}
+            {% for shift in worker.indivshifts: %}
+              {% if (shift.starttime.hour * 60 + shift.starttime.minute) == i :%}
+                {% set nf.found = True %}
+                <td colspan="60" class="working">{{ shift.jobname }}</td>
+                {% set ns.shift = True %}
+              {% endif %}
+            {% endfor %}
+            {% if ns.shift :%}
+              {% set nc.cnt = nc.cnt + 1%}
+              {% if nc.cnt == 60 :%}
+                {% set ns.shift = False %}
+                {% set nc.cnt = 0 %}
+              {% endif %}
+            {% else: %}
+              {% if not nf.found :%}
+                {% if not nw.working :%}
+                <td class="not_working"></td>
+                {% else: %}
+                <td class="working"></td>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+
+
 
 <div class="content-section text-nowrap">
   <h1>シフト表</h1><hr>
@@ -38,4 +92,6 @@
     </table>
   </div>
 </div>
+
+
 {% endblock %}
