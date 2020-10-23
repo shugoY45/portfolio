@@ -4,8 +4,7 @@
 
 @media print{
   * {
-    background: #d13030;
-    color: #df5c5c;
+    color: #5cdf72;
   }
 
   .not-print {
@@ -15,8 +14,17 @@
     overflow: visible;
   }
   .container {
-    width: 100%;
+    left: 0;
+    margin-left: 0px;
   }
+
+  .content-print {
+    border: none;
+    padding: none;
+    border-radius: none;
+    margin-bottom: none;
+  }
+
 }
 
 body {
@@ -67,6 +75,10 @@ h6 {
 .not_working {
   background-color: silver;
 }
+
+/* .td {
+  width: 10px;
+} */
 
 .table-fixed th:first-child, td:first-child {
   position: sticky;  position: -webkit-sticky;

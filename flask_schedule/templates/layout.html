@@ -11,7 +11,6 @@
 
     <link rel= "stylesheet" type= "text/css" media="print" href= "{{ url_for('static',filename='print.css') }}">
 
-  <script src="scripts/table.js"></script>
 
   <title>シフト作成</title>
 </head>
@@ -26,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
           {% if session.logged_in %}
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{{ url_for('index') }}">ホーム</a>
+            <a class="nav-item nav-link" href="{{ url_for('test') }}">test</a>
             <a class="nav-item nav-link" href="{{ url_for('job') }}">仕事</a>
             <a class="nav-item nav-link" href="{{ url_for('worker') }}">従業員</a> 
           </div> 
