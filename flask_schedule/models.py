@@ -4,9 +4,28 @@ from datetime import datetime, timedelta
 
 class Worker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  workername = db.Column(db.String(20), unique=True, nullable=False)
-  starttime = db.Column(db.String(10))
-  endtime = db.Column(db.String(10))
+  workername = db.Column(db.String(20), nullable=False)
+  Sunday = db.Column(db.Boolean)
+  Sunstarttime = db.Column(db.String(10))
+  Sunendtime = db.Column(db.String(10))
+  Monday = db.Column(db.Boolean)
+  Monstarttime = db.Column(db.String(10))
+  Monendtime = db.Column(db.String(10))
+  Tuesday = db.Column(db.Boolean)
+  Tuestarttime = db.Column(db.String(10))
+  Tueendtime = db.Column(db.String(10))
+  Wednesday = db.Column(db.Boolean)
+  Wedstarttime = db.Column(db.String(10))
+  Wenendtime = db.Column(db.String(10))
+  Thursday = db.Column(db.Boolean)
+  Thustarttime = db.Column(db.String(10))
+  Thuendtime = db.Column(db.String(10))
+  Friday = db.Column(db.Boolean)
+  Fristarttime = db.Column(db.String(10))
+  Friendtime = db.Column(db.String(10))
+  Saturday = db.Column(db.Boolean)
+  Satstarttime = db.Column(db.String(10))
+  Satendtime = db.Column(db.String(10))
 
   def __repr__(self):
     return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}')"
@@ -27,27 +46,30 @@ class Worker(db.Model):
     self.tmp_restend = 0
     self.aptitude = 0
 
+  # def day_of_the_week(self):
+  #   self.weekday = []
+  #   if self.Sunday:
+  #     self.weekday.append("日")
+  #   if self.Sunday:
+  #     self.weekday.append("月")
+  #   if self.Sunday:
+  #     self.weekday.append("火")
+  #   if self.Sunday:
+  #     self.weekday.append("水")
+  #   if self.Sunday:
+  #     self.weekday.append("木")
+  #   if self.Sunday:
+  #     self.weekday.append("金")
+  #   if self.Sunday:
+  #     self.weekday.append("土")
+  #   day = ','.join(self.weekday)
+  #   print(day)
+
   def be_free(self,shift_st,shift_ed):
     for op,ed in zip(self.freetimeops,self.freetimeeds):
       if op <= shift_st and shift_ed <= ed :
         return True
     return False
-
-  # def make_shifttime(self,shift_st,shift_ed):
-  #   for op,ed in zip(self.freetimeops,self.freetimeeds):
-  #     if op <= shift_st and shift_ed <= ed :
-  #       self.freetimeops.remove(op)
-  #       self.freetimeeds.remove(ed)
-  #       self.freetimeops.append(op)
-  #       self.freetimeops.append(shift_ed)
-  #       self.freetimeeds.append(shift_st)
-  #       self.freetimeeds.append(ed)
-  #       break
-  #   return 0
-  
-  # def make_shiftlist(self,min_time):
-  #   pminutes = int(datetime.strptime(min_time,"%H:%M").minute) if not int(datetime.strptime(min_time,"%H:%M").minute) == 0 else 60
-  #   self.shift = [[Shift() for i in range(int(60/pminutes))] for i in range(24)]
 
 
   def add_shift(self,shift):

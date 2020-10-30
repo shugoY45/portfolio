@@ -76,11 +76,19 @@ h6 {
   background-color: silver;
 }
 
-/* .td {
-  width: 10px;
-} */
 
 .table-fixed th:first-child, td:first-child {
   position: sticky;  position: -webkit-sticky;
   left: 0;
+}
+
+.check-appear{
+  display:none;
+}
+input[type="checkbox"]:checked + .check-appear{
+  display: block;
+}
+
+.check:checked + .check-appear{
+  display: block;
 }

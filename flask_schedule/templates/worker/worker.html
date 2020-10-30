@@ -6,8 +6,13 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">名前</th>
-        <th scope="col">始業時間</th>
-        <th scope="col">終業時間</th>
+        <th scope="col">日</th>
+        <th scope="col">月</th>
+        <th scope="col">火</th>
+        <th scope="col">水</th>
+        <th scope="col">木</th>
+        <th scope="col">金</th>
+        <th scope="col">土</th>
         <th></th>
       </tr>
     </thead>
@@ -16,8 +21,41 @@
       <tr>
         <th scope="row">{{ loop.index }}</th>
         <td>{{ worker.workername }}</td>
-        <td>{{ worker.starttime }}</td>
-        <td>{{ worker.endtime }}</td>
+        {% if worker.Sunday %}
+        <td>{{ worker.Sunstarttime}}〜{{ worker.Sunendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Monday %}
+        <td>{{ worker.Monstarttime}}〜{{ worker.Monendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Tuesday %}
+        <td>{{ worker.Tuestarttime}}〜{{ worker.Tueendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Wednesday %}
+        <td>{{ worker.Wedstarttime}}〜{{ worker.Wedendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Thursday %}
+        <td>{{ worker.Thustarttime}}〜{{ worker.Thuendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Friday %}
+        <td>{{ worker.Fristarttime}}〜{{ worker.Friendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
+        {% if worker.Saturday %}
+        <td>{{ worker.Satstarttime}}〜{{ worker.Satendtime }}</td>
+        {% else: %}
+        <td class="not-appear"></td>
+        {% endif %}
         <td>
           <div class="btn-group">
             <form action="{{ url_for('edit_worker',id = worker.id)}}" method="GET">
@@ -32,40 +70,5 @@
       {% endfor %}
     </tbody>
   </table>
-  <div class="content-section">
-    <form method="POST" action="">
-      <legend>新規作成</legend>
-      {{ form.hidden_tag()}}
-      <div class="form-group">
-        <fieldset class="form-group">
-          <div class="form-group">
-            {{ form.workername.label(class="form-control-label")}}
-            {{ form.workername(class="form-control form-control-lg") }}
-            {% if form.workername.errors %}
-            <div class="invalid-feedback">
-              {% for error in form.workername.errors %}
-              <span>{{ error }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.starttime_hour.label()}}
-            {{ form.starttime_hour() }}
-            {{ form.starttime_minutes.label()}}
-            {{ form.starttime_minutes() }}
-          </div>
-          <div class="form-group">
-            {{ form.endtime_hour.label()}}
-            {{ form.endtime_hour() }}
-            {{ form.endtime_minutes.label()}}
-            {{ form.endtime_minutes() }}
-          </div>
-        </fieldset>
-      </div>
-      <div class="form-group">
-        {{ form.submit(class="btn btn-outline-info") }}
-      </div>
-    </form>
-  </div>
+  
 {% endblock %}
