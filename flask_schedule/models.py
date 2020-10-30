@@ -16,7 +16,7 @@ class Worker(db.Model):
   Tueendtime = db.Column(db.String(10))
   Wednesday = db.Column(db.Boolean)
   Wedstarttime = db.Column(db.String(10))
-  Wenendtime = db.Column(db.String(10))
+  Wedendtime = db.Column(db.String(10))
   Thursday = db.Column(db.Boolean)
   Thustarttime = db.Column(db.String(10))
   Thuendtime = db.Column(db.String(10))

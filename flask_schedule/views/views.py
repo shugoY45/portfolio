@@ -2,7 +2,9 @@ import os
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.models import Worker ,Job
+from flask_schedule.views.login import login_required
 import make_shift
+
 
 @app.context_processor
 def override_url_for():
@@ -18,9 +20,8 @@ def dated_url_for(endpoint, **values):
     return url_for(endpoint, **values)
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   workers = Worker.query.all()
   make_shift.main()
   return render_template("shift.html",workers = workers)

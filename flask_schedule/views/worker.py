@@ -3,18 +3,19 @@ from flask_schedule import app, db
 from flask_schedule.forms import WorkerForm 
 from setting import hourlist,minuteslist
 from flask_schedule.models import Worker
+from flask_schedule.views.login import login_required
 
 @app.route('/worker', methods=['GET', 'POST'])
+@login_required
 def worker():
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   workers = Worker.query.all()
+  for worker in workers:
+    print(worker.Wedstarttime)
   return render_template('worker/worker.html',workers=workers)
 
 @app.route('/worker/new', methods=['GET', 'POST'])
+@login_required
 def new_worker():
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   form = make_checklist(WorkerForm())
   if request.method == "POST":
     if form.validate_on_submit():
@@ -88,9 +89,8 @@ def new_worker():
 
 
 @app.route('/worker/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_worker(id):
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   worker = Worker.query.get_or_404(id)
   form = WorkerForm()
   form.starttime_hour.choices = hourlist
@@ -115,9 +115,8 @@ def edit_worker(id):
 
 
 @app.route('/worker/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_worker(id):
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   worker = Worker.query.get_or_404(id)
   if request.method == "POST":
     flash('削除しました', 'success')

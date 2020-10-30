@@ -3,13 +3,13 @@ from flask_schedule import app, db
 from flask_schedule.forms import JobForm, SpJobForm
 from setting import hourlist,minuteslist, priorty_list
 from flask_schedule.models import Job
+from flask_schedule.views.login import login_required
 
 
 
 @app.route('/job', methods=['GET', 'POST'])
+@login_required
 def job():
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   jobs = Job.query.all()
   form = JobForm()
   hour = hourlist
@@ -31,9 +31,8 @@ def job():
       return render_template('job/job.html',form=form,jobs=jobs)
 
 @app.route('/job/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_job(id):
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   job = Job.query.get_or_404(id)
   form = JobForm()
   hour = hourlist
@@ -65,9 +64,8 @@ def edit_job(id):
 
 
 @app.route('/job/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_job(id):
-  if not session.get('logged_in'):
-    return redirect(url_for('login'))
   job = Job.query.get_or_404(id)
   if request.method == "POST":
     flash('削除しました', 'success')
