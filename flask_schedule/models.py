@@ -5,6 +5,15 @@ from datetime import datetime, timedelta
 class Worker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workername = db.Column(db.String(20), nullable=False)
+  # weekday = db.relationship('Weekday',backref='worker',lazy=True)
+  # Sunday = db.Column(db.Boolean)
+  # Monday = db.Column(db.Boolean)
+  # Tuesday = db.Column(db.Boolean)
+  # Wednesday = db.Column(db.Boolean)
+  # Thursday = db.Column(db.Boolean)
+  # Friday = db.Column(db.Boolean)
+  # Saturday = db.Column(db.Boolean)
+
   Sunday = db.Column(db.Boolean)
   Sunstarttime = db.Column(db.String(10))
   Sunendtime = db.Column(db.String(10))
@@ -27,10 +36,15 @@ class Worker(db.Model):
   Satstarttime = db.Column(db.String(10))
   Satendtime = db.Column(db.String(10))
 
+
   def __repr__(self):
     return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}')"
 
   def init(self):
+    self.starttime = "0:00"
+    self.endtime = "0:00"
+
+  def shift_init(self):
     self.freetimeops = []
     self.freetimeeds = []
     self.d_st = datetime.strptime(self.starttime,"%H:%M")
@@ -45,6 +59,11 @@ class Worker(db.Model):
     self.tmp_reststart = 0
     self.tmp_restend = 0
     self.aptitude = 0
+
+
+  def timeset(self,starttime,endtime):
+    self.starttime = starttime
+    self.endtime = endtime
 
   # def day_of_the_week(self):
   #   self.weekday = []
@@ -122,7 +141,15 @@ class Worker(db.Model):
     # print(self.indivshifts)
 
 
+# class Weekday(db.Model):
+#   weekday = db.Column(db.Integer,nullable=False)
+#   starttime = db.Column(db.String(10))
+#   endtime = db.Column(db.String(10))
+#   worker_id = db.Column(db,Integer,db.ForeignKey('worker.id'),nullable=False)
 
+#   def __repr__(self):
+#     return f"Weekday('{self.weekday}','{self.starttime}','{self.endtime}','{self.worker_id}')"
+  
 
 
 

@@ -10,7 +10,7 @@ def main():
   jobs = Job.query.all()
   specialjobs = SpecialJob.query.all()
   for worker in workers:
-    worker.init()
+    worker.shift_init()
 
   spshifts = special(workers,specialjobs)
 

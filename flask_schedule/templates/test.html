@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+<form method="POST" action="">
 
-
+  {% for form in forms: %}
+  {{form.name()}}
+  {{form.name.label()}}
+  {% endfor %}
+  <button>osusin</button>
+</form>
 {% endblock %}

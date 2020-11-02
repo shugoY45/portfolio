@@ -80,6 +80,16 @@ def new_worker():
       worker.Satendtime=form.Satendtime_hour.data+':'+form.Satendtime_minutes.data
       db.session.add(worker)
       db.session.commit()
+
+      # days = request.form.getlist("day")
+
+      # worker = Worker()
+      # worker.workername = form.workername.data
+
+      # for day in days:
+      #   weekday = Weekday()
+      #   weekday.weekday = day
+
       return redirect(url_for('worker'))
     else:
       return render_template('worker/new.html',form=form)

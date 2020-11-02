@@ -73,7 +73,13 @@ class SpJobForm(FlaskForm):
 
   submit = SubmitField('送信')
 
+class Selectday(FlaskForm):
+  weekday=SelectField('曜日',validators=[DataRequired()])
+  submit = SubmitField('送信')
 
+class Test(FlaskForm):
+  name = StringField('name')
+  submit = SubmitField('送信')
 
 
 
