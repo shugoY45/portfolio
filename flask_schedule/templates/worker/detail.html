@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-<table class="table table-bordered content-section">
+<div class="content-section">
+<h1>{{worker.workername}}</h1>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">名前</th>
       <th scope="col">日</th>
       <th scope="col">月</th>
       <th scope="col">火</th>
@@ -15,7 +16,6 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ worker.workername }}</td>
       {% if worker.Sunday %}
       <td>{{ worker.Sunstarttime}}〜{{ worker.Sunendtime }}</td>
       {% else: %}
@@ -54,7 +54,13 @@
     </tr>
   </tbody>
 </table>
-<form action="" method="POST">
-  <button type="submit" class="btn btn-danger">削除</button>
-</form>
+<div class="btn-group">
+  <form action="{{ url_for('edit_worker',id = worker.id)}}" method="GET">
+    <button type="submit" class="btn btn-secondary">編集</button>
+  </form>
+  <form action="{{ url_for('delete_worker',id = worker.id)}}" method="GET">
+    <button type="submit" class="btn btn-danger" style="margin-left: 5px;" style="margin-right: 5px;">削除</button>
+  </form>
+</div>
+</div>
 {% endblock %}

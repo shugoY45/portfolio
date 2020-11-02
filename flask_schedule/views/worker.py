@@ -9,8 +9,6 @@ from flask_schedule.views.login import login_required
 @login_required
 def worker():
   workers = Worker.query.all()
-  for worker in workers:
-    print(worker.Wedstarttime)
   return render_template('worker/worker.html',workers=workers)
 
 @app.route('/worker/new', methods=['GET', 'POST'])
@@ -96,7 +94,11 @@ def new_worker():
   elif request.method == "GET":
     return render_template('worker/new.html',form=form)
 
-
+@app.route('/worker/<int:id>/detail', methods=['GET', 'POST'])
+@login_required
+def worker_detail(id):
+  worker = Worker.query.get_or_404(id)
+  return render_template('worker/detail.html',worker=worker)
 
 @app.route('/worker/<int:id>/edit', methods=['GET', 'POST'])
 @login_required

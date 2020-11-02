@@ -20,7 +20,11 @@
       {% for worker in workers: %}
       <tr>
         <th scope="row">{{ loop.index }}</th>
-        <td>{{ worker.workername }}</td>
+        <td>
+          <a href="{{ url_for('worker_detail',id=worker.id) }}" class="card-link">
+            {{ worker.workername }}
+          </a>
+        </td>
         {% if worker.Sunday %}
         <td>{{ worker.Sunstarttime}}〜{{ worker.Sunendtime }}</td>
         {% else: %}
