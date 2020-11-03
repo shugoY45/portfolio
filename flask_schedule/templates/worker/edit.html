@@ -2,7 +2,7 @@
 {% block content %}
   <div class="content-section">
     <form method="POST" action="">
-      {{ form.hidden_tag()}}
+      {{ form.hidden_tag() }}
       <div class="form-group">
         <fieldset class="form-group">
           <div class="form-group">
@@ -16,17 +16,131 @@
             </div>
             {% endif %}
           </div>
-          <div class="form-group">
-            {{ form.starttime_hour.label()}}
-            {{ form.starttime_hour() }}
-            {{ form.starttime_minutes.label()}}
-            {{ form.starttime_minutes() }}
+          <div class="day">
+            {{ form.Sunday.label() }}
+            <input type="checkbox" class="check" name="Sun" value="True" {{day.Sunday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Sunstarttime_hour.label()}}
+                {{ form.Sunstarttime_hour() }}
+                {{ form.Sunstarttime_minutes.label()}}
+                {{ form.Sunstarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Sunendtime_hour.label()}}
+                {{ form.Sunendtime_hour() }}
+                {{ form.Sunendtime_minutes.label()}}
+                {{ form.Sunendtime_minutes() }}
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            {{ form.endtime_hour.label()}}
-            {{ form.endtime_hour() }}
-            {{ form.endtime_minutes.label()}}
-            {{ form.endtime_minutes() }}
+          <div class="day">
+            {{ form.Monday.label() }}
+            <input type="checkbox" class="check" name="Mon" value="True" {{day.Monday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Monstarttime_hour.label()}}
+                {{ form.Monstarttime_hour() }}
+                {{ form.Monstarttime_minutes.label()}}
+                {{ form.Monstarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Monendtime_hour.label()}}
+                {{ form.Monendtime_hour() }}
+                {{ form.Monendtime_minutes.label()}}
+                {{ form.Monendtime_minutes() }}
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            {{ form.Tuesday.label() }}
+            <input type="checkbox" class="check" name="Tue" value="True" {{day.Tuesday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Tuestarttime_hour.label()}}
+                {{ form.Tuestarttime_hour() }}
+                {{ form.Tuestarttime_minutes.label()}}
+                {{ form.Tuestarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Tueendtime_hour.label()}}
+                {{ form.Tueendtime_hour() }}
+                {{ form.Tueendtime_minutes.label()}}
+                {{ form.Tueendtime_minutes() }}
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            {{ form.Wednesday.label() }}
+            <input type="checkbox" class="check" name="Wed" value="True" {{day.Wednesday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Wedstarttime_hour.label()}}
+                {{ form.Wedstarttime_hour() }}
+                {{ form.Wedstarttime_minutes.label()}}
+                {{ form.Wedstarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Wedendtime_hour.label()}}
+                {{ form.Wedendtime_hour() }}
+                {{ form.Wedendtime_minutes.label()}}
+                {{ form.Wedendtime_minutes() }}
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            {{ form.Thursday.label() }}
+            <input type="checkbox" class="check" name="Thu" value="True" {{day.Thursday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Thustarttime_hour.label()}}
+                {{ form.Thustarttime_hour() }}
+                {{ form.Thustarttime_minutes.label()}}
+                {{ form.Thustarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Thuendtime_hour.label()}}
+                {{ form.Thuendtime_hour() }}
+                {{ form.Thuendtime_minutes.label()}}
+                {{ form.Thuendtime_minutes() }}
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            {{ form.Friday.label() }}
+            <input type="checkbox" class="check" name="Fri" value="True" {{day.Friday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Fristarttime_hour.label()}}
+                {{ form.Fristarttime_hour() }}
+                {{ form.Fristarttime_minutes.label()}}
+                {{ form.Fristarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Friendtime_hour.label()}}
+                {{ form.Friendtime_hour() }}
+                {{ form.Friendtime_minutes.label()}}
+                {{ form.Friendtime_minutes() }}
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            {{ form.Saturday.label() }}
+            <input type="checkbox" class="check" name="Sat" value="True" {{day.Saturday}}>
+            <div class="check-appear">
+              <div class="form-group time">
+                {{ form.Satstarttime_hour.label()}}
+                {{ form.Satstarttime_hour() }}
+                {{ form.Satstarttime_minutes.label()}}
+                {{ form.Satstarttime_minutes() }}
+              </div>
+              <div class="form-group time">
+                {{ form.Satendtime_hour.label()}}
+                {{ form.Satendtime_hour() }}
+                {{ form.Satendtime_minutes.label()}}
+                {{ form.Satendtime_minutes() }}
+              </div>
+            </div>
           </div>
         </fieldset>
       </div>

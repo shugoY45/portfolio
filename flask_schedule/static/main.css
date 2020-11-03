@@ -89,6 +89,6 @@ input[type="checkbox"]:checked + .check-appear{
   display: block;
 }
 
-.check:checked + .check-appear{
+/* .check:checked + .check-appear{
   display: block;
-}
+} */
