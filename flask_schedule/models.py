@@ -147,7 +147,7 @@ class Dayworker(db.Model):
     self.tmp_reststart = 0
     self.tmp_restend = 0
     self.aptitude = 0
-    
+
   def be_free(self,shift_st,shift_ed):
     for op,ed in zip(self.freetimeops,self.freetimeeds):
       if op <= shift_st and shift_ed <= ed :
@@ -267,3 +267,14 @@ class SpecialJob(db.Model):
 
   def __repr__(self):
     return f"SpecialJob('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}')"
+
+class Shift_config(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  store_opentime = db.Column(db.Time)
+  store_closetime = db.Column(db.Time)
+  job_divtime = db.Column(db.Time)
+  min_shift = db.Column(db.Time)
+  restnd_mint = db.Column(db.Time)
+  resttime = db.Column(db.Time)
+  restname = db.Column(db.String)
+  priorty_max = db.Column(db.Integer)

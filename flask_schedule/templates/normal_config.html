@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <legend>基本設定</legend>
+  <form action="" method="POST">
+    <div>
+      {{ form.store_opentime.label() }}
+      {{ form.store_opentime() }}
+    </div>
+    <div>
+    {{form.store_closetime.label()  }}
+    {{ form.store_closetime()  }}
+    </div>
+    <div>
+      {{ form.job_divtime.label() }}
+      {{ form.job_divtime() }}
+    </div>
+    <div>
+      {{ form.min_shift.label }}
+      {{ form.min_shift }}
+    </div>
+    <div>
+      {{form.restnd_mint.label }}
+      {{form.restnd_mint }}
+    </div>
+    <div>
+      {{form.resttime.label }}
+      {{form.resttime }}
+    </div>
+    <div>
+      {{form.restname.label  }}
+      {{form.restname  }}
+    </div>
+    <div>
+      {{ form.priorty_max.label  }}
+      {{ form.priorty_max  }}
+    </div>
+    <div>
+      
+      {{form.submit  }}
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, IntegerField, BooleanField
+from wtforms.fields.html5 import TimeField
 from wtforms.validators import DataRequired, Length
 
 class WorkerForm(FlaskForm):
@@ -77,8 +78,15 @@ class Selectday(FlaskForm):
   weekday=SelectField('曜日',validators=[DataRequired()])
   submit = SubmitField('送信')
 
-class Test(FlaskForm):
-  name = StringField('name')
+class ConfigForm(FlaskForm):
+  store_opentime = TimeField('シフト開始時間')
+  store_closetime = TimeField('シフト終了時間')
+  job_divtime = TimeField('シフト交代時間')
+  min_shift = TimeField('シフト最小時間')
+  restnd_mint = TimeField('休憩が必要になる最小労働時間')
+  resttime = TimeField('休憩時間')
+  restname = StringField('休憩の名前（シフト表での実際の表記）')
+  priorty_max = IntegerField('仕事重要度の最大値')
   submit = SubmitField('送信')
 
 

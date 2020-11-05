@@ -4,18 +4,19 @@ from flask_schedule.forms import WorkerForm
 from setting import hourlist,minuteslist
 from flask_schedule.models import Worker
 from flask_schedule.views.login import login_required
-from flask_schedule.views.views import date_chosen
+
 
 @app.route('/worker', methods=['GET', 'POST'])
 @login_required
-@date_chosen
 def worker():
+  date = session['date']
   workers = Worker.query.all()
   return render_template('worker/worker.html',workers=workers,date=date)
 
 @app.route('/worker/new', methods=['GET', 'POST'])
 @login_required
 def new_worker():
+  date = session['date']
   form = make_checklist(WorkerForm())
   if request.method == "POST":
     if form.validate_on_submit():
@@ -80,15 +81,6 @@ def new_worker():
       worker.Satendtime=form.Satendtime_hour.data+':'+form.Satendtime_minutes.data
       db.session.add(worker)
       db.session.commit()
-
-      # days = request.form.getlist("day")
-
-      # worker = Worker()
-      # worker.workername = form.workername.data
-
-      # for day in days:
-      #   weekday = Weekday()
-      #   weekday.weekday = day
 
       return redirect(url_for('worker'))
     else:
