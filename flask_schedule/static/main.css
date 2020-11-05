@@ -70,16 +70,22 @@ h6 {
 
 .working {
   background-color: white;
+  border: 1px solid #dee2e6;
 }
 
-.not_working .holiday {
-  background-color: silver;
+.not_working {
+  background-color: grey;
+  border: none;
 }
 
 
 .table-fixed th:first-child, td:first-child {
   position: sticky;  position: -webkit-sticky;
   left: 0;
+  border: 1px solid #dee2e6;
+}
+th {
+  border: 1px solid #dee2e6;
 }
 
 .check-appear{
@@ -92,3 +98,14 @@ input[type="checkbox"]:checked + .check-appear{
 /* .check:checked + .check-appear{
   display: block;
 } */
+
+/* input[type="date"] {
+  width: 200px;
+} */
+
+/* input[type=date]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+} 

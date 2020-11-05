@@ -5,8 +5,7 @@ from make_shift.special import special
 from make_shift.rest import rest
 from flask_schedule.models import Worker, Job, SpecialJob
 
-def main():
-  workers = Worker.query.all()
+def main(workers):
   jobs = Job.query.all()
   specialjobs = SpecialJob.query.all()
   for worker in workers:
@@ -28,6 +27,8 @@ def main():
 
   for worker in workers:
     worker.indivshifts = sorted(worker.indivshifts,key=lambda x:(x.starttime))
+
+  return workers
   
 
   # for worker in workers:

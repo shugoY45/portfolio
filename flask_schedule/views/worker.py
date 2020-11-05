@@ -4,12 +4,14 @@ from flask_schedule.forms import WorkerForm
 from setting import hourlist,minuteslist
 from flask_schedule.models import Worker
 from flask_schedule.views.login import login_required
+from flask_schedule.views.views import date_chosen
 
 @app.route('/worker', methods=['GET', 'POST'])
 @login_required
+@date_chosen
 def worker():
   workers = Worker.query.all()
-  return render_template('worker/worker.html',workers=workers)
+  return render_template('worker/worker.html',workers=workers,date=date)
 
 @app.route('/worker/new', methods=['GET', 'POST'])
 @login_required

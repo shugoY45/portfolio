@@ -44,6 +44,94 @@ class Worker(db.Model):
     self.starttime = "0:00"
     self.endtime = "0:00"
 
+  # def shift_init(self):
+  #   self.freetimeops = []
+  #   self.freetimeeds = []
+  #   self.d_st = datetime.strptime(self.starttime,"%H:%M")
+  #   self.d_ed = datetime.strptime(self.endtime,"%H:%M")
+  #   self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
+  #   self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
+  #   self.indivshifts = []
+  #   self.need_rest = False
+  #   self.time_median = 0
+  #   self.difference = 0
+  #   self.done_reversed = False
+  #   self.tmp_reststart = 0
+  #   self.tmp_restend = 0
+  #   self.aptitude = 0
+
+
+  # def timeset(self,starttime,endtime):
+  #   self.starttime = starttime
+  #   self.endtime = endtime
+
+
+  # def be_free(self,shift_st,shift_ed):
+  #   for op,ed in zip(self.freetimeops,self.freetimeeds):
+  #     if op <= shift_st and shift_ed <= ed :
+  #       return True
+  #   return False
+
+
+  # def add_shift(self,shift):
+  #   for op,ed in zip(self.freetimeops,self.freetimeeds):
+  #     if op < shift.starttime and shift.endtime < ed :
+  #       self.freetimeops.remove(op)
+  #       self.freetimeeds.remove(ed)
+  #       self.freetimeops.append(op)
+  #       self.freetimeeds.append(shift.starttime)
+  #       self.freetimeops.append(shift.endtime)
+  #       self.freetimeeds.append(ed)
+  #       break
+  #     elif op == shift.starttime and shift.endtime < ed :
+  #       self.freetimeops.remove(op)
+  #       self.freetimeeds.remove(ed)
+  #       self.freetimeops.append(shift.endtime)
+  #       self.freetimeeds.append(ed)
+  #     elif op < shift.starttime and shift.endtime == ed :
+  #       self.freetimeops.remove(op)
+  #       self.freetimeeds.remove(ed)
+  #       self.freetimeops.append(op)
+  #       self.freetimeeds.append(shift.starttime)
+  #     elif op == shift.starttime and shift.endtime == ed :
+  #       self.freetimeops.remove(op)
+  #       self.freetimeeds.remove(ed)
+  #   self.indivshifts.append(shift)
+  
+  # def make_aptitude(self,td_start,td_end,jobname):
+  #   self.aptitude = 0
+  #   for shift in self.indivshifts:
+  #     if td_end < shift.endtime:
+  #       td = shift.endtime - td_end
+  #       m,s = divmod(td.seconds,60)
+  #       b = m
+  #       td = shift.starttime - td_end
+  #       m,s = divmod(td.seconds,60)
+  #       a = m
+  #     else:
+  #       td = td_start - shift.starttime
+  #       m,s = divmod(td.seconds,60)
+  #       b = m
+  #       td = td_start - shift.endtime
+  #       m,s = divmod(td.seconds,60)
+  #       a = m
+  #     function = -b*b+1440*b+a*a-1440*a
+  #     if jobname == shift.jobname:
+  #       self.aptitude = self.aptitude + function * int(shift.jobweight) * 5
+  #     else:
+  #       self.aptitude = self.aptitude + function * int(shift.jobweight)
+    # print(self.indivshifts)
+
+class Dayworker(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  date = db.Column(db.DateTime, nullable=False)
+  workername = db.Column(db.String(20), nullable=False)
+  starttime = db.Column(db.String(10))
+  endtime = db.Column(db.String(10))
+
+  def __repr__(self):
+    return f"Dayworker('{self.date}','{self.workername}', '{self.starttime}', '{self.endtime}')"
+
   def shift_init(self):
     self.freetimeops = []
     self.freetimeeds = []
@@ -59,31 +147,7 @@ class Worker(db.Model):
     self.tmp_reststart = 0
     self.tmp_restend = 0
     self.aptitude = 0
-
-
-  def timeset(self,starttime,endtime):
-    self.starttime = starttime
-    self.endtime = endtime
-
-  # def day_of_the_week(self):
-  #   self.weekday = []
-  #   if self.Sunday:
-  #     self.weekday.append("日")
-  #   if self.Sunday:
-  #     self.weekday.append("月")
-  #   if self.Sunday:
-  #     self.weekday.append("火")
-  #   if self.Sunday:
-  #     self.weekday.append("水")
-  #   if self.Sunday:
-  #     self.weekday.append("木")
-  #   if self.Sunday:
-  #     self.weekday.append("金")
-  #   if self.Sunday:
-  #     self.weekday.append("土")
-  #   day = ','.join(self.weekday)
-  #   print(day)
-
+    
   def be_free(self,shift_st,shift_ed):
     for op,ed in zip(self.freetimeops,self.freetimeeds):
       if op <= shift_st and shift_ed <= ed :
@@ -138,7 +202,6 @@ class Worker(db.Model):
         self.aptitude = self.aptitude + function * int(shift.jobweight) * 5
       else:
         self.aptitude = self.aptitude + function * int(shift.jobweight)
-    # print(self.indivshifts)
 
 
 # class Weekday(db.Model):
