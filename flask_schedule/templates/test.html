@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section">
-  <legend>基本設定</legend>
- 
-  
-</div>
+<form action="" method="POST">
+  {{form.hidden_tag()}}
+
+  {{ form.time }}
+  {{ form.time2 }}
+  {% if form.time.error: %}
+  <span>{{form.time.error}}</span>
+  {%endif%}
+  <button >送信</button>
+</form>
 {% endblock %}

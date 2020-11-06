@@ -17,128 +17,116 @@
             {% endif %}
           </div>
           <div class="day">
-            {{ form.Sunday.label() }}
+            {{ form.Sun.label() }}
             <input type="checkbox" class="check" name="Sun" value="True" {{day.Sunday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Sunstarttime_hour.label()}}
-                {{ form.Sunstarttime_hour() }}
-                {{ form.Sunstarttime_minutes.label()}}
-                {{ form.Sunstarttime_minutes() }}
+                {{ form.Sunstarttime.label()}}
+                {{ form.Sunstarttime() }}
+                {% if form.Sunstarttime.errors %}
+                <div class="invalid-feedback">
+                  {% for error in form.Sunstarttime.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <span class="validation_error">{{ ', '.join(form.Sunstarttime.errors) }}</span>
               </div>
               <div class="form-group time">
-                {{ form.Sunendtime_hour.label()}}
-                {{ form.Sunendtime_hour() }}
-                {{ form.Sunendtime_minutes.label()}}
-                {{ form.Sunendtime_minutes() }}
+                {{ form.Sunendtime.label()}}
+                {{ form.Sunendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Monday.label() }}
+            {{ form.Mon.label() }}
             <input type="checkbox" class="check" name="Mon" value="True" {{day.Monday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Monstarttime_hour.label()}}
-                {{ form.Monstarttime_hour() }}
-                {{ form.Monstarttime_minutes.label()}}
-                {{ form.Monstarttime_minutes() }}
+                {{ form.Monstarttime.label()}}
+                {{ form.Monstarttime() }}
+                {% if form.Monstarttime.errors %}
+                <div class="invalid-feedback">
+                  {% for error in form.Monstarttime.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <span class="validation_error">{{ ', '.join(form.Monstarttime.errors) }}</span>
               </div>
               <div class="form-group time">
-                {{ form.Monendtime_hour.label()}}
-                {{ form.Monendtime_hour() }}
-                {{ form.Monendtime_minutes.label()}}
-                {{ form.Monendtime_minutes() }}
+                {{ form.Monendtime.label()}}
+                {{ form.Monendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Tuesday.label() }}
+            {{ form.Tue.label() }}
             <input type="checkbox" class="check" name="Tue" value="True" {{day.Tuesday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Tuestarttime_hour.label()}}
-                {{ form.Tuestarttime_hour() }}
-                {{ form.Tuestarttime_minutes.label()}}
-                {{ form.Tuestarttime_minutes() }}
+                {{ form.Tuestarttime.label()}}
+                {{ form.Tuestarttime() }}
               </div>
               <div class="form-group time">
-                {{ form.Tueendtime_hour.label()}}
-                {{ form.Tueendtime_hour() }}
-                {{ form.Tueendtime_minutes.label()}}
-                {{ form.Tueendtime_minutes() }}
+                {{ form.Tueendtime.label()}}
+                {{ form.Tueendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Wednesday.label() }}
+            {{ form.Wed.label() }}
             <input type="checkbox" class="check" name="Wed" value="True" {{day.Wednesday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Wedstarttime_hour.label()}}
-                {{ form.Wedstarttime_hour() }}
-                {{ form.Wedstarttime_minutes.label()}}
-                {{ form.Wedstarttime_minutes() }}
+                {{ form.Wedstarttime.label()}}
+                {{ form.Wedstarttime() }}
               </div>
               <div class="form-group time">
-                {{ form.Wedendtime_hour.label()}}
-                {{ form.Wedendtime_hour() }}
-                {{ form.Wedendtime_minutes.label()}}
-                {{ form.Wedendtime_minutes() }}
+                {{ form.Wedendtime.label()}}
+                {{ form.Wedendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Thursday.label() }}
+            {{ form.Thu.label() }}
             <input type="checkbox" class="check" name="Thu" value="True" {{day.Thursday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Thustarttime_hour.label()}}
-                {{ form.Thustarttime_hour() }}
-                {{ form.Thustarttime_minutes.label()}}
-                {{ form.Thustarttime_minutes() }}
+                {{ form.Thustarttime.label()}}
+                {{ form.Thustarttime() }}
               </div>
               <div class="form-group time">
-                {{ form.Thuendtime_hour.label()}}
-                {{ form.Thuendtime_hour() }}
-                {{ form.Thuendtime_minutes.label()}}
-                {{ form.Thuendtime_minutes() }}
+                {{ form.Thuendtime.label()}}
+                {{ form.Thuendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Friday.label() }}
+            {{ form.Fri.label() }}
             <input type="checkbox" class="check" name="Fri" value="True" {{day.Friday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Fristarttime_hour.label()}}
-                {{ form.Fristarttime_hour() }}
-                {{ form.Fristarttime_minutes.label()}}
-                {{ form.Fristarttime_minutes() }}
+                {{ form.Fristarttime.label()}}
+                {{ form.Fristarttime() }}
               </div>
               <div class="form-group time">
-                {{ form.Friendtime_hour.label()}}
-                {{ form.Friendtime_hour() }}
-                {{ form.Friendtime_minutes.label()}}
-                {{ form.Friendtime_minutes() }}
+                {{ form.Friendtime.label()}}
+                {{ form.Friendtime() }}
               </div>
             </div>
           </div>
           <div class="day">
-            {{ form.Saturday.label() }}
+            {{ form.Sat.label() }}
             <input type="checkbox" class="check" name="Sat" value="True" {{day.Saturday}}>
             <div class="check-appear">
               <div class="form-group time">
-                {{ form.Satstarttime_hour.label()}}
-                {{ form.Satstarttime_hour() }}
-                {{ form.Satstarttime_minutes.label()}}
-                {{ form.Satstarttime_minutes() }}
+                {{ form.Satstarttime.label()}}
+                {{ form.Satstarttime() }}
               </div>
               <div class="form-group time">
-                {{ form.Satendtime_hour.label()}}
-                {{ form.Satendtime_hour() }}
-                {{ form.Satendtime_minutes.label()}}
-                {{ form.Satendtime_minutes() }}
+                {{ form.Satendtime.label()}}
+                {{ form.Satendtime() }}
               </div>
             </div>
           </div>
@@ -147,6 +135,13 @@
       <div class="form-group">
         {{ form.submit(class="btn btn-outline-info") }}
       </div>
+      {% if form.errors %}
+      <div class="invalid-feedback">
+        {% for error in form.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
     </form>
   </div>
 {% endblock %}

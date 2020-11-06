@@ -5,36 +5,28 @@ from datetime import datetime, timedelta
 class Worker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workername = db.Column(db.String(20), nullable=False)
-  # weekday = db.relationship('Weekday',backref='worker',lazy=True)
-  # Sunday = db.Column(db.Boolean)
-  # Monday = db.Column(db.Boolean)
-  # Tuesday = db.Column(db.Boolean)
-  # Wednesday = db.Column(db.Boolean)
-  # Thursday = db.Column(db.Boolean)
-  # Friday = db.Column(db.Boolean)
-  # Saturday = db.Column(db.Boolean)
 
-  Sunday = db.Column(db.Boolean)
-  Sunstarttime = db.Column(db.String(10))
-  Sunendtime = db.Column(db.String(10))
-  Monday = db.Column(db.Boolean)
-  Monstarttime = db.Column(db.String(10))
-  Monendtime = db.Column(db.String(10))
-  Tuesday = db.Column(db.Boolean)
-  Tuestarttime = db.Column(db.String(10))
-  Tueendtime = db.Column(db.String(10))
-  Wednesday = db.Column(db.Boolean)
-  Wedstarttime = db.Column(db.String(10))
-  Wedendtime = db.Column(db.String(10))
-  Thursday = db.Column(db.Boolean)
-  Thustarttime = db.Column(db.String(10))
-  Thuendtime = db.Column(db.String(10))
-  Friday = db.Column(db.Boolean)
-  Fristarttime = db.Column(db.String(10))
-  Friendtime = db.Column(db.String(10))
-  Saturday = db.Column(db.Boolean)
-  Satstarttime = db.Column(db.String(10))
-  Satendtime = db.Column(db.String(10))
+  Sun = db.Column(db.Boolean)
+  Sunstarttime = db.Column(db.Time)
+  Sunendtime = db.Column(db.Time)
+  Mon = db.Column(db.Boolean)
+  Monstarttime = db.Column(db.Time)
+  Monendtime = db.Column(db.Time)
+  Tue = db.Column(db.Boolean)
+  Tuestarttime = db.Column(db.Time)
+  Tueendtime = db.Column(db.Time)
+  Wed = db.Column(db.Boolean)
+  Wedstarttime = db.Column(db.Time)
+  Wedendtime = db.Column(db.Time)
+  Thu = db.Column(db.Boolean)
+  Thustarttime = db.Column(db.Time)
+  Thuendtime = db.Column(db.Time)
+  Fri = db.Column(db.Boolean)
+  Fristarttime = db.Column(db.Time)
+  Friendtime = db.Column(db.Time)
+  Sat = db.Column(db.Boolean)
+  Satstarttime = db.Column(db.Time)
+  Satendtime = db.Column(db.Time)
 
 
   def __repr__(self):
@@ -44,90 +36,14 @@ class Worker(db.Model):
     self.starttime = "0:00"
     self.endtime = "0:00"
 
-  # def shift_init(self):
-  #   self.freetimeops = []
-  #   self.freetimeeds = []
-  #   self.d_st = datetime.strptime(self.starttime,"%H:%M")
-  #   self.d_ed = datetime.strptime(self.endtime,"%H:%M")
-  #   self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
-  #   self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
-  #   self.indivshifts = []
-  #   self.need_rest = False
-  #   self.time_median = 0
-  #   self.difference = 0
-  #   self.done_reversed = False
-  #   self.tmp_reststart = 0
-  #   self.tmp_restend = 0
-  #   self.aptitude = 0
-
-
-  # def timeset(self,starttime,endtime):
-  #   self.starttime = starttime
-  #   self.endtime = endtime
-
-
-  # def be_free(self,shift_st,shift_ed):
-  #   for op,ed in zip(self.freetimeops,self.freetimeeds):
-  #     if op <= shift_st and shift_ed <= ed :
-  #       return True
-  #   return False
-
-
-  # def add_shift(self,shift):
-  #   for op,ed in zip(self.freetimeops,self.freetimeeds):
-  #     if op < shift.starttime and shift.endtime < ed :
-  #       self.freetimeops.remove(op)
-  #       self.freetimeeds.remove(ed)
-  #       self.freetimeops.append(op)
-  #       self.freetimeeds.append(shift.starttime)
-  #       self.freetimeops.append(shift.endtime)
-  #       self.freetimeeds.append(ed)
-  #       break
-  #     elif op == shift.starttime and shift.endtime < ed :
-  #       self.freetimeops.remove(op)
-  #       self.freetimeeds.remove(ed)
-  #       self.freetimeops.append(shift.endtime)
-  #       self.freetimeeds.append(ed)
-  #     elif op < shift.starttime and shift.endtime == ed :
-  #       self.freetimeops.remove(op)
-  #       self.freetimeeds.remove(ed)
-  #       self.freetimeops.append(op)
-  #       self.freetimeeds.append(shift.starttime)
-  #     elif op == shift.starttime and shift.endtime == ed :
-  #       self.freetimeops.remove(op)
-  #       self.freetimeeds.remove(ed)
-  #   self.indivshifts.append(shift)
   
-  # def make_aptitude(self,td_start,td_end,jobname):
-  #   self.aptitude = 0
-  #   for shift in self.indivshifts:
-  #     if td_end < shift.endtime:
-  #       td = shift.endtime - td_end
-  #       m,s = divmod(td.seconds,60)
-  #       b = m
-  #       td = shift.starttime - td_end
-  #       m,s = divmod(td.seconds,60)
-  #       a = m
-  #     else:
-  #       td = td_start - shift.starttime
-  #       m,s = divmod(td.seconds,60)
-  #       b = m
-  #       td = td_start - shift.endtime
-  #       m,s = divmod(td.seconds,60)
-  #       a = m
-  #     function = -b*b+1440*b+a*a-1440*a
-  #     if jobname == shift.jobname:
-  #       self.aptitude = self.aptitude + function * int(shift.jobweight) * 5
-  #     else:
-  #       self.aptitude = self.aptitude + function * int(shift.jobweight)
-    # print(self.indivshifts)
 
 class Dayworker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.DateTime, nullable=False)
   workername = db.Column(db.String(20), nullable=False)
-  starttime = db.Column(db.String(10))
-  endtime = db.Column(db.String(10))
+  starttime = db.Column(db.Time)
+  endtime = db.Column(db.Time)
 
   def __repr__(self):
     return f"Dayworker('{self.date}','{self.workername}', '{self.starttime}', '{self.endtime}')"
@@ -278,3 +194,26 @@ class Shift_config(db.Model):
   resttime = db.Column(db.Time)
   restname = db.Column(db.String)
   priorty_max = db.Column(db.Integer)
+
+  def init(self):
+
+    self.hourlist = []
+    self.minuteslist = ["00"]
+
+    for hour in range(int(self.store_opentime.hour),int(self.store_closetime.hour)+1):
+      self.hourlist.append(hour)
+
+    # print(min_shift.minute)
+    if not self.min_shift.minute == 0:
+      if 60 % float(self.min_shift.minute) == 0:
+        div = 60 / float(self.min_shift.minute)
+      for minutes in range(1,int(div)):
+        self.minuteslist.append(minutes*int(self.min_shift.minute))
+
+    self.phour = int(self.min_shift.hour) if not int(self.min_shift.hour) == 0 else 1
+
+    self.pminute = int(self.min_shift.minute) if not int(self.min_shift.minute) == 0 else 60
+
+    self.priorty_list = []
+    for i in range(0,self.priorty_max):
+      self.priorty_list.append(i)

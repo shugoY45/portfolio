@@ -1,8 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import WorkerForm 
-from setting import hourlist,minuteslist
-from flask_schedule.models import Worker
+from flask_schedule.models import Worker, Shift_config
 from flask_schedule.views.login import login_required
 
 
@@ -17,7 +16,7 @@ def worker():
 @login_required
 def new_worker():
   date = session['date']
-  form = make_checklist(WorkerForm())
+  form =WorkerForm()
   if request.method == "POST":
     if form.validate_on_submit():
       flash('追加しました', 'success')
@@ -32,53 +31,53 @@ def new_worker():
       worker = Worker()
       worker.workername = form.workername.data
       if Sun:
-        worker.Sunday = True
+        worker.Sun = True
       else :
-        worker.Sunday = False
-      worker.Sunstarttime=form.Sunstarttime_hour.data+':'+form.Sunstarttime_minutes.data
-      worker.Sunendtime=form.Sunendtime_hour.data+':'+form.Sunendtime_minutes.data
-
+        worker.Sun = False
+      worker.Sunstarttime=form.Sunstarttime.data
+      worker.Sunendtime=form.Sunendtime.data
       if Mon:
-        worker.Monday = True
+        worker.Mon = True
       else :
-        worker.Monday = False
-      worker.Monstarttime=form.Monstarttime_hour.data+':'+form.Monstarttime_minutes.data
-      worker.Monendtime=form.Monendtime_hour.data+':'+form.Monendtime_minutes.data
+        worker.Mon = False
+      worker.Monstarttime=form.Monstarttime.data
+      worker.Monendtime=form.Monendtime.data
 
       if Tue:
-        worker.Tuesday = True
+        worker.Tue = True
       else :
-        worker.Tuesday = False
-      worker.Tuestarttime=form.Tuestarttime_hour.data+':'+form.Tuestarttime_minutes.data
-      worker.Tueendtime=form.Tueendtime_hour.data+':'+form.Tueendtime_minutes.data
+        worker.Tue = False
+      worker.Tuestarttime=form.Tuestarttime.data
+      worker.Tueendtime=form.Tueendtime.data
 
       if Wed:
-        worker.Wednesday = True
+        worker.Wed = True
       else :
-        worker.Wednesday = False
-      worker.Wedstarttime=form.Wedstarttime_hour.data+':'+form.Wedstarttime_minutes.data
-      worker.Wedendtime=form.Wedendtime_hour.data+':'+form.Wedendtime_minutes.data
+        worker.Wed = False
+      worker.Wedstarttime=form.Wedstarttime.data
+      worker.Wedendtime=form.Wedendtime.data
 
       if Thu:
-        worker.Thursday = True
+        worker.Thu = True
       else :
-        worker.Thursday = False
-      worker.Thustarttime=form.Thustarttime_hour.data+':'+form.Thustarttime_minutes.data
-      worker.Thuendtime=form.Thuendtime_hour.data+':'+form.Thuendtime_minutes.data
+        worker.Thu = False
+      worker.Thustarttime=form.Thustarttime.data
+      worker.Thuendtime=form.Thuendtime.data
 
       if Fri:
-        worker.Friday = True
+        worker.Fri = True
       else :
-        worker.Friday = False
-      worker.Fristarttime=form.Fristarttime_hour.data+':'+form.Fristarttime_minutes.data
-      worker.Friendtime=form.Friendtime_hour.data+':'+form.Friendtime_minutes.data
+        worker.Fri = False
+      worker.Fristarttime=form.Fristarttime.data
+      worker.Friendtime=form.Friendtime.data
 
       if Sat:
-        worker.Saturday = True
+        worker.Sat = True
       else :
-        worker.Saturday = False
-      worker.Satstarttime=form.Satstarttime_hour.data+':'+form.Satstarttime_minutes.data
-      worker.Satendtime=form.Satendtime_hour.data+':'+form.Satendtime_minutes.data
+        worker.Sat = False
+      worker.Satstarttime=form.Satstarttime.data
+      worker.Satendtime=form.Satendtime.data
+      
       db.session.add(worker)
       db.session.commit()
 
@@ -98,7 +97,7 @@ def worker_detail(id):
 @login_required
 def edit_worker(id):
   worker = Worker.query.get_or_404(id)
-  form = make_checklist(WorkerForm())
+  form = WorkerForm()
   if request.method == "POST":
     if form.validate_on_submit():
       flash('編集しました', 'success')
@@ -111,95 +110,82 @@ def edit_worker(id):
       Sat = request.form.get("Sat")
       worker.workername = form.workername.data
       if Sun:
-        worker.Sunday = True
+        worker.Sun = True
       else :
-        worker.Sunday = False
-      worker.Sunstarttime=form.Sunstarttime_hour.data+':'+form.Sunstarttime_minutes.data
-      worker.Sunendtime=form.Sunendtime_hour.data+':'+form.Sunendtime_minutes.data
+        worker.Sun = False
+      worker.Sunstarttime=form.Sunstarttime.data
+      worker.Sunendtime=form.Sunendtime.data
       if Mon:
-        worker.Monday = True
+        worker.Mon = True
       else :
-        worker.Monday = False
-      worker.Monstarttime=form.Monstarttime_hour.data+':'+form.Monstarttime_minutes.data
-      worker.Monendtime=form.Monendtime_hour.data+':'+form.Monendtime_minutes.data
+        worker.Mon = False
+      worker.Monstarttime=form.Monstarttime.data
+      worker.Monendtime=form.Monendtime.data
       if Tue:
-        worker.Tuesday = True
+        worker.Tue = True
       else :
-        worker.Tuesday = False
-      worker.Tuestarttime=form.Tuestarttime_hour.data+':'+form.Tuestarttime_minutes.data
-      worker.Tueendtime=form.Tueendtime_hour.data+':'+form.Tueendtime_minutes.data
+        worker.Tue = False
+      worker.Tuestarttime=form.Tuestarttime.data
+      worker.Tueendtime=form.Tueendtime.data
       if Wed:
-        worker.Wednesday = True
+        worker.Wed = True
       else :
-        worker.Wednesday = False
-      worker.Wedstarttime=form.Wedstarttime_hour.data+':'+form.Wedstarttime_minutes.data
-      worker.Wedendtime=form.Wedendtime_hour.data+':'+form.Wedendtime_minutes.data
+        worker.Wed = False
+      worker.Wedstarttime=form.Wedstarttime.data
+      worker.Wedendtime=form.Wedendtime.data
       if Thu:
-        worker.Thursday = True
+        worker.Thu = True
       else :
-        worker.Thursday = False
-      worker.Thustarttime=form.Thustarttime_hour.data+':'+form.Thustarttime_minutes.data
-      worker.Thuendtime=form.Thuendtime_hour.data+':'+form.Thuendtime_minutes.data
+        worker.Thu = False
+      worker.Thustarttime=form.Thustarttime.data
+      worker.Thuendtime=form.Thuendtime.data
       if Fri:
-        worker.Friday = True
+        worker.Fri = True
       else :
-        worker.Friday = False
-      worker.Fristarttime=form.Fristarttime_hour.data+':'+form.Fristarttime_minutes.data
-      worker.Friendtime=form.Friendtime_hour.data+':'+form.Friendtime_minutes.data
+        worker.Fri = False
+      worker.Fristarttime=form.Fristarttime.data
+      worker.Friendtime=form.Friendtime.data
       if Sat:
-        worker.Saturday = True
+        worker.Sat = True
       else :
-        worker.Saturday = False
-      worker.Satstarttime=form.Satstarttime_hour.data+':'+form.Satstarttime_minutes.data
-      worker.Satendtime=form.Satendtime_hour.data+':'+form.Satendtime_minutes.data
+        worker.Sat = False
+      worker.Satstarttime=form.Satstarttime.data
+      worker.Satendtime=form.Satendtime.data
       db.session.commit()
       return redirect(url_for('worker'))
-    raise EnvironmentError("validation error")
+    else:
+      raise EnvironmentError("validation error")
   else:
     form.workername.data = worker.workername
     day = Editday()
     day.init()
-    if worker.Sunday:
-      form.Sunstarttime_hour.data = worker.Sunstarttime.split(':')[0]
-      form.Sunstarttime_minutes.data = worker.Sunstarttime.split(':')[1]
-      form.Sunendtime_hour.data = worker.Sunendtime.split(':')[0]
-      form.Sunendtime_minutes.data = worker.Sunendtime.split(':')[1]
+    if worker.Sun:
+      form.Sunstarttime.data = worker.Sunstarttime
+      form.Sunendtime.data = worker.Sunendtime
       day.Sunday = "checked"
-    if worker.Monday:
-      form.Monstarttime_hour.data = worker.Monstarttime.split(':')[0]
-      form.Monstarttime_minutes.data = worker.Monstarttime.split(':')[1]
-      form.Monendtime_hour.data = worker.Monendtime.split(':')[0]
-      form.Monendtime_minutes.data = worker.Monendtime.split(':')[1]
+    if worker.Mon:
+      form.Monstarttime.data = worker.Monstarttime
+      form.Monendtime.data = worker.Monendtime
       day.Monday = "checked"
-    if worker.Tuesday:
-      form.Tuestarttime_hour.data = worker.Tuestarttime.split(':')[0]
-      form.Tuestarttime_minutes.data = worker.Tuestarttime.split(':')[1]
-      form.Tueendtime_hour.data = worker.Tueendtime.split(':')[0]
-      form.Tueendtime_minutes.data = worker.Tueendtime.split(':')[1]
+    if worker.Tue:
+      form.Tuestarttime.data = worker.Tuestarttime
+      form.Tueendtime.data = worker.Tueendtime
       day.Tuesday = "checked"
-    if worker.Wednesday:
-      form.Wedstarttime_hour.data = worker.Wedstarttime.split(':')[0]
-      form.Wedstarttime_minutes.data = worker.Wedstarttime.split(':')[1]
-      form.Wedendtime_hour.data = worker.Wedendtime.split(':')[0]
-      form.Wedendtime_minutes.data = worker.Wedendtime.split(':')[1]
+    if worker.Wed:
+      form.Wedstarttime.data = worker.Wedstarttime
+      form.Wedendtime.data = worker.Wedendtime
       day.Wednesday = "checked"
-    if worker.Thursday:
-      form.Thustarttime_hour.data = worker.Thustarttime.split(':')[0]
-      form.Thustarttime_minutes.data = worker.Thustarttime.split(':')[1]
-      form.Thuendtime_hour.data = worker.Thuendtime.split(':')[0]
-      form.Thuendtime_minutes.data = worker.Thuendtime.split(':')[1]
+    if worker.Thu:
+      form.Thustarttime.data = worker.Thustarttime
+      form.Thuendtime.data = worker.Thuendtime
       day.Thursday = "checked"
-    if worker.Friday:
-      form.Fristarttime_hour.data = worker.Fristarttime.split(':')[0]
-      form.Fristarttime_minutes.data = worker.Fristarttime.split(':')[1]
-      form.Friendtime_hour.data = worker.Friendtime.split(':')[0]
-      form.Friendtime_minutes.data = worker.Friendtime.split(':')[1]
+    if worker.Fri:
+      form.Fristarttime.data = worker.Fristarttime
+      form.Friendtime.data = worker.Friendtime
       day.Friday = "checked"
-    if worker.Saturday:
-      form.Satstarttime_hour.data = worker.Satstarttime.split(':')[0]
-      form.Satstarttime_minutes.data = worker.Satstarttime.split(':')[1]
-      form.Satendtime_hour.data = worker.Satendtime.split(':')[0]
-      form.Satendtime_minutes.data = worker.Satendtime.split(':')[1]
+    if worker.Sat:
+      form.Satstarttime.data = worker.Satstarttime
+      form.Satendtime.data = worker.Satendtime
       day.Saturday = "checked"
     flash('編集します', 'warning')
     return render_template('worker/edit.html',form=form,day=day)
@@ -228,41 +214,43 @@ def delete_worker(id):
     flash('削除しますか？', 'warning')
     return render_template('worker/delete.html',worker=worker)
 
-def make_checklist(form):
+# def make_checklist(form):
 
-  form.Monstarttime_hour.choices = hourlist
-  form.Monstarttime_minutes.choices = minuteslist
-  form.Monendtime_hour.choices = hourlist
-  form.Monendtime_minutes.choices = minuteslist
+#   config = Shift_config.query.first()
+#   config.init()
 
-  form.Tuestarttime_hour.choices = hourlist
-  form.Tuestarttime_minutes.choices = minuteslist
-  form.Tueendtime_hour.choices = hourlist
-  form.Tueendtime_minutes.choices = minuteslist
+#   form.Monstarttime.choices = config.hourlistarttime_minutes.choices = config.minuteslist
+#   form.Monendtime_hour.choices = config.hourlist
+#   form.Monendtime_minutes.choices = config.minuteslist
 
-  form.Wedstarttime_hour.choices = hourlist
-  form.Wedstarttime_minutes.choices = minuteslist
-  form.Wedendtime_hour.choices = hourlist
-  form.Wedendtime_minutes.choices = minuteslist
+#   form.Tuestarttime_hour.choices = config.hourlist
+#   form.Tuestarttime_minutes.choices = config.minuteslist
+#   form.Tueendtime_hour.choices = config.hourlist
+#   form.Tueendtime_minutes.choices = config.minuteslist
 
-  form.Thustarttime_hour.choices = hourlist
-  form.Thustarttime_minutes.choices = minuteslist
-  form.Thuendtime_hour.choices = hourlist
-  form.Thuendtime_minutes.choices = minuteslist
+#   form.Wedstarttime_hour.choices = config.hourlist
+#   form.Wedstarttime_minutes.choices = config.minuteslist
+#   form.Wedendtime_hour.choices = config.hourlist
+#   form.Wedendtime_minutes.choices = config.minuteslist
 
-  form.Fristarttime_hour.choices = hourlist
-  form.Fristarttime_minutes.choices = minuteslist
-  form.Friendtime_hour.choices = hourlist
-  form.Friendtime_minutes.choices = minuteslist
+#   form.Thustarttime_hour.choices = config.hourlist
+#   form.Thustarttime_minutes.choices = config.minuteslist
+#   form.Thuendtime_hour.choices = config.hourlist
+#   form.Thuendtime_minutes.choices = config.minuteslist
 
-  form.Satstarttime_hour.choices = hourlist
-  form.Satstarttime_minutes.choices = minuteslist
-  form.Satendtime_hour.choices = hourlist
-  form.Satendtime_minutes.choices = minuteslist
+#   form.Fristarttime_hour.choices = config.hourlist
+#   form.Fristarttime_minutes.choices = config.minuteslist
+#   form.Friendtime_hour.choices = config.hourlist
+#   form.Friendtime_minutes.choices = config.minuteslist
 
-  form.Sunstarttime_hour.choices = hourlist
-  form.Sunstarttime_minutes.choices = minuteslist
-  form.Sunendtime_hour.choices = hourlist
-  form.Sunendtime_minutes.choices = minuteslist
+#   form.Satstarttime_hour.choices = config.hourlist
+#   form.Satstarttime_minutes.choices = config.minuteslist
+#   form.Satendtime_hour.choices = config.hourlist
+#   form.Satendtime_minutes.choices = config.minuteslist
 
-  return form
+#   form.Sunstarttime_hour.choices = config.hourlist
+#   form.Sunstarttime_minutes.choices = config.minuteslist
+#   form.Sunendtime_hour.choices = config.hourlist
+#   form.Sunendtime_minutes.choices = config.minuteslist
+
+#   return form

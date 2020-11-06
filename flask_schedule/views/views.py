@@ -5,7 +5,7 @@ from flask_schedule import app, db
 from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config
 from flask_schedule.views.login import login_required
 import make_shift
-from flask_schedule.forms import Selectday, ConfigForm
+from flask_schedule.forms import Selectday, ConfigForm ,TestForm
 from functools import wraps
 
 
@@ -201,6 +201,7 @@ def normal_config():
       db.session.commit()
   else:
     config = Shift_config.query.first()
+    print(config.store_opentime)
     if request.method == 'GET':
       form.store_opentime.data=config.store_opentime
       form.store_closetime.data=config.store_closetime
@@ -228,44 +229,16 @@ def normal_config():
 
 @app.route("/test", methods=["GET", "POST"])
 def test():
-  form = ConfigForm()
-  if not Shift_config.query.first():
-    if request.method == 'GET':
-      return render_template("test.html",form=form)
-    if request.method == 'POST':
-      config=Shift_config()
-      config.store_opentime=form.store_opentime.data
-      config.store_closetime=form.store_closetime.data
-      config.resttime=form.resttime.data
-      config.restnd_mint=form.restnd_mint.data
-      config.restname=form.restname.data
-      config.priorty_max=form.priorty_max.data
-      config.min_shift=form.min_shift.data
-      config.job_divtime=form.job_divtime.data
-      db.session.add(config)
-      db.session.commit()
-  else:
-    config = Shift_config.query.first()
-    if request.method == 'GET':
-      form.store_opentime.data=config.store_opentime
-      form.store_closetime.data=config.store_closetime
-      form.resttime.data=config.resttime
-      form.restnd_mint.data=config.restnd_mint
-      form.restname.data=config.restname
-      form.priorty_max.data=config.priorty_max
-      form.min_shift.data=config.min_shift
-      form.job_divtime.data=config.job_divtime
-      return render_template("test.html",form=form)
-    if request.method == 'POST':
-      config.store_opentime=form.store_opentime.data
-      config.store_closetime=form.store_closetime.data
-      config.resttime=form.resttime.data
-      config.restnd_mint=form.restnd_mint.data
-      config.restname=form.restname.data
-      config.priorty_max=form.priorty_max.data
-      config.min_shift=form.min_shift.data
-      config.job_divtime=form.job_divtime.data
-      db.session.commit()
+  form = TestForm()
+  config = Shift_config.query.first()
+  
+
+  if request.method == 'POST':
+    if form.validate_on_submit():
+      print('a')
+    else :
+      print(form.time.data)
+  
 
 
   return render_template("test.html",form=form)

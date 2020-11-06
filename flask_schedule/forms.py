@@ -2,51 +2,39 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, IntegerField, BooleanField
 from wtforms.fields.html5 import TimeField
 from wtforms.validators import DataRequired, Length
+from flask_schedule.models import Shift_config
 
 class WorkerForm(FlaskForm):
+  config = Shift_config.query.first()
   workername = StringField('名前',validators=[DataRequired(), Length(min=1, max=20)])
 
-  Sunday = BooleanField('日曜日',default=False)
-  Sunstarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Sunstarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Sunendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Sunendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Sun = BooleanField('日曜日',default=False)
+  Sunstarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Sunendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Monday = BooleanField('月曜日',default=False)
-  Monstarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Monstarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Monendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Monendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Mon = BooleanField('月曜日',default=False)
+  Monstarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Monendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Tuesday = BooleanField('火曜日',default=False)
-  Tuestarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Tuestarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Tueendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Tueendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Tue = BooleanField('火曜日',default=False)
+  Tuestarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Tueendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Wednesday = BooleanField('水曜日',default=False)
-  Wedstarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Wedstarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Wedendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Wedendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Wed = BooleanField('水曜日',default=False)
+  Wedstarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Wedendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Thursday = BooleanField('木曜日',default=False)
-  Thustarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Thustarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Thuendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Thuendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Thu = BooleanField('木曜日',default=False)
+  Thustarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Thuendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Friday = BooleanField('金曜日',default=False)
-  Fristarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Fristarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Friendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Friendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Fri = BooleanField('金曜日',default=False)
+  Fristarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Friendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
-  Saturday = BooleanField('土曜日',default=False)
-  Satstarttime_hour = SelectField('始業時間',validators=[DataRequired()])
-  Satstarttime_minutes = SelectField(':',validators=[DataRequired()])
-  Satendtime_hour = SelectField('終業時間',validators=[DataRequired()])
-  Satendtime_minutes = SelectField(':',validators=[DataRequired()])
+  Sat = BooleanField('土曜日',default=False)
+  Satstarttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  Satendtime = TimeField('終業時間',validators=None,default=config.store_closetime)
 
   
   submit = SubmitField('送信')
@@ -89,6 +77,10 @@ class ConfigForm(FlaskForm):
   priorty_max = IntegerField('仕事重要度の最大値')
   submit = SubmitField('送信')
 
+class TestForm(FlaskForm):
+  config = Shift_config.query.first()
 
+  time = TimeField('a',validators=None,default=config.store_opentime)
+  time2 = TimeField('a',validators=None,default=config.store_closetime)
 
 

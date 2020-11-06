@@ -23,37 +23,37 @@
             {{ worker.workername }}
           </a>
         </td>
-        {% if worker.Sunday %}
+        {% if worker.Sun %}
         <td>{{ worker.Sunstarttime}}〜{{ worker.Sunendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Monday %}
+        {% if worker.Mon %}
         <td>{{ worker.Monstarttime}}〜{{ worker.Monendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Tuesday %}
+        {% if worker.Tue %}
         <td>{{ worker.Tuestarttime}}〜{{ worker.Tueendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Wednesday %}
+        {% if worker.Wed %}
         <td>{{ worker.Wedstarttime}}〜{{ worker.Wedendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Thursday %}
+        {% if worker.Thu %}
         <td>{{ worker.Thustarttime}}〜{{ worker.Thuendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Friday %}
+        {% if worker.Fri %}
         <td>{{ worker.Fristarttime}}〜{{ worker.Friendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
         {% endif %}
-        {% if worker.Saturday %}
+        {% if worker.Sat %}
         <td>{{ worker.Satstarttime}}〜{{ worker.Satendtime }}</td>
         {% else: %}
         <td class="holiday"></td>
