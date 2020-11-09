@@ -16,38 +16,38 @@
   </thead>
   <tbody>
     <tr>
-      {% if worker.Sunday %}
-      <td>{{ worker.Sunstarttime}}〜{{ worker.Sunendtime }}</td>
+      {% if worker.Sun %}
+      <td>{{ worker.Sunstarttime.strftime('%H:%M')}}〜{{ worker.Sunendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Monday %}
-      <td>{{ worker.Monstarttime}}〜{{ worker.Monendtime }}</td>
+      {% if worker.Mon %}
+      <td>{{ worker.Monstarttime.strftime('%H:%M')}}〜{{ worker.Monendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Tuesday %}
-      <td>{{ worker.Tuestarttime}}〜{{ worker.Tueendtime }}</td>
+      {% if worker.Tue %}
+      <td>{{ worker.Tuestarttime.strftime('%H:%M')}}〜{{ worker.Tueendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Wednesday %}
-      <td>{{ worker.Wedstarttime}}〜{{ worker.Wedendtime }}</td>
+      {% if worker.Wed %}
+      <td>{{ worker.Wedstarttime.strftime('%H:%M')}}〜{{ worker.Wedendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Thursday %}
-      <td>{{ worker.Thustarttime}}〜{{ worker.Thuendtime }}</td>
+      {% if worker.Thu %}
+      <td>{{ worker.Thustarttime.strftime('%H:%M')}}〜{{ worker.Thuendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Friday %}
-      <td>{{ worker.Fristarttime}}〜{{ worker.Friendtime }}</td>
+      {% if worker.Fri %}
+      <td>{{ worker.Fristarttime.strftime('%H:%M')}}〜{{ worker.Friendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}
-      {% if worker.Saturday %}
-      <td>{{ worker.Satstarttime}}〜{{ worker.Satendtime }}</td>
+      {% if worker.Sat %}
+      <td>{{ worker.Satstarttime.strftime('%H:%M')}}〜{{ worker.Satendtime.strftime('%H:%M') }}</td>
       {% else: %}
       <td class="holiday"></td>
       {% endif %}

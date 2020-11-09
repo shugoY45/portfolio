@@ -16,8 +16,8 @@
       <tr>
         <th scope="row">{{ loop.index }}</th>
         <td>{{ job.jobname }}</td>
-        <td>{{ job.starttime }}</td>
-        <td>{{ job.endtime }}</td>
+        <td>{{ job.starttime.strftime('%H:%M') }}</td>
+        <td>{{ job.endtime.strftime('%H:%M') }}</td>
         <td>{{ job.priority }}</td>
         <td>{{ job.required_number }}</td>
         <td>
@@ -51,16 +51,12 @@
             {% endif %}
           </div>
           <div class="form-group">
-            {{ form.starttime_hour.label()}}
-            {{ form.starttime_hour() }}
-            {{ form.starttime_minutes.label()}}
-            {{ form.starttime_minutes() }}
+            {{ form.starttime.label()}}
+            {{ form.starttime() }}
           </div>
           <div class="form-group">
-            {{ form.endtime_hour.label()}}
-            {{ form.endtime_hour() }}
-            {{ form.endtime_minutes.label()}}
-            {{ form.endtime_minutes() }}
+            {{ form.endtime.label()}}
+            {{ form.endtime() }}
           </div>
           <div class="form-group">
             {{ form.priority.label(class="form-control-label")}}

@@ -1,17 +1,9 @@
 
-class Person():
-  def __init__(self,name,age):
-    self.name = name
-    self.age = 0
-  def ageup(self):
-    self.age = self.age + 2
+from datetime import time
 
-shugo = Person('shugo',13)
-sasaki = Person('sasaki',14)
-shugo.ageup()
-sasaki.ageup()
+a = time(hour=11,minute=10)
 
-print(shugo.age)
+print(type(a))
 
 
 

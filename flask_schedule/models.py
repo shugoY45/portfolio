@@ -1,5 +1,5 @@
 from flask_schedule import db
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 
 class Worker(db.Model):
@@ -30,7 +30,7 @@ class Worker(db.Model):
 
 
   def __repr__(self):
-    return f"Worker('{self.workername}', '{self.starttime}', '{self.endtime}')"
+    return f"Worker('{self.workername}', '{self.Sunstarttime}', '{self.Sunendtime}')"
 
   def init(self):
     self.starttime = "0:00"
@@ -163,8 +163,8 @@ class Shift():
 class Job(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   jobname = db.Column(db.String(20), unique=True, nullable=False)
-  starttime = db.Column(db.String(10))
-  endtime = db.Column(db.String(10))
+  starttime = db.Column(db.Time)
+  endtime = db.Column(db.Time)
   priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
 
@@ -176,8 +176,8 @@ class SpecialJob(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workername = db.Column(db.String(20),nullable=False)
   jobname = db.Column(db.String(20), nullable=False)
-  starttime = db.Column(db.String(10))
-  endtime = db.Column(db.String(10))
+  starttime = db.Column(db.Time)
+  endtime = db.Column(db.Time)
   priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
 
@@ -217,3 +217,8 @@ class Shift_config(db.Model):
     self.priorty_list = []
     for i in range(0,self.priorty_max):
       self.priorty_list.append(i)
+
+
+class Test(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  test = db.Column(db.Time)

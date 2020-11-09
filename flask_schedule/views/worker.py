@@ -27,7 +27,7 @@ def new_worker():
       Thu = request.form.get("Thu")
       Fri = request.form.get("Fri")
       Sat = request.form.get("Sat")
-
+      print(type(form.Sunstarttime.data))
       worker = Worker()
       worker.workername = form.workername.data
       if Sun:

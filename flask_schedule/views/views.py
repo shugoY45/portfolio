@@ -1,8 +1,8 @@
 import os
-from datetime import datetime
+from datetime import datetime,time
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config
+from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config,Test
 from flask_schedule.views.login import login_required
 import make_shift
 from flask_schedule.forms import Selectday, ConfigForm ,TestForm
@@ -231,13 +231,15 @@ def normal_config():
 def test():
   form = TestForm()
   config = Shift_config.query.first()
-  
 
-  if request.method == 'POST':
-    if form.validate_on_submit():
-      print('a')
-    else :
-      print(form.time.data)
+  a = Test()
+  a.test = time(hour=11,minute=10)
+  db.session.add(a)
+  db.session.commit()
+
+  test = Test.query.all()
+  print(type(test[0].test))
+  
   
 
 
