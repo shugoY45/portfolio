@@ -1,8 +1,8 @@
 import os
-from datetime import datetime,time
+from datetime import datetime,time,date
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config,Test
+from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config,Test,Job,SpecialJob
 from flask_schedule.views.login import login_required
 import make_shift
 from flask_schedule.forms import Selectday, ConfigForm ,TestForm
@@ -24,68 +24,19 @@ def dated_url_for(endpoint, **values):
 
 def date_chosen(view):
   @wraps(view)
+  # one_date = date.min
   def inner(*args, **kwargs):
-    if  session['date']:
-      date = session['date']
+    if  session['date_chosen']:
+      one_date = session['date']
+    else:
+      return redirect(url_for('date'))
     return view(*args, **kwargs)
   return inner
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-  form = Selectday()
-  form.weekday.choices = ["日","月","火","水","木","金","土"]
-  if request.method == "POST":
-    workers = Worker.query.all()
-    for worker in workers:
-      worker.init()
-    dayworkers = []
-    if form.weekday.data == "日":
-      for worker in workers:
-        if worker.Sunday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Sunstarttime,dayworker.Sunendtime)
-    elif form.weekday.data == "月":
-      for worker in workers:
-        if worker.Monday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Monstarttime,dayworker.Monendtime)
-    elif form.weekday.data == "火":
-      for worker in workers:
-        if worker.Tuesday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Tuestarttime,dayworker.Tueendtime)
-    elif form.weekday.data == "水":
-      for worker in workers:
-        if worker.Wednesday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Wedstarttime,dayworker.Wedendtime)
-    elif form.weekday.data == "木":
-      for worker in workers:
-        if worker.Thursday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Thustarttime,dayworker.Thuendtime)
-    elif form.weekday.data == "金":
-      for worker in workers:
-        if worker.Friday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Fristarttime,dayworker.Friendtime)
-    elif form.weekday.data == "土":
-      for worker in workers:
-        if worker.Saturday:
-          dayworkers.append(worker)
-      for dayworker in dayworkers:
-        dayworker.timeset(dayworker.Satstarttime,dayworker.Satendtime)
-    
-    workers = make_shift.main(dayworkers)
-    return render_template("shift.html",workers = workers)
-    return redirect(url_for('shift',workers=workers))
+  
     
         
   return render_template("index.html",form=form)
@@ -94,92 +45,104 @@ def index():
 @login_required
 @date_chosen
 def shift():
-  date = session['date']
-  dayworkers = Dayworker.query.filter_by(date=date).all()
-  workers = make_shift.main(dayworkers)
-  return render_template("shift.html",workers = workers,date=date)
+  one_date = session['date']
+  dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
+  jobs = Job.query.all()
+  spjobs = SpecialJob.query.all()
+  config = Shift_config.query.first()
+  config.timecombine(one_date)
+  workers = make_shift.main(dayworkers,jobs,spjobs,config)
+  return render_template("shift.html",workers = workers,date=one_date)
 
 @app.route("/date", methods=["GET","POST"])
 @login_required
 def date():
   if request.method=="POST":
     session['date_chosen'] = True
-    session['date'] = request.form['date']
-    date = request.form['date']
-    date = datetime.strptime(date, '%Y-%m-%d')
-    dayworker = Dayworker.query.filter_by(date=date).all()
+    one_date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+    session['date'] = one_date
+    print(type(one_date))
+    # date = datetime.strptime(date, '%Y/%m/%d (%A)')
+    dayworker = Dayworker.query.filter_by(one_date=one_date).all()
     if not dayworker:
-      weekday = date.strftime('%a')
+      weekday = one_date.strftime('%a')
       workers = Worker.query.all()
       dayworkers = []
       if weekday == "Sun":
         for worker in workers:
-          if worker.Sunday:
+          if worker.Sun:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Sunstarttime
             dayworker.endtime = worker.Sunendtime
             dayworkers.append(dayworker)
       elif weekday == "Mon":
         for worker in workers:
-          if worker.Monday:
+          if worker.Mon:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Monstarttime
             dayworker.endtime = worker.Monendtime
             dayworkers.append(dayworker)
       elif weekday == "Tue":
         for worker in workers:
-          if worker.Tuesday:
+          if worker.Tue:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Tuestarttime
             dayworker.endtime = worker.Tueendtime
             dayworkers.append(dayworker)
       elif weekday == "Wed":
         for worker in workers:
-          if worker.Wednesday:
+          if worker.Wed:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Wedstarttime
             dayworker.endtime = worker.Wedendtime
             dayworkers.append(dayworker)
       elif weekday == "Thu":
         for worker in workers:
-          if worker.Thursday:
+          if worker.Thu:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Thustarttime
             dayworker.endtime = worker.Thuendtime
             dayworkers.append(dayworker)
       elif weekday == "Fri":
         for worker in workers:
-          if worker.Friday:
+          if worker.Fri:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Fristarttime
             dayworker.endtime = worker.Friendtime
             dayworkers.append(dayworker)
       elif weekday == "Sat":
         for worker in workers:
-          if worker.Saturday:
+          if worker.Sat:
             dayworker = Dayworker()
-            dayworker.date = date
+            dayworker.one_date = one_date
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Satstarttime
             dayworker.endtime = worker.Satendtime
             dayworkers.append(dayworker)
       db.session.add_all(dayworkers)
       db.session.commit()
-    dayworkers = Dayworker.query.filter_by(date=date).all()
-    return redirect(url_for('shift'))
+    # dayworkers = Dayworker.query.filter_by(date=date).all()
+    # return redirect(url_for('shift'))
   return render_template("date.html")
+
+@app.route("/dateout", methods=["GET","POST"])
+@login_required
+def dateout():
+  session["date_chosen"] = False
+
+  return redirect(url_for('date'))
 
 @app.route("/normal_config", methods=["GET", "POST"])
 def normal_config():

@@ -1,9 +1,8 @@
 from datetime import datetime
-from setting import *
 from flask_schedule.models import Shift
 
 
-def normal(workers,jobs):
+def normal(workers,jobs,config):
   normalshifts = []
   # 時間を一定間隔に分割する
   opentime = datetime.strptime(store_opentime, '%H:%M')

@@ -1,28 +1,23 @@
-from setting import *
-from make_shift.function import set_list, classify
 from make_shift.normal import normal
 from make_shift.special import special
 from make_shift.rest import rest
-from flask_schedule.models import Worker, Job, SpecialJob
 
-def main(workers):
-  jobs = Job.query.all()
-  specialjobs = SpecialJob.query.all()
+def main(workers,jobs,spjobs,config):
   for worker in workers:
     worker.shift_init()
 
-  spshifts = special(workers,specialjobs)
+  spshifts = special(workers,spjobs,config)
 
   # print(spshifts)
 
-  restshifts = rest(workers)
+  restshifts = rest(workers,config)
 
   # for worker in workers:
   #   print(worker.workername,worker.indivshifts)
   # print(restshifts)
 
 
-  normalshifts = normal(workers,jobs)
+  normalshifts = normal(workers,jobs,config)
   # print(normalshifts)
 
   for worker in workers:

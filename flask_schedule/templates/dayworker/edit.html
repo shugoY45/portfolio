@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content-section">
+    <form method="POST" action="">
+      <legend>編集</legend>
+      {{ form.hidden_tag()}}
+      <div class="form-group">
+        <fieldset class="form-group">
+          <div class="form-group">
+            {{ form.workername.label(class="form-control-label")}}
+            {{ form.workername(class="form-control form-control-lg") }}
+            {% if form.workername.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.workername.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.starttime.label()}}
+            {{ form.starttime() }}
+          </div>
+          <div class="form-group">
+            {{ form.endtime.label()}}
+            {{ form.endtime() }}
+          </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+    </form>
+  </div>
+{% endblock %}

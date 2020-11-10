@@ -73,10 +73,22 @@ class ConfigForm(FlaskForm):
   priorty_max = IntegerField('仕事重要度の最大値')
   submit = SubmitField('送信')
 
+class DayworkerForm(FlaskForm):
+  config = Shift_config.query.first()
+  workername = SelectField('名前',validators=[DataRequired(), Length(min=1, max=20)])
+  starttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  endtime = TimeField('終業時間',validators=None,default=config.store_closetime)
+
+  
+  submit = SubmitField('送信')
+
+
 class TestForm(FlaskForm):
   config = Shift_config.query.first()
 
   time = TimeField('a',validators=None,default=config.store_opentime)
   time2 = TimeField('a',validators=None,default=config.store_closetime)
+
+
 
 

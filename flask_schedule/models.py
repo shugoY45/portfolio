@@ -40,7 +40,7 @@ class Worker(db.Model):
 
 class Dayworker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  date = db.Column(db.DateTime, nullable=False)
+  one_date = db.Column(db.DateTime, nullable=False)
   workername = db.Column(db.String(20), nullable=False)
   starttime = db.Column(db.Time)
   endtime = db.Column(db.Time)
@@ -217,6 +217,10 @@ class Shift_config(db.Model):
     self.priorty_list = []
     for i in range(0,self.priorty_max):
       self.priorty_list.append(i)
+
+  def timecombine(self,date):
+    self.store_opentime = datetime.combine(date,self.store_opentime)
+    self.store_closetime = datetime.combine(date,self.store_closetime)
 
 
 class Test(db.Model):

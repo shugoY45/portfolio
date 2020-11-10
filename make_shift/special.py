@@ -1,13 +1,9 @@
 from datetime import datetime
-import copy
-from setting import *
 from flask_schedule.models import Shift
 
-def special(workers,specialjobs):
+def special(workers,specialjobs,config):
   spshifts = []
-  newworkers = copy.copy(workers)
   # 特別シフトの従業員を従業員リストから探索
-  # print(workers)
   for spjob in specialjobs:
     found = False
     for worker in workers:

@@ -1,16 +1,15 @@
-from setting import *
 from datetime import datetime, timedelta
 from flask_schedule.models import Shift
 
 
 # 休憩シフト作成
-def rest(workers):
+def rest(workers,config):
 
   # 休憩が必要な人を探し、かつ始業時間と終業時間の平均時間を追加
-  store_median = (datetime.strptime(store_opentime, '%H:%M').hour+datetime.strptime(store_closetime, '%H:%M').hour)/2
+  store_median = (config.store_opentime + config.store_closetime )/2
   for worker in workers:
-    if datetime.strptime(worker.endtime, '%H:%M')-datetime.strptime(worker.starttime, '%H:%M') > timedelta(hours=restnd_mint) :
-      worker.time_median = ((datetime.strptime(worker.starttime, '%H:%M').hour+datetime.strptime(worker.endtime, '%H:%M').hour)+((datetime.strptime(worker.starttime, '%H:%M').minute+datetime.strptime(worker.endtime, '%H:%M').minute)/60))/2
+    if worker.endtime - worker.starttime > timedelta(hours=restnd_mint) :
+      worker.time_median = ((worker.starttime.hour + worker.endtime.hour)+((worker.starttime.minute + worker.endtime.minute)/60))/2
       worker.need_rest = True
 
   # 従業員の就業時間の中央値を用いて、営業時間の中央値に近い順に並び替える

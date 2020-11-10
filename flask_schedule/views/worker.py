@@ -1,8 +1,9 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.forms import WorkerForm 
+from flask_schedule.forms import WorkerForm
 from flask_schedule.models import Worker, Shift_config
 from flask_schedule.views.login import login_required
+from flask_schedule.views.views import date_chosen
 
 
 @app.route('/worker', methods=['GET', 'POST'])
@@ -27,7 +28,6 @@ def new_worker():
       Thu = request.form.get("Thu")
       Fri = request.form.get("Fri")
       Sat = request.form.get("Sat")
-      print(type(form.Sunstarttime.data))
       worker = Worker()
       worker.workername = form.workername.data
       if Sun:
@@ -214,43 +214,6 @@ def delete_worker(id):
     flash('削除しますか？', 'warning')
     return render_template('worker/delete.html',worker=worker)
 
-# def make_checklist(form):
 
-#   config = Shift_config.query.first()
-#   config.init()
 
-#   form.Monstarttime.choices = config.hourlistarttime_minutes.choices = config.minuteslist
-#   form.Monendtime_hour.choices = config.hourlist
-#   form.Monendtime_minutes.choices = config.minuteslist
 
-#   form.Tuestarttime_hour.choices = config.hourlist
-#   form.Tuestarttime_minutes.choices = config.minuteslist
-#   form.Tueendtime_hour.choices = config.hourlist
-#   form.Tueendtime_minutes.choices = config.minuteslist
-
-#   form.Wedstarttime_hour.choices = config.hourlist
-#   form.Wedstarttime_minutes.choices = config.minuteslist
-#   form.Wedendtime_hour.choices = config.hourlist
-#   form.Wedendtime_minutes.choices = config.minuteslist
-
-#   form.Thustarttime_hour.choices = config.hourlist
-#   form.Thustarttime_minutes.choices = config.minuteslist
-#   form.Thuendtime_hour.choices = config.hourlist
-#   form.Thuendtime_minutes.choices = config.minuteslist
-
-#   form.Fristarttime_hour.choices = config.hourlist
-#   form.Fristarttime_minutes.choices = config.minuteslist
-#   form.Friendtime_hour.choices = config.hourlist
-#   form.Friendtime_minutes.choices = config.minuteslist
-
-#   form.Satstarttime_hour.choices = config.hourlist
-#   form.Satstarttime_minutes.choices = config.minuteslist
-#   form.Satendtime_hour.choices = config.hourlist
-#   form.Satendtime_minutes.choices = config.minuteslist
-
-#   form.Sunstarttime_hour.choices = config.hourlist
-#   form.Sunstarttime_minutes.choices = config.minuteslist
-#   form.Sunendtime_hour.choices = config.hourlist
-#   form.Sunendtime_minutes.choices = config.minuteslist
-
-#   return form

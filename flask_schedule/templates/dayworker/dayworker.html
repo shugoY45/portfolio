@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+  <table class="table table-bordered content-section">
+    <legend>従業員</legend>
+    <thead>
+      <tr>
+        <th scope="col">名前</th>
+        <th scope="col">始業時間</th>
+        <th scope="col">終了時間</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for worker in workers: %}
+      <tr>
+        <td>
+          
+          {{ worker.workername }}
+          
+        </td>
+        
+        <td>{{ worker.starttime.strftime('%H:%M')}}</td>
+        
+        <td>{{ worker.endtime.strftime('%H:%M') }}</td>
+        <td>
+          <div class="btn-group">
+            <form action="{{ url_for('dayedit_worker',id = worker.id)}}" method="GET">
+              <button type="submit" class="btn btn-secondary">編集</button>
+            </form>
+          </div>
+          <div class="btn-group">
+            <form action="{{ url_for('delete_dayworker',id = worker.id)}}" method="GET">
+              <button type="submit" class="btn btn-danger">削除</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form action="{{ url_for('daynew_worker')}}" method="GET">
+    <button type="submit" class="btn btn-primary" style="margin-left: 5px;" style="margin-right: 5px;">特別追加</button>
+  </form>
+{% endblock %}
