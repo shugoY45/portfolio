@@ -82,6 +82,12 @@ class DayworkerForm(FlaskForm):
   
   submit = SubmitField('送信')
 
+class ShiftForm(FlaskForm):
+  workername = SelectField('名前',validators=[DataRequired()])
+  starttime = TimeField('シフト開始時間',validators=None)
+  endtime = TimeField('シフト終了時間',validators=None)
+  submit = SubmitField('編集')
+
 
 class TestForm(FlaskForm):
   config = Shift_config.query.first()

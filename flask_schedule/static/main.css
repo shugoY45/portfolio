@@ -95,6 +95,10 @@ input[type="checkbox"]:checked + .check-appear{
   display: block;
 }
 
+.shift {
+  color: #333333;
+}
+
 /* .check:checked + .check-appear{
   display: block;
 } */

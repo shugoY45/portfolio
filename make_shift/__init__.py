@@ -25,7 +25,7 @@ def main(workers,jobs,spjobs,config):
   
   shifts = spshifts + restshifts + normalshifts
 
-  return workers , shifts
+  return shifts
   
 
   # for worker in workers:

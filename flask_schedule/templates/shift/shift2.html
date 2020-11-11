@@ -29,7 +29,9 @@
               {% set shiftlen.length = (shift.endtime.hour * 60 + shift.endtime.minute)-(shift.starttime.hour * 60 + shift.starttime.minute) %}
               {% if (shift.starttime.hour * 60 + shift.starttime.minute) == i :%}
                 {% set nf.found = True %}
-                <td colspan="{{ shiftlen.length }}" class="working">{{ shift.jobname }}</td>
+                <td colspan="{{ shiftlen.length }}" class="working">
+                  <a href="{{ url_for('edit_shift', id=shift.id) }}" class="shift">{{ shift.jobname }}</a>
+                </td>
                 {% set ns.shift = True %}
               {% endif %}
             {% endfor %}
