@@ -1,22 +1,22 @@
-from datetime import datetime
+from datetime import datetime, time
 from flask_schedule.models import Shift
 
 
 def normal(workers,jobs,config):
   normalshifts = []
   # 時間を一定間隔に分割する
-  opentime = datetime.strptime(store_opentime, '%H:%M')
-  closetime = datetime.strptime(store_closetime, '%H:%M')
+  opentime = config.store_opentime
+  closetime = config.store_closetime
   for hour in range(opentime.hour,closetime.hour):
     one_shifts = []
-    td_start = datetime.strptime(str(hour), '%H')
-    td_end = datetime.strptime(str(hour+job_divtime), '%H')
+    td_start = datetime.combine(opentime,time(hour=hour))
+    td_end = datetime.combine(closetime,time(hour=hour+1))
 
     # 分割時間ごとの仕事の抽出
     td_jobs = []
     for job in jobs:
-      start_time = datetime.strptime(job.starttime, '%H:%M')
-      end_time = datetime.strptime(job.endtime, '%H:%M')
+      start_time = datetime.combine(opentime,job.starttime)
+      end_time = datetime.combine(opentime,job.endtime)
       if (start_time <= td_start and td_end <= end_time ):
         for i in range(0,int(job.required_number)):
           td_jobs.append(job)

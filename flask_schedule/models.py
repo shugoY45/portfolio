@@ -1,5 +1,5 @@
 from flask_schedule import db
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta, time, date
 
 
 class Worker(db.Model):
@@ -48,13 +48,17 @@ class Dayworker(db.Model):
   def __repr__(self):
     return f"Dayworker('{self.date}','{self.workername}', '{self.starttime}', '{self.endtime}')"
 
-  def shift_init(self):
+  def shift_init(self,one_date):
     self.freetimeops = []
     self.freetimeeds = []
-    self.d_st = datetime.strptime(self.starttime,"%H:%M")
-    self.d_ed = datetime.strptime(self.endtime,"%H:%M")
-    self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
-    self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
+    self.starttime = datetime.combine(one_date,self.starttime)
+    self.endtime = datetime.combine(one_date,self.endtime)
+    self.d_st = self.starttime
+    self.d_ed = self.endtime
+    # self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
+    # self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
+    self.freetimeops.append(self.starttime)
+    self.freetimeeds.append(self.endtime)
     self.indivshifts = []
     self.need_rest = False
     self.time_median = 0
@@ -132,7 +136,15 @@ class Dayworker(db.Model):
 
 
 
-class Shift():
+class Shift(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  one_date = one_date = db.Column(db.DateTime, nullable=False)
+  workername = db.Column(db.String(20), nullable=False)
+  jobname = db.Column(db.String(20), nullable=False)
+  starttime = db.Column(db.DateTime)
+  endtime = db.Column(db.DateTime)
+  jobweight = db.Column(db.Integer)
+
 
   def __init__(self,workername,jobname,starttime,endtime,jobweight):
     self.workername = workername
@@ -144,9 +156,9 @@ class Shift():
     self.jobweight = jobweight
 
   def __repr__(self):
-    return f"Shift('{self.workername}','{self.jobname}','{self.veiwstarttime}','{self.veiwendtime}','{self.jobweight}')"
-  # def __repr__(self):
-  #   return f"Shift('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}','{self.jobweight}')"
+    return f"Shift('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}','{self.jobweight}')"
+    # return f"Shift('{self.workername}','{self.jobname}','{self.veiwstarttime}','{self.veiwendtime}','{self.jobweight}')"
+
 
   def remove(self):
     i = 1
@@ -218,9 +230,9 @@ class Shift_config(db.Model):
     for i in range(0,self.priorty_max):
       self.priorty_list.append(i)
 
-  def timecombine(self,date):
-    self.store_opentime = datetime.combine(date,self.store_opentime)
-    self.store_closetime = datetime.combine(date,self.store_closetime)
+  def timecombine(self,one_datetime):
+    self.store_opentime = datetime.combine(one_datetime,self.store_opentime)
+    self.store_closetime = datetime.combine(one_datetime,self.store_closetime)
 
 
 class Test(db.Model):

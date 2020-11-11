@@ -3,8 +3,8 @@ from make_shift.special import special
 from make_shift.rest import rest
 
 def main(workers,jobs,spjobs,config):
-  for worker in workers:
-    worker.shift_init()
+  # for worker in workers:
+  #   worker.shift_init()
 
   spshifts = special(workers,spjobs,config)
 
@@ -22,8 +22,10 @@ def main(workers,jobs,spjobs,config):
 
   for worker in workers:
     worker.indivshifts = sorted(worker.indivshifts,key=lambda x:(x.starttime))
+  
+  shifts = spshifts + restshifts + normalshifts
 
-  return workers
+  return workers , shifts
   
 
   # for worker in workers:

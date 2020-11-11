@@ -41,18 +41,6 @@ def index():
         
   return render_template("index.html",form=form)
 
-@app.route("/shift", methods=["GET", "POST"])
-@login_required
-@date_chosen
-def shift():
-  one_date = session['date']
-  dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
-  jobs = Job.query.all()
-  spjobs = SpecialJob.query.all()
-  config = Shift_config.query.first()
-  config.timecombine(one_date)
-  workers = make_shift.main(dayworkers,jobs,spjobs,config)
-  return render_template("shift.html",workers = workers,date=one_date)
 
 @app.route("/date", methods=["GET","POST"])
 @login_required
@@ -61,8 +49,6 @@ def date():
     session['date_chosen'] = True
     one_date = datetime.strptime(request.form['date'], '%Y-%m-%d')
     session['date'] = one_date
-    print(type(one_date))
-    # date = datetime.strptime(date, '%Y/%m/%d (%A)')
     dayworker = Dayworker.query.filter_by(one_date=one_date).all()
     if not dayworker:
       weekday = one_date.strftime('%a')
