@@ -2,9 +2,10 @@
   size: auto;
 }
 
-@media print{
+/* @media print{
   * {
     color: #5cdf72;
+    font-size: large;
   }
 
   .not-print {
@@ -25,7 +26,7 @@
     margin-bottom: none;
   }
 
-}
+} */
 
 body {
   background: #fafafa;

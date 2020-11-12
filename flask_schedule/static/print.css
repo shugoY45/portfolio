@@ -1,5 +1,35 @@
-body {
-  background: hsl(0, 84%, 45%);
-  color: #333333;
-  margin-top: 5rem;
-} 
+@page {
+  size: auto;
+}
+
+@media print{
+  * {
+    
+    color: black;
+    font-size: 60px;
+  }
+
+  body {
+    zoom: 0.35;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .not-print {
+    display: none;
+  }
+  .shift-print {
+    overflow: visible;
+  }
+  .container {
+    left: 0;
+    margin-left: 0px;
+  }
+
+  .content-print {
+    border: none;
+    padding: none;
+    border-radius: none;
+    margin-bottom: none;
+  }
+
+}
