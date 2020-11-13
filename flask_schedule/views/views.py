@@ -39,7 +39,7 @@ def index():
   
     
         
-  return render_template("index.html",form=form)
+  return render_template("index.html")
 
 
 @app.route("/date", methods=["GET","POST"])
