@@ -1,7 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import JobForm, SpJobForm
-# from setting import hourlist,minuteslist, priorty_list
 from flask_schedule.models import Job, Shift_config
 from flask_schedule.views.login import login_required
 
@@ -11,7 +10,6 @@ from flask_schedule.views.login import login_required
 @login_required
 def job():
   jobs = Job.query.all()
-  print(type(jobs[0].starttime))
   form = JobForm()
   config = Shift_config.query.first()
   config.init()
@@ -22,7 +20,6 @@ def job():
     if form.validate_on_submit():
       flash('仕事を追加しました', 'success')
       job = Job(jobname=form.jobname.data, starttime=form.starttime.data, endtime=form.endtime.data, priority=form.priority.data , required_number=form.required_number.data)
-      print(job.starttime,type(job.starttime))
       db.session.add(job)
       db.session.commit()
       jobs = Job.query.all()

@@ -18,6 +18,7 @@ db_uri = os.environ.get('DATABASE_URL') or 'postgresql+psycopg2://{user}:{passwo
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
+db.init_app(app)
 
 
 
