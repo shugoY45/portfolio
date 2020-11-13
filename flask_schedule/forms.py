@@ -2,10 +2,15 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, IntegerField, BooleanField
 from wtforms.fields.html5 import TimeField
 from wtforms.validators import DataRequired, Length
-from flask_schedule.models import ShiftConfig
+from datetime import time
+# from flask_schedule.models import Shiftconfig
+
+class config():
+  store_opentime = time(hour=9)
+  store_closetime = time(hour=22)
 
 class WorkerForm(FlaskForm):
-  config = ShiftConfig.query.first()
+  # config = Shiftconfig.query.first()
   workername = StringField('名前',validators=[DataRequired(), Length(min=1, max=20)])
 
   Sun = BooleanField('日曜日',default=False)
@@ -74,7 +79,7 @@ class ConfigForm(FlaskForm):
   submit = SubmitField('送信')
 
 class DayworkerForm(FlaskForm):
-  config = ShiftConfig.query.first()
+  # config = Shiftconfig.query.first()
   workername = SelectField('名前',validators=[DataRequired(), Length(min=1, max=20)])
   starttime = TimeField('始業時間',validators=None,default=config.store_opentime)
   endtime = TimeField('終業時間',validators=None,default=config.store_closetime)
@@ -90,7 +95,7 @@ class ShiftForm(FlaskForm):
 
 
 class TestForm(FlaskForm):
-  config = ShiftConfig.query.first()
+  # config = Shiftconfig.query.first()
 
   time = TimeField('a',validators=None,default=config.store_opentime)
   time2 = TimeField('a',validators=None,default=config.store_closetime)

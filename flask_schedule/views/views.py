@@ -2,7 +2,7 @@ import os
 from datetime import datetime,time,date
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.models import Worker ,Job ,Dayworker, ShiftConfig,Test,Job,SpecialJob
+from flask_schedule.models import Worker ,Job ,Dayworker, Shiftconfig,Test,Job,SpecialJob
 from flask_schedule.views.login import login_required
 import make_shift
 from flask_schedule.forms import Selectday, ConfigForm ,TestForm

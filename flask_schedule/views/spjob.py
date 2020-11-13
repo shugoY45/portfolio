@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import SpJobForm
 # from setting import hourlist,minuteslist, priorty_list
-from flask_schedule.models import SpecialJob,Worker,ShiftConfig
+from flask_schedule.models import SpecialJob,Worker,Shiftconfig
 from flask_schedule.views.login import login_required
 
 
@@ -14,7 +14,7 @@ def spjob():
   form = SpJobForm()
   worker_list = []
   workers = Worker.query.all()
-  config = ShiftConfig.query.first()
+  config = Shiftconfig.query.first()
   config.init()
   for worker in workers:
     worker_list.append(worker.workername)
@@ -40,7 +40,7 @@ def edit_spjob(id):
   form = SpJobForm()
   worker_list = []
   workers = Worker.query.all()
-  config = ShiftConfig.query.first()
+  config = Shiftconfig.query.first()
   config.init()
   for worker in workers:
     worker_list.append(worker.workername)
