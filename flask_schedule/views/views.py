@@ -133,11 +133,11 @@ def dateout():
 @app.route("/normal_config", methods=["GET", "POST"])
 def normal_config():
   form = ConfigForm()
-  if not ShiftConfig.query.first():
+  if not Shiftconfig.query.first():
     if request.method == 'GET':
       return render_template("normal_config.html",form=form)
     if request.method == 'POST':
-      config=ShiftConfig()
+      config=Shiftconfig()
       config.store_opentime=form.store_opentime.data
       config.store_closetime=form.store_closetime.data
       config.resttime=form.resttime.data
@@ -149,7 +149,7 @@ def normal_config():
       db.session.add(config)
       db.session.commit()
   else:
-    config = ShiftConfig.query.first()
+    config = Shiftconfig.query.first()
     if request.method == 'GET':
       form.store_opentime.data=config.store_opentime
       form.store_closetime.data=config.store_closetime
@@ -178,7 +178,7 @@ def normal_config():
 @app.route("/test", methods=["GET", "POST"])
 def test():
   form = TestForm()
-  config = ShiftConfig.query.first()
+  config = Shiftconfig.query.first()
 
   a = Test()
   a.test = time(hour=11,minute=10)
