@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import DayworkerForm
-from flask_schedule.models import  Shift_config, Dayworker ,Worker
+from flask_schedule.models import  ShiftConfig, Dayworker ,Worker
 from flask_schedule.views.login import login_required
 from flask_schedule.views.views import date_chosen
 

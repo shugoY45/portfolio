@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import JobForm, SpJobForm
-from flask_schedule.models import Job, Shift_config
+from flask_schedule.models import Job, ShiftConfig
 from flask_schedule.views.login import login_required
 
 
@@ -11,7 +11,7 @@ from flask_schedule.views.login import login_required
 def job():
   jobs = Job.query.all()
   form = JobForm()
-  config = Shift_config.query.first()
+  config = ShiftConfig.query.first()
   config.init()
   form.priority.choices = config.priorty_list
   if request.method == "GET":
@@ -30,7 +30,7 @@ def job():
 def edit_job(id):
   job = Job.query.get_or_404(id)
   form = JobForm()
-  config = Shift_config.query.first()
+  config = ShiftConfig.query.first()
   config.init()
   form.priority.choices = config.priorty_list
   if form.validate_on_submit():

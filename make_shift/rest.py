@@ -14,6 +14,10 @@ def rest(workers,config):
       time_list = [worker.starttime,worker.endtime]
       worker.time_median = ave_time(time_list)
       worker.need_rest = True
+    else:
+      time_list = [config.store_opentime,config.store_opentime]
+      worker.time_median = ave_time(time_list)
+      worker.need_rest = False
 
   # 従業員の就業時間の中央値を用いて、営業時間の中央値に近い順に並び替える
   workers = sorted(workers,key=lambda x:abs(store_median-x.time_median))

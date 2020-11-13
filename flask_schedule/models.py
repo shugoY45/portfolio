@@ -196,7 +196,7 @@ class SpecialJob(db.Model):
   def __repr__(self):
     return f"SpecialJob('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}')"
 
-class Shift_config(db.Model):
+class ShiftConfig(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   store_opentime = db.Column(db.Time)
   store_closetime = db.Column(db.Time)

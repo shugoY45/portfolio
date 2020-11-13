@@ -2,7 +2,7 @@ import os
 from datetime import datetime,time,date
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.models import Worker ,Job ,Dayworker, Shift_config,Test,Job,SpecialJob
+from flask_schedule.models import Worker ,Job ,Dayworker, ShiftConfig,Test,Job,SpecialJob
 from flask_schedule.views.login import login_required
 import make_shift
 from flask_schedule.forms import Selectday, ConfigForm ,TestForm
@@ -120,7 +120,7 @@ def date():
       db.session.add_all(dayworkers)
       db.session.commit()
     # dayworkers = Dayworker.query.filter_by(date=date).all()
-    # return redirect(url_for('shift'))
+    return redirect(url_for('shift'))
   return render_template("date.html")
 
 @app.route("/dateout", methods=["GET","POST"])
@@ -133,11 +133,11 @@ def dateout():
 @app.route("/normal_config", methods=["GET", "POST"])
 def normal_config():
   form = ConfigForm()
-  if not Shift_config.query.first():
+  if not ShiftConfig.query.first():
     if request.method == 'GET':
       return render_template("normal_config.html",form=form)
     if request.method == 'POST':
-      config=Shift_config()
+      config=ShiftConfig()
       config.store_opentime=form.store_opentime.data
       config.store_closetime=form.store_closetime.data
       config.resttime=form.resttime.data
@@ -149,8 +149,7 @@ def normal_config():
       db.session.add(config)
       db.session.commit()
   else:
-    config = Shift_config.query.first()
-    print(config.store_opentime)
+    config = ShiftConfig.query.first()
     if request.method == 'GET':
       form.store_opentime.data=config.store_opentime
       form.store_closetime.data=config.store_closetime
@@ -179,7 +178,7 @@ def normal_config():
 @app.route("/test", methods=["GET", "POST"])
 def test():
   form = TestForm()
-  config = Shift_config.query.first()
+  config = ShiftConfig.query.first()
 
   a = Test()
   a.test = time(hour=11,minute=10)

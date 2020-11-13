@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.forms import WorkerForm
-from flask_schedule.models import Worker, Shift_config
+from flask_schedule.models import Worker, ShiftConfig
 from flask_schedule.views.login import login_required
 from flask_schedule.views.views import date_chosen
 

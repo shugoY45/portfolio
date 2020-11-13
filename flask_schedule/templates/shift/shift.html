@@ -5,7 +5,8 @@
   <h1>シフト表</h1><hr>
     <table class="table-responsive  table-fixed shift-print">
       <th class="table-primary">名前</th>
-      {% for i in range(config.store_opentime.hour * 60 +config.store_opentime.minute-60,config.store_closetime.hour * 60 +config.store_closetime.minute): %}
+        <th colspan="{{ 60-config.store_opentime.minute }}" class="table-primary">{{config.store_opentime.hour}}:{{config.store_opentime.minute}}</th>
+      {% for i in range(config.store_opentime.hour * 60 +config.store_opentime.minute,config.store_closetime.hour * 60 +config.store_closetime.minute): %}
         {% if i%60 == 0:%}
         {% set j = i/60 %}
           <th colspan="60" class="table-primary">{{ j | int }}:00</th>
@@ -18,7 +19,7 @@
           {% set ns = namespace(shift = False) %}
           {% set nc = namespace(cnt = 0) %}
           {% set shiftlen = namespace(length = 60) %}
-          {% for i in range(config.store_opentime.hour * 60 +config.store_opentime.minute-60,config.store_closetime.hour * 60 +config.store_closetime.minute): %}
+          {% for i in range(config.store_opentime.hour * 60 +config.store_opentime.minute,config.store_closetime.hour * 60 +config.store_closetime.minute): %}
             {% set nf = namespace(found = False) %}
             {% set nw = namespace(working = Flase) %}
             {% if worker.d_st.hour * 60 + worker.d_st.minute < i and i < worker.d_ed.hour * 60 + worker.d_ed.minute: %}
@@ -28,7 +29,9 @@
               {% set shiftlen.length = (shift.endtime.hour * 60 + shift.endtime.minute)-(shift.starttime.hour * 60 + shift.starttime.minute) %}
               {% if (shift.starttime.hour * 60 + shift.starttime.minute) == i :%}
                 {% set nf.found = True %}
-                <td colspan="{{ shiftlen.length }}" class="working">{{ shift.jobname }}</td>
+                <td colspan="{{ shiftlen.length }}" class="working">
+                  <a href="{{ url_for('edit_shift', id=shift.id) }}" class="shift">{{ shift.jobname }}</a>
+                </td>
                 {% set ns.shift = True %}
               {% endif %}
             {% endfor %}
@@ -53,12 +56,11 @@
     </table>
   </div>
 </div>
-
-
-
-
-
-
+<div class="btn-group">
+  <form action="{{ url_for('new_shift')}}" method="GET">
+    <button type="submit" class="btn btn-secondary">新規追加</button>
+  </form>
+</div>
 
 
 {% endblock %}
