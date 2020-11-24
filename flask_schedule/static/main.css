@@ -1,38 +1,24 @@
-@page {
-  size: auto;
-}
 
-/* @media print{
-  * {
-    color: #5cdf72;
-    font-size: large;
-  }
-
-  .not-print {
-    display: none;
-  }
-  .shift-print {
-    overflow: visible;
-  }
-  .container {
-    left: 0;
-    margin-left: 0px;
-  }
-
-  .content-print {
-    border: none;
-    padding: none;
-    border-radius: none;
-    margin-bottom: none;
-  }
-
-} */
 
 body {
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;
-} 
+}  
+
+.jumbotron {
+  background-image: url(./image/イトーヨーカドー\ 立場.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-container {
+  padding: 30px;
+  opacity: 0.9;
+  background-color: white;
+}
+
 
 h1,
 h2,
@@ -80,12 +66,12 @@ h6 {
 }
 
 
-.table-fixed th:first-child, td:first-child {
+.table-fixed .shift th:first-child, .shift td:first-child {
   position: sticky;  position: -webkit-sticky;
   left: 0;
   border: 1px solid #dee2e6;
 }
-th {
+.shift th {
   border: 1px solid #dee2e6;
 }
 

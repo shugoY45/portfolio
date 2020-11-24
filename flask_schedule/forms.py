@@ -44,10 +44,36 @@ class WorkerForm(FlaskForm):
   
   submit = SubmitField('送信')
 
+class DayworkerForm(FlaskForm):
+  # config = Shiftconfig.query.first()
+  workername = SelectField('名前',validators=[DataRequired(), Length(min=1, max=20)])
+  starttime = TimeField('始業時間',validators=None,default=config.store_opentime)
+  endtime = TimeField('終業時間',validators=None,default=config.store_closetime)
+
+  
+  submit = SubmitField('送信')
+
+
 class JobForm(FlaskForm):
   jobname = StringField('仕事名',validators=[DataRequired(), Length(min=1, max=20)])
-  starttime = TimeField('開始時間',validators=[DataRequired()])
-  endtime = TimeField('終了時間',validators=[DataRequired()])
+  starttime = TimeField('開始時間',validators=[DataRequired()],default=config.store_opentime)
+  endtime = TimeField('終了時間',validators=[DataRequired()],default=config.store_closetime)
+  required_number = IntegerField('必要人数', validators=[DataRequired()],default=1)
+  priority = SelectField('仕事の重要度（他の仕事と比べてどれだけ重要か）',validators=[DataRequired()],default=5)
+
+  employee_priority = SelectField('社員優先度', validators=[DataRequired()],default=5)
+  parttime_priority = SelectField('パート優先度', validators=[DataRequired()],default=5)
+  helper_priority = SelectField('ヘルパー優先度', validators=[DataRequired()],default=5)
+  weight = SelectField('仕事の重労度（仕事の大変さ）', validators=[DataRequired()],default=5)
+  be_indispensable = BooleanField('必須')
+
+  submit = SubmitField('送信')
+
+
+class DayjobForm(FlaskForm):
+  jobname = StringField('仕事名',validators=[DataRequired(), Length(min=1, max=20)])
+  starttime = TimeField('開始時間',validators=[DataRequired()],default=config.store_opentime)
+  endtime = TimeField('終了時間',validators=[DataRequired()],default=config.store_closetime)
   required_number = IntegerField('必要人数', validators=[DataRequired()],default=1)
   priority = SelectField('仕事の重要度',validators=[DataRequired()])
 
@@ -78,14 +104,6 @@ class ConfigForm(FlaskForm):
   priorty_max = IntegerField('仕事重要度の最大値')
   submit = SubmitField('送信')
 
-class DayworkerForm(FlaskForm):
-  # config = Shiftconfig.query.first()
-  workername = SelectField('名前',validators=[DataRequired(), Length(min=1, max=20)])
-  starttime = TimeField('始業時間',validators=None,default=config.store_opentime)
-  endtime = TimeField('終業時間',validators=None,default=config.store_closetime)
-
-  
-  submit = SubmitField('送信')
 
 class ShiftForm(FlaskForm):
   workername = SelectField('名前',validators=[DataRequired()])

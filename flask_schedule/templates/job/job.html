@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<legend>基本仕事</legend>
   <table class="table table-bordered content-section">
     <thead>
       <tr>
@@ -15,76 +16,18 @@
       {% for job in jobs %}
       <tr>
         <th scope="row">{{ loop.index }}</th>
-        <td>{{ job.jobname }}</td>
+        <td>
+          <a href="{{ url_for('detail_job', id=job.id) }}" class="">{{ job.jobname }}</a>
+        </td>
         <td>{{ job.starttime.strftime('%H:%M') }}</td>
         <td>{{ job.endtime.strftime('%H:%M') }}</td>
         <td>{{ job.priority }}</td>
         <td>{{ job.required_number }}</td>
-        <td>
-          <div class="btn-group">
-            <form action="{{ url_for('edit_job',id = job.id)}}" method="GET">
-              <button type="submit" class="btn btn-secondary">編集</button>
-            </form>
-            <form action="{{ url_for('delete_job',id = job.id)}}" method="GET">
-              <button type="submit" class="btn btn-danger" style="margin-left: 5px;" style="margin-right: 5px;">削除</button>
-            </form>
-          </div>
-        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  <div class="content-section">
-    <form method="POST" action="">
-      {{ form.hidden_tag()}}
-      <div class="form-group">
-        <fieldset class="form-group">
-          <div class="form-group">
-            {{ form.jobname.label(class="form-control-label")}}
-            {{ form.jobname(class="form-control form-control-lg") }}
-            {% if form.jobname.errors %}
-            <div class="invalid-feedback">
-              {% for error in form.jobname.errors %}
-              <span>{{ error }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.starttime.label()}}
-            {{ form.starttime() }}
-          </div>
-          <div class="form-group">
-            {{ form.endtime.label()}}
-            {{ form.endtime() }}
-          </div>
-          <div class="form-group">
-            {{ form.priority.label(class="form-control-label")}}
-            {{ form.priority(class="form-control form-control-lg") }}
-            {% if form.priority.errors %}
-            <div class="invalid-feedback">
-              {% for error in form.priority.errors %}
-              <span>{{ error }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.required_number.label(class="form-control-label")}}
-            {{ form.required_number(class="form-control form-control-lg") }}
-            {% if form.required_number.errors %}
-            <div class="invalid-feedback">
-              {% for error in form.required_number.errors %}
-              <span>{{ error }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-        </fieldset>
-      </div>
-      <div class="form-group">
-        {{ form.submit(class="btn btn-outline-info") }}
-      </div>
-    </form>
-  </div>
+  <form action="{{ url_for('new_job')}}" method="GET">
+    <button type="submit" class="btn btn-primary" style="margin-left: 5px;" style="margin-right: 5px;">新規作成</button>
+  </form>
 {% endblock %}

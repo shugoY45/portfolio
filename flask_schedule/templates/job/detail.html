@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+  <table class="table table-bordered content-section">
+    <thead>
+      <tr>
+        <th scope="col">仕事名</th>
+        <th scope="col">開始時間</th>
+        <th scope="col">終了時間</th>
+        <th scope="col">必要人数</th>
+        <th scope="col">仕事の重要度</th>
+        <th scope="col">仕事の重労度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ job.jobname }}</td>
+        <td>{{ job.starttime.strftime('%H:%M') }}</td>
+        <td>{{ job.endtime.strftime('%H:%M') }}</td>
+        <td>{{ job.required_number }}</td>
+        <td>{{ job.priority }}</td>
+        <td>{{ job.weight }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered content-section">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">社員</th>
+        <th scope="col">パート</th>
+        <th scope="col">ヘルパー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>優先度</td>
+        <td>{{ job.employee_priority }}</td>
+        <td>{{ job.parttime_priority }}</td>
+        <td>{{ job.helper_priority }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="btn-group">
+    <form action="{{ url_for('edit_job',id = job.id)}}" method="GET">
+      <button type="submit" class="btn btn-secondary">編集</button>
+    </form>
+    <form action="{{ url_for('delete_job',id = job.id)}}" method="GET">
+      <button type="submit" class="btn btn-danger" style="margin-left: 5px;" style="margin-right: 5px;">削除</button>
+    </form>
+  </div>
+{% endblock %}

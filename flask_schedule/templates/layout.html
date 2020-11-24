@@ -16,7 +16,7 @@
   </script>
   <title>シフト作成</title>
 </head>
-<body>
+<body class="jumbotron">
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
       <div class="container">
@@ -68,12 +68,9 @@
       </div>
     </nav>
   </header>
-  <main role="main" class="container">
-    <div class="row">
+  <main role="main" class="main-container container">
+    <div class="row top-wrapper">
       <div class="col-md-12">
-        {% if date: %}
-          {{date}}
-        {% endif %}
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for catagory, message in messages %}

@@ -3,7 +3,7 @@
 
 <div class="content-section text-nowrap content-print">
   <h1>シフト表</h1><hr>
-    <table class="table-responsive  table-fixed shift-print">
+    <table class="shift table-responsive  table-fixed shift-print">
       <th class="table-primary">名前</th>
         <th colspan="{{ 60-config.store_opentime.minute }}" class="table-primary">{{config.store_opentime.hour}}:{{config.store_opentime.minute}}</th>
       {% for i in range(config.store_opentime.hour * 60 +config.store_opentime.minute,config.store_closetime.hour * 60 +config.store_closetime.minute): %}
