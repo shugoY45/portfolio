@@ -175,42 +175,50 @@ class Shift(db.Model):
 class Job(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   jobname = db.Column(db.String(20), nullable=False)
-  everyday = db.Column(db.Boolean, default=False)
-  weekday = db.Column(db.Boolean, default=False)
-  monthday  = db.Column(db.Boolean, default=False)
   starttime = db.Column(db.Time)
   endtime = db.Column(db.Time)
-  priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
-  jobtime = db.relationship('Jobtime', backref='job', lazy=True)
-  dayjob = db.relationship('Dayjob', backref='job', lazy=True)
-  employee_priority = db.Column(db.Integer, default=5)
-  parttime_priority = db.Column(db.Integer, default=5)
-  helper_priority = db.Column(db.Integer, default=5)
-  weight = db.Column(db.Integer, default=5)
+  priority = db.Column(db.String(3))
+  weight= db.Column(db.String(3))
+  
+  employee_priority = db.Column(db.String(3))
+  parttime_priority = db.Column(db.String(3))
+  helper_priority = db.Column(db.String(3))
   be_indispensable = db.Column(db.Boolean, default=False)
+
+  # jobtime = db.relationship('Jobtime', backref='job', lazy=True)
+  # dayjob = db.relationship('Dayjob', backref='job', lazy=True)
+  # everyday = db.Column(db.Boolean, default=False)
+  # weekday = db.Column(db.Boolean, default=False)
+  # monthday  = db.Column(db.Boolean, default=False)
 
   def __repr__(self):
     return f"Job('{self.jobname}','{self.starttime}','{self.endtime}')"
 
-class Jobtime(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  dayname = db.Column(db.String(5), nullable=False)
-  starttime = db.Column(db.Time)
-  endtime = db.Column(db.Time)
-  job_id = db.Column(db.Integer,db.ForeignKey('job.id'))
+# class Jobtime(db.Model):
+#   id = db.Column(db.Integer, primary_key=True)
+#   dayname = db.Column(db.String(5), nullable=False)
+#   starttime = db.Column(db.Time)
+#   endtime = db.Column(db.Time)
+  # job_id = db.Column(db.Integer,db.ForeignKey('job.id'))
 
 class Dayjob(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  job_id = db.Column(db.Integer,db.ForeignKey('job.id'))
-  jobname = db.Column(db.String(20), unique=True, nullable=False)
+  one_date = db.Column(db.DateTime, nullable=False)
+  jobname = db.Column(db.String(20), nullable=False)
   starttime = db.Column(db.Time)
   endtime = db.Column(db.Time)
-  priority = db.Column(db.String(3))
   required_number = db.Column(db.Integer)
+  priority = db.Column(db.String(3))
+  weight= db.Column(db.String(3))
+  
+  employee_priority = db.Column(db.String(3))
+  parttime_priority = db.Column(db.String(3))
+  helper_priority = db.Column(db.String(3))
+  be_indispensable = db.Column(db.Boolean, default=False)
 
   def __repr__(self):
-    return f"Job('{self.jobname}','{self.starttime}','{self.endtime}')"
+    return f"DayJob('{self.jobname}','{self.starttime}','{self.endtime}')"
 
 
 

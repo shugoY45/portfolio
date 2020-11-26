@@ -1,20 +1,26 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.forms import JobForm, SpJobForm
-from flask_schedule.models import Job, Shiftconfig
+from flask_schedule.forms import JobForm
+from flask_schedule.models import Dayjob, Shiftconfig
 from flask_schedule.views.login import login_required
+from flask_schedule.views.views import date_chosen
 
 
-
-@app.route('/job', methods=['GET', 'POST'])
+@app.route('/dayjob', methods=['GET', 'POST'])
 @login_required
-def job():
-  jobs = Job.query.all()
-  return render_template('job/job.html',jobs=jobs)
+@date_chosen
+def dayjob():
+  one_date = session['date']
+  jobs = Dayjob.query.filter_by(one_date=one_date).all()
+  return render_template('dayjob/dayjob.html',jobs=jobs)
 
-@app.route('/job/new', methods=['GET', 'POST'])
+@app.route('/dayjob/new', methods=['GET', 'POST'])
 @login_required
-def new_job():
+@date_chosen
+def new_dayjob():
+  one_date = session['date']
+  strdate = one_date.strftime('%Y/%m/%d (%a)')
+  flash(strdate+'に追加します', 'success')
   form = JobForm()
   config = Shiftconfig.query.first()
   config.init()
@@ -27,24 +33,26 @@ def new_job():
 
   if request.method == 'POST':
     flash('仕事を追加しました', 'success')
-    job = Job(jobname=form.jobname.data, starttime=form.starttime.data, endtime=form.endtime.data, priority=form.priority.data , required_number=form.required_number.data, weight=form.weight.data, employee_priority=form.employee_priority.data, parttime_priority=form.parttime_priority.data,helper_priority=form.helper_priority.data,be_indispensable=form.be_indispensable.data)
+    job = Dayjob(jobname=form.jobname.data, one_date=one_date, starttime=form.starttime.data, endtime=form.endtime.data, priority=form.priority.data , required_number=form.required_number.data, weight=form.weight.data, employee_priority=form.employee_priority.data, parttime_priority=form.parttime_priority.data,helper_priority=form.helper_priority.data,be_indispensable=form.be_indispensable.data)
     db.session.add(job)
     db.session.commit()
-    return redirect(url_for("job"))
+    return redirect(url_for("dayjob"))
 
   flash('仕事を追加します', 'success')
-  return render_template('job/new.html',form=form)
+  return render_template('dayjob/new.html',form=form)
 
-@app.route('/job/<int:id>/detail', methods=['GET', 'POST'])
+@app.route('/dayjob/<int:id>/detail', methods=['GET', 'POST'])
 @login_required
-def detail_job(id):
-  job = Job.query.get_or_404(id)
+@date_chosen
+def detail_dayjob(id):
+  job = Dayjob.query.get_or_404(id)
   
-  return render_template('job/detail.html',job=job)
+  return render_template('dayjob/detail.html',job=job)
 
-@app.route('/job/<int:id>/edit', methods=['GET', 'POST'])
+@app.route('/dayjob/<int:id>/edit', methods=['GET', 'POST'])
 @login_required
-def edit_job(id):
+@date_chosen
+def edit_dayjob(id):
   job = Job.query.get_or_404(id)
   form = JobForm()
   config = Shiftconfig.query.first()
@@ -68,7 +76,7 @@ def edit_job(id):
     job.helper_priority=form.helper_priority.data
     job.be_indispensable = form.be_indispensable.data
     db.session.commit()
-    return redirect(url_for('job'))
+    return redirect(url_for('dayjob'))
  
   form.jobname.data = job.jobname
   form.starttime.data = job.starttime
@@ -82,12 +90,13 @@ def edit_job(id):
   form.be_indispensable.data = job.be_indispensable
   # print(form.weight.data)
   flash('編集します', 'warning')
-  return render_template('job/edit.html',form=form)
+  return render_template('dayjob/edit.html',form=form)
 
 
-@app.route('/job/<int:id>/delete', methods=['GET', 'POST'])
+@app.route('/dayjob/<int:id>/delete', methods=['GET', 'POST'])
 @login_required
-def delete_job(id):
+@date_chosen
+def delete_dayjob(id):
   job = Job.query.get_or_404(id)
   if request.method == "POST":
     flash('削除しました', 'success')
@@ -96,4 +105,4 @@ def delete_job(id):
     return redirect(url_for('job'))
   elif request.method == "GET":
     flash('削除しますか？', 'warning')
-    return render_template('job/delete.html',job=job)
+    return render_template('dayjob/delete.html',job=job)

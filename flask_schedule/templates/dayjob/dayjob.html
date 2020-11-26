@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<legend>基本仕事</legend>
+  <table class="table table-bordered content-section">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">仕事名</th>
+        <th scope="col">開始時間</th>
+        <th scope="col">終了時間</th>
+        <th scope="col">仕事の重要度</th>
+        <th scope="col">必要人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>
+          <a href="{{ url_for('detail_job', id=job.id) }}" class="">{{ job.jobname }}</a>
+        </td>
+        <td>{{ job.starttime.strftime('%H:%M') }}</td>
+        <td>{{ job.endtime.strftime('%H:%M') }}</td>
+        <td>{{ job.priority }}</td>
+        <td>{{ job.required_number }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form action="{{ url_for('new_job')}}" method="GET">
+    <button type="submit" class="btn btn-primary" style="margin-left: 5px;" style="margin-right: 5px;">新規作成</button>
+  </form>
+{% endblock %}

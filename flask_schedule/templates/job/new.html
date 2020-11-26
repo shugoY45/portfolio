@@ -58,6 +58,17 @@
             </div>
             {% endif %}
           </div>
+          <div class="form-group">
+            {{ form.be_indispensable.label(class="form-control-label")}}
+            {{ form.be_indispensable(class="form-control form-control-lg") }}
+            {% if form.be_indispensable.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.be_indispensable.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
           <div class="chosen-position">
             <p>役職ごとの振り分け優先度</p>
             <input type="checkbox" class="check" name="" value="True">

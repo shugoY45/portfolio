@@ -60,11 +60,11 @@ class JobForm(FlaskForm):
   endtime = TimeField('終了時間',validators=[DataRequired()],default=config.store_closetime)
   required_number = IntegerField('必要人数', validators=[DataRequired()],default=1)
   priority = SelectField('仕事の重要度（他の仕事と比べてどれだけ重要か）',validators=[DataRequired()],default=5)
+  weight = SelectField('仕事の重労度（仕事の大変さ）', validators=[DataRequired()],default=5)
 
   employee_priority = SelectField('社員優先度', validators=[DataRequired()],default=5)
   parttime_priority = SelectField('パート優先度', validators=[DataRequired()],default=5)
   helper_priority = SelectField('ヘルパー優先度', validators=[DataRequired()],default=5)
-  weight = SelectField('仕事の重労度（仕事の大変さ）', validators=[DataRequired()],default=5)
   be_indispensable = BooleanField('必須')
 
   submit = SubmitField('送信')

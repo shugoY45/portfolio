@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+  <table class="table table-bordered content-section">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">仕事名</th>
+        <th scope="col">開始時間</th>
+        <th scope="col">終了時間</th>
+        <th scope="col">仕事の重要度</th>
+        <th scope="col">必要人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{ job.id }}</th>
+        <td>{{ job.jobname }}</td>
+        <td>{{ job.starttime }}</td>
+        <td>{{ job.endtime }}</td>
+        <td>{{ job.priortiy }}</td>
+        <td>{{ job.required_number }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <form action="" method="POST">
+    <button type="submit" class="btn btn-danger">削除</button>
+  </form>
+{% endblock %}
