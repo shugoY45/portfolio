@@ -59,6 +59,7 @@ def date():
           if worker.Sun:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Sunstarttime
             dayworker.endtime = worker.Sunendtime
@@ -68,6 +69,7 @@ def date():
           if worker.Mon:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Monstarttime
             dayworker.endtime = worker.Monendtime
@@ -77,6 +79,7 @@ def date():
           if worker.Tue:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Tuestarttime
             dayworker.endtime = worker.Tueendtime
@@ -86,6 +89,7 @@ def date():
           if worker.Wed:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Wedstarttime
             dayworker.endtime = worker.Wedendtime
@@ -95,6 +99,7 @@ def date():
           if worker.Thu:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Thustarttime
             dayworker.endtime = worker.Thuendtime
@@ -113,6 +118,7 @@ def date():
           if worker.Sat:
             dayworker = Dayworker()
             dayworker.one_date = one_date
+            dayworker.position = worker.position
             dayworker.workername = worker.workername
             dayworker.starttime = worker.Satstarttime
             dayworker.endtime = worker.Satendtime
@@ -140,49 +146,7 @@ def dateout():
 
   return redirect(url_for('date'))
 
-@app.route("/normal_config", methods=["GET", "POST"])
-def normal_config():
-  form = ConfigForm()
-  if not Shiftconfig.query.first():
-    if request.method == 'GET':
-      return render_template("normal_config.html",form=form)
-    if request.method == 'POST':
-      config=Shiftconfig()
-      config.store_opentime=form.store_opentime.data
-      config.store_closetime=form.store_closetime.data
-      config.resttime=form.resttime.data
-      config.restnd_mint=form.restnd_mint.data
-      config.restname=form.restname.data
-      config.priorty_max=form.priorty_max.data
-      config.min_shift=form.min_shift.data
-      config.job_divtime=form.job_divtime.data
-      db.session.add(config)
-      db.session.commit()
-  else:
-    config = Shiftconfig.query.first()
-    if request.method == 'GET':
-      form.store_opentime.data=config.store_opentime
-      form.store_closetime.data=config.store_closetime
-      form.resttime.data=config.resttime
-      form.restnd_mint.data=config.restnd_mint
-      form.restname.data=config.restname
-      form.priorty_max.data=config.priorty_max
-      form.min_shift.data=config.min_shift
-      form.job_divtime.data=config.job_divtime
-      return render_template("normal_config.html",form=form)
-    if request.method == 'POST':
-      config.store_opentime=form.store_opentime.data
-      config.store_closetime=form.store_closetime.data
-      config.resttime=form.resttime.data
-      config.restnd_mint=form.restnd_mint.data
-      config.restname=form.restname.data
-      config.priorty_max=form.priorty_max.data
-      config.min_shift=form.min_shift.data
-      config.job_divtime=form.job_divtime.data
-      db.session.commit()
 
-
-  return render_template("normal_config.html",form=form)
 
 
 @app.route("/test", methods=["GET", "POST"])

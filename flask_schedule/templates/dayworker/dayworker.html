@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th scope="col">名前</th>
+        <th scope="col">役職</th>
         <th scope="col">始業時間</th>
         <th scope="col">終了時間</th>
         <th></th>
@@ -13,14 +14,9 @@
     <tbody>
       {% for worker in workers: %}
       <tr>
-        <td>
-          
-          {{ worker.workername }}
-          
-        </td>
-        
+        <td>{{ worker.workername }}</td>
+        <td>{{ worker.position }}</td>
         <td>{{ worker.starttime.strftime('%H:%M')}}</td>
-        
         <td>{{ worker.endtime.strftime('%H:%M') }}</td>
         <td>
           <div class="btn-group">

@@ -12,6 +12,7 @@ class config():
 class WorkerForm(FlaskForm):
   # config = Shiftconfig.query.first()
   workername = StringField('名前',validators=[DataRequired(), Length(min=1, max=20)])
+  position = SelectField('役職',validators=[DataRequired()])
 
   Sun = BooleanField('日曜日',default=False)
   Sunstarttime = TimeField('始業時間',validators=None,default=config.store_opentime)

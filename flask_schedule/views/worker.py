@@ -5,6 +5,7 @@ from flask_schedule.models import Worker, Shiftconfig
 from flask_schedule.views.login import login_required
 from flask_schedule.views.views import date_chosen
 
+position = ["社員","パート","ヘルパー"]
 
 @app.route('/worker', methods=['GET', 'POST'])
 @login_required
@@ -18,6 +19,7 @@ def worker():
 def new_worker():
   date = session['date']
   form =WorkerForm()
+  form.position.choices = position
   if request.method == "POST":
     if form.validate_on_submit():
       flash('追加しました', 'success')
@@ -30,6 +32,7 @@ def new_worker():
       Sat = request.form.get("Sat")
       worker = Worker()
       worker.workername = form.workername.data
+      worker.position = form.position.data
       if Sun:
         worker.Sun = True
       else :
@@ -98,6 +101,7 @@ def worker_detail(id):
 def edit_worker(id):
   worker = Worker.query.get_or_404(id)
   form = WorkerForm()
+  form.position.choices = position
   if request.method == "POST":
     if form.validate_on_submit():
       flash('編集しました', 'success')
@@ -109,6 +113,7 @@ def edit_worker(id):
       Fri = request.form.get("Fri")
       Sat = request.form.get("Sat")
       worker.workername = form.workername.data
+      worker.position = form.position.data
       if Sun:
         worker.Sun = True
       else :
@@ -157,6 +162,7 @@ def edit_worker(id):
       raise EnvironmentError("validation error")
   else:
     form.workername.data = worker.workername
+    form.position.data = worker.position
     day = Editday()
     day.init()
     if worker.Sun:

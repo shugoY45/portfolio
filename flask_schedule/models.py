@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, time, date
 class Worker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workername = db.Column(db.String(20), nullable=False)
+  position = db.Column(db.String(20))
 
   Sun = db.Column(db.Boolean)
   Sunstarttime = db.Column(db.Time)
@@ -42,6 +43,7 @@ class Dayworker(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   one_date = db.Column(db.DateTime, nullable=False)
   workername = db.Column(db.String(20), nullable=False)
+  position = db.Column(db.String(20))
   starttime = db.Column(db.Time)
   endtime = db.Column(db.Time)
 
@@ -247,22 +249,22 @@ class Shiftconfig(db.Model):
 
   def init(self):
 
-    self.hourlist = []
-    self.minuteslist = ["00"]
+    # self.hourlist = []
+    # self.minuteslist = ["00"]
 
-    for hour in range(int(self.store_opentime.hour),int(self.store_closetime.hour)+1):
-      self.hourlist.append(hour)
+    # for hour in range(int(self.store_opentime.hour),int(self.store_closetime.hour)+1):
+    #   self.hourlist.append(hour)
 
-    # print(min_shift.minute)
-    if not self.min_shift.minute == 0:
-      if 60 % float(self.min_shift.minute) == 0:
-        div = 60 / float(self.min_shift.minute)
-      for minutes in range(1,int(div)):
-        self.minuteslist.append(minutes*int(self.min_shift.minute))
+    # # print(min_shift.minute)
+    # if not self.min_shift.minute == 0:
+    #   if 60 % float(self.min_shift.minute) == 0:
+    #     div = 60 / float(self.min_shift.minute)
+    #   for minutes in range(1,int(div)):
+    #     self.minuteslist.append(minutes*int(self.min_shift.minute))
 
-    self.phour = int(self.min_shift.hour) if not int(self.min_shift.hour) == 0 else 1
+    # self.phour = int(self.min_shift.hour) if not int(self.min_shift.hour) == 0 else 1
 
-    self.pminute = int(self.min_shift.minute) if not int(self.min_shift.minute) == 0 else 60
+    # self.pminute = int(self.min_shift.minute) if not int(self.min_shift.minute) == 0 else 60
 
     self.priorty_list = []
     for i in range(0,self.priorty_max):
@@ -271,6 +273,10 @@ class Shiftconfig(db.Model):
   def timecombine(self,one_datetime):
     self.store_opentime = datetime.combine(one_datetime,self.store_opentime)
     self.store_closetime = datetime.combine(one_datetime,self.store_closetime)
+
+class Position(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(20))
 
 
 class Test(db.Model):
