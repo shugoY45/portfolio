@@ -48,7 +48,7 @@ class Dayworker(db.Model):
   endtime = db.Column(db.Time)
 
   def __repr__(self):
-    return f"Dayworker('{self.date}','{self.workername}', '{self.starttime}', '{self.endtime}')"
+    return f"Dayworker('{self.one_date}','{self.workername}', '{self.starttime}', '{self.endtime}')"
 
   def shift_init(self,one_date):
     self.freetimeops = []
@@ -146,6 +146,12 @@ class Shift(db.Model):
   starttime = db.Column(db.DateTime)
   endtime = db.Column(db.DateTime)
   jobweight = db.Column(db.Integer)
+  position = db.Column(db.String(20))
+  priority = db.Column(db.String(3))
+  employee_priority = db.Column(db.String(3))
+  parttime_priority = db.Column(db.String(3))
+  helper_priority = db.Column(db.String(3))
+  be_indispensable = db.Column(db.Boolean, default=False)
 
 
   def __init__(self,workername,jobname,starttime,endtime,jobweight):
@@ -282,3 +288,9 @@ class Position(db.Model):
 class Test(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   test = db.Column(db.Time)
+  jobtime = db.relationship('Test2', backref='test', lazy=True)
+
+class Test2(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  test_id = db.Column(db.Integer,db.ForeignKey('test.id'))
+

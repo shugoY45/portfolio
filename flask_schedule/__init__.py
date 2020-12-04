@@ -23,5 +23,5 @@ db.init_app(app)
 
 
 
-from flask_schedule.views import views, login, worker, job, spjob,dayworker, shift,dayjob,setting
+from flask_schedule.views import views, login, worker, job, spjob,dayworker, shift,dayjob,setting,date
 # from flask_schedule import views

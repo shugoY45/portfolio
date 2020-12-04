@@ -20,11 +20,13 @@ def main(workers,jobs,spjobs,config):
   normalshifts = normal(workers,jobs,config)
   # print(normalshifts)
 
-  for worker in workers:
-    worker.indivshifts = sorted(worker.indivshifts,key=lambda x:(x.starttime))
+  # for worker in workers:
+  #   worker.indivshifts = sorted(worker.indivshifts,key=lambda x:(x.starttime))
   
   shifts = spshifts + restshifts + normalshifts
 
+
+  
   return shifts
   
 
