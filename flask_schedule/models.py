@@ -57,8 +57,6 @@ class Dayworker(db.Model):
     self.endtime = datetime.combine(one_date,self.endtime)
     self.d_st = self.starttime
     self.d_ed = self.endtime
-    # self.freetimeops.append(datetime.strptime(self.starttime,"%H:%M"))
-    # self.freetimeeds.append(datetime.strptime(self.endtime,"%H:%M"))
     self.freetimeops.append(self.starttime)
     self.freetimeeds.append(self.endtime)
     self.indivshifts = []
@@ -146,15 +144,15 @@ class Shift(db.Model):
   starttime = db.Column(db.DateTime)
   endtime = db.Column(db.DateTime)
   jobweight = db.Column(db.Integer)
-  position = db.Column(db.String(20))
   priority = db.Column(db.String(3))
+  position = db.Column(db.String(20))
   employee_priority = db.Column(db.String(3))
   parttime_priority = db.Column(db.String(3))
   helper_priority = db.Column(db.String(3))
   be_indispensable = db.Column(db.Boolean, default=False)
 
 
-  def __init__(self,workername,jobname,starttime,endtime,jobweight):
+  def __init__(self,workername,jobname,starttime,endtime,jobweight,priority,workerposition,employee_priority,parttime_priority,helper_priority,be_indispensable):
     self.workername = workername
     self.jobname = jobname
     self.starttime = starttime
@@ -162,6 +160,12 @@ class Shift(db.Model):
     self.endtime = endtime
     self.veiwendtime = endtime.strftime("%H:%M")
     self.jobweight = jobweight
+    self.priority = priority
+    self.workerposition = workerposition
+    self.employee_priority = employee_priority
+    self.parttime_priority = parttime_priority
+    self.helper_priority = helper_priority
+    self.be_indispensable = be_indispensable
 
   def __repr__(self):
     return f"Shift('{self.workername}','{self.jobname}','{self.starttime}','{self.endtime}','{self.jobweight}')"

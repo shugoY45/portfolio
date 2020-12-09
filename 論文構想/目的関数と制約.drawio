@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-11-11T02:31:54.547Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="LjawVoeCsm6N6cBUgwP-" version="13.6.5" pages="2">
+<mxfile host="65bd71144e" modified="2020-12-04T07:42:05.424Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="GjZaZv4sXuk-BCYzsd6Z" version="13.6.5" pages="2">
     <diagram id="1N1eKyOcBoQAe6rB38dJ" name="目的関数">
-        <mxGraphModel dx="934" dy="682" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="509" dy="300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -14,7 +14,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="50Zoprj4UOBR1KHfc3y2" name="制約">
-        <mxGraphModel dx="644" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="509" dy="300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="JZ_cULcGzYho4HUnqOvs-0"/>
                 <mxCell id="JZ_cULcGzYho4HUnqOvs-1" parent="JZ_cULcGzYho4HUnqOvs-0"/>

@@ -1,5 +1,6 @@
 from datetime import datetime, time
 from flask_schedule.models import Shift
+from make_shift.function import make_one_shift
 
 
 def normal(workers,jobs,config):
@@ -41,8 +42,9 @@ def normal(workers,jobs,config):
           # print(worker.workername,worker.aptitude)
         td_workers = sorted(td_workers,key=lambda x:int(x.aptitude))
         # print(td_workers)
-        shift = Shift(td_workers[0].workername,job.jobname,td_start,td_end,job.priority)
+        shift = make_one_shift(Shift,td_workers[0],job,td_start,td_end)
         td_workers[0].add_shift(shift)
         normalshifts.append(shift)
+
       
   return normalshifts

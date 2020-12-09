@@ -1,7 +1,7 @@
 from datetime import datetime,time,date
 from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
-from flask_schedule.models import Worker ,Job ,Dayworker, Shiftconfig,SpecialJob, Shift
+from flask_schedule.models import Worker ,Job ,Dayworker, Shiftconfig,SpecialJob, Shift,Dayjob
 from flask_schedule.forms import ShiftForm
 from flask_schedule.views.login import login_required
 from flask_schedule.views.views import date_chosen
@@ -40,7 +40,7 @@ def new_shift():
     dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
     for dayworker in dayworkers:
       dayworker.shift_init(one_date)
-    jobs = Job.query.all()
+    jobs = Dayjob.query.filter_by(one_date=one_date).all()
     spjobs = SpecialJob.query.all()
     config = Shiftconfig.query.first()
     config.timecombine(one_date)

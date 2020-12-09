@@ -1,10 +1,20 @@
 from datetime import datetime, timedelta, time
-from flask_schedule.models import Shift
-from make_shift.function import ave_time
+from flask_schedule.models import Shift,Job
+from make_shift.function import ave_time,make_one_shift
 
 
 # 休憩シフト作成
 def rest(workers,config):
+
+  rest = Job(
+    jobname = config.restname,
+    priority = 10,
+    weight= 0,
+    employee_priority = 5,
+    parttime_priority = 5,
+    helper_priority = 5,
+    be_indispensable = True,
+  )
 
   # 休憩が必要な人を探し、かつ始業時間と終業時間の平均時間を追加
   time_list = [config.store_opentime,config.store_closetime]
@@ -64,7 +74,7 @@ def rest(workers,config):
             worker.tmp_reststart = worker.tmp_reststart + timedelta(hours=worker.difference) 
             worker.tmp_restend = worker.tmp_restend + timedelta(hours=worker.difference) 
             worker.done_reversed = False
-      shift = Shift(worker.workername,config.restname,worker.tmp_reststart,worker.tmp_restend,0)
+      shift = make_one_shift(Shift,worker,rest,worker.tmp_reststart,worker.tmp_restend)
       worker.add_shift(shift)
       restshifts.append(shift)
   # print(restshifts)

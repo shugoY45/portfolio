@@ -1,10 +1,20 @@
 from datetime import datetime
-from flask_schedule.models import Shift
+from flask_schedule.models import Shift,Job
+from make_shift.function import make_one_shift
 
 def special(workers,specialjobs,config):
   spshifts = []
   # 特別シフトの従業員を従業員リストから探索
   for spjob in specialjobs:
+    spjobtojob = Job(
+      jobname = spjob.jobname,
+      priority = 100,
+      weight= 100,
+      employee_priority = 0,
+      parttime_priority = 0,
+      helper_priority = 0,
+      be_indispensable = True
+    )
     found = False
     for worker in workers:
       if spjob.workername == worker.workername:
@@ -14,7 +24,7 @@ def special(workers,specialjobs,config):
         endtime = datetime.strptime(spjob.endtime, '%H:%M')
         # if datetime.strptime(worker.starttime, '%H:%M')<=starttime and endtime<=datetime.strptime(worker.endtime, '%H:%M'):
         if worker.be_free(starttime,endtime):
-          shift = Shift(worker.workername,spjob.jobname,starttime,endtime,spjob.priority)
+          shift = make_one_shift(Shift,worker,spjobtojob,starttime,endtime)
           spshifts.append(shift)
           worker.add_shift(shift)
 

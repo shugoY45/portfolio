@@ -15,3 +15,8 @@ def ave_time(time_list):
   h, m, s = td.seconds//3600, (td.seconds//60)%60, td.seconds%60
   ave = datetime.combine(time_list[0],time(hour=h,minute=m,second=s))
   return ave
+
+def make_one_shift(Shift,worker,job,starttime,endtime):
+  shift = Shift(worker.workername,job.jobname,starttime,endtime,job.priority,job.priority,worker.position,job.employee_priority,job.parttime_priority,job.helper_priority,job.be_indispensable)
+  return shift
+
