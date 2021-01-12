@@ -37,6 +37,12 @@ def shift():
 def new_shift():
   if request.method == 'POST':
     one_date = session['date']
+    preshifts = Shift.query.filter_by(one_date=one_date).all()
+    if preshifts:
+      for shift in preshifts:
+        db.session.delete(shift)
+      db.session.commit()
+      
     dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
     for dayworker in dayworkers:
       dayworker.shift_init(one_date)

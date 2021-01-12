@@ -3,15 +3,16 @@ from flask_schedule.models import Shift
 from make_shift.function import make_one_shift
 
 
-def normal(workers,jobs,config):
+def normal(workers,jobs,config,hour_list):
   normalshifts = []
   # 時間を一定間隔に分割する
   opentime = config.store_opentime
   closetime = config.store_closetime
-  for hour in range(opentime.hour,closetime.hour):
+  # for hour in range(opentime.hour,closetime.hour):
+  for hour in hour_list:
     one_shifts = []
     td_start = datetime.combine(opentime,time(hour=hour))
-    td_end = datetime.combine(closetime,time(hour=hour+1))
+    td_end = datetime.combine(opentime,time(hour=hour+1))
 
     # 分割時間ごとの仕事の抽出
     td_jobs = []

@@ -17,7 +17,7 @@
       <tr>
         <th scope="row">{{ loop.index }}</th>
         <td>
-          <a href="{{ url_for('detail_job', id=job.id) }}" class="">{{ job.jobname }}</a>
+          <a href="{{ url_for('detail_dayjob', id=job.id) }}" class="">{{ job.jobname }}</a>
         </td>
         <td>{{ job.starttime.strftime('%H:%M') }}</td>
         <td>{{ job.endtime.strftime('%H:%M') }}</td>

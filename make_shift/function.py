@@ -1,4 +1,8 @@
 from datetime import time,datetime,timedelta
+import random
+# from make_shift.normal import normal
+# from make_shift.special import special
+# from make_shift.rest import rest
 
 def ave_time(time_list):
   # time_list = (datetime,datetime, ...)
@@ -20,3 +24,30 @@ def make_one_shift(Shift,worker,job,starttime,endtime):
   shift = Shift(worker.workername,job.jobname,starttime,endtime,job.priority,job.priority,worker.position,job.employee_priority,job.parttime_priority,job.helper_priority,job.be_indispensable)
   return shift
 
+def minimize(workers,jobs,spjobs,config):
+
+  #山登り法を用いた最小化
+  #スケジュールの点数を格納する
+  opentime = config.store_opentime
+  closetime = config.store_closetime
+  hour_list = [i for i in range(opentime.hour,closetime.hour)]
+
+  spshifts = special(workers,spjobs,config,hour_list)
+  restshifts = rest(workers,config)
+
+  for i in range(1):
+    random.shuffle(hour_list)
+    normalshifts = normal(workers,jobs,config)
+    shifts = spshifts + restshifts + normalshifts
+    # score = evaluation(shifts,workers)
+
+  return minshifts
+
+def evaluation(shifts,workers):
+  score = 0
+  for shift in shifts:
+    score += int(shift.jobweight)
+  return score
+
+def similarity(indivshifts):
+  return 1
