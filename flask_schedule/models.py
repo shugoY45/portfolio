@@ -161,7 +161,7 @@ class Shift(db.Model):
     self.veiwendtime = endtime.strftime("%H:%M")
     self.jobweight = jobweight
     self.priority = priority
-    self.workerposition = workerposition
+    self.position = workerposition
     self.employee_priority = employee_priority
     self.parttime_priority = parttime_priority
     self.helper_priority = helper_priority
@@ -230,7 +230,7 @@ class Dayjob(db.Model):
   be_indispensable = db.Column(db.Boolean, default=False)
 
   def __repr__(self):
-    return f"DayJob('{self.jobname}','{self.starttime}','{self.endtime}')"
+    return f"DayJob('{self.jobname}','{self.starttime}','{self.endtime}','{self.weight}','{self.priority}')"
 
 
 

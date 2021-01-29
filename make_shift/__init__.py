@@ -1,7 +1,7 @@
 from make_shift.normal import normal
 from make_shift.special import special
 from make_shift.rest import rest
-from make_shift.function import minimize , evaluation
+from make_shift.function import evaluation
 import random
 
 def main(workers,jobs,spjobs,config):
@@ -35,15 +35,15 @@ def main(workers,jobs,spjobs,config):
     prenormalshifts = normal(workers,jobs,config,hour_list)
     preshifts = spshifts + restshifts + prenormalshifts
     score = evaluation(preshifts,workers)
-    print(score)
+    # print(score)
     if minscore == 0:
       minscore = score
       shifts = preshifts
     elif minscore > score:
       minscore = score
       shifts = preshifts
-  
-  print(shifts)
+  # print(minscore)
+  # print(shifts)
 
   return shifts
   

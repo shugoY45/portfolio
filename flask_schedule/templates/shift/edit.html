@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="content-section">
-  <form action="" method="POST">
-    {{ form.hidden_tag() }}
-    <h1>{{ shift.jobname }}</h1>
-    <div class="form-group">
-      {{ form.workername.label() }}
-      {{ form.workername() }}
-    </div>
-    <div class="form-group">
-      {{ form.starttime.label()}}
-      {{ form.starttime() }}
-    </div>
-    <div class="form-group">
-      {{ form.endtime.label() }}
-      {{ form.endtime() }}
-    </div>
-    <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info") }}
-    </div>
-  </form>
+  <h1>{{ shift.jobname }}</h1><hr>
+  <h3>従業員：{{ shift.workername }}</h3>
+  <h5>開始時間：{{ shift.starttime.strftime('%H:%M') }}</h5>
+  <h5>終了時間：{{ shift.endtime.strftime('%H:%M') }}</h5>
+
+  <div class="btn-group">
+    <form action="{{ url_for('change_worker',id = shift.id)}}" method="GET">
+      <button type="submit" class="btn btn-secondary" style="margin-left: 5px;" style="margin-right: 5px;">従業員変更</button>
+    </form>
+    <form action="{{ url_for('shift',id = shift.id)}}" method="GET">
+      <button type="submit" class="btn btn-secondary" style="margin-left: 5px;" style="margin-right: 5px;">時間変更</button>
+    </form>
+    <form action="{{ url_for('shift',id = shift.id)}}" method="GET">
+      <button type="submit" class="btn btn-danger" style="margin-left: 5px;" style="margin-right: 5px;">削除</button>
+    </form>
+  </div>
+
+    
+  
 </div>
 {% endblock %}

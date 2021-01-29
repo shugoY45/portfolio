@@ -1,16 +1,16 @@
-<mxfile host="65bd71144e" modified="2020-11-09T01:05:49.486Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="DtyObPMOEZbZjVnZFbog" version="13.6.5" pages="10">
+<mxfile host="65bd71144e" modified="2021-01-28T04:51:04.167Z" agent="5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="HoUuf1_AFHDtiWCEwbMc" version="13.10.0" type="embed" pages="10">
     <diagram id="o-nhEI0Ll0ATZ2FC6t1C" name="システム全体像">
-        <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="760" dy="542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="h0-zNd2Gv4u5xCkBOTYm-0"/>
                 <mxCell id="h0-zNd2Gv4u5xCkBOTYm-1" parent="h0-zNd2Gv4u5xCkBOTYm-0"/>
-                <mxCell id="V_jNcL3pO2qzTO4pZAFm-0" value="シフト作成　システム" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
+                <mxCell id="V_jNcL3pO2qzTO4pZAFm-0" value="スタッフスケジューリングシステム" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
                     <mxGeometry x="240" y="40" width="240" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="V_jNcL3pO2qzTO4pZAFm-1" value="シフト作成" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
                     <mxGeometry x="60" y="190" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="V_jNcL3pO2qzTO4pZAFm-2" value="月間人員配置" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
+                <mxCell id="V_jNcL3pO2qzTO4pZAFm-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
                     <mxGeometry x="300" y="190" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="V_jNcL3pO2qzTO4pZAFm-3" value="人員、仕事&lt;br&gt;管理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="h0-zNd2Gv4u5xCkBOTYm-1" vertex="1">
@@ -44,382 +44,752 @@
         </mxGraphModel>
     </diagram>
     <diagram id="C5RBs43oDa-KdzZeNtuy" name="シフト作成 フローチャート">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
+                &#xa;
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
+                &#xa;
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-2" value="" style="rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=11;endArrow=block;endFill=0;endSize=8;strokeWidth=1;shadow=0;labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WIyWlLk6GJQsqaUBKTNV-3" target="FA0ZY51cPl-vO5pHPwS9-0" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="220" y="170" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-3" value="start" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="80" width="120" height="40" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="SOiAL_RHciGtd8sG_Pv3-1" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="220" y="250" as="targetPoint"/>
+                        &#xa;
                         <mxPoint x="340" y="250" as="sourcePoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-11" value="end" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="690" width="120" height="40" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-0" target="FA0ZY51cPl-vO5pHPwS9-3" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="220" y="260" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-0" value="日付の入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="150" width="120" height="70" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-0" target="FA0ZY51cPl-vO5pHPwS9-0" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-3" value="シフト作成" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="280" width="120" height="120" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-10" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="220" y="400" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="220" y="430" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-11" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="WIyWlLk6GJQsqaUBKTNV-11" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="220" y="490" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="440" y="290" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-18" value="no" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=17;" parent="FA0ZY51cPl-vO5pHPwS9-11" vertex="1" connectable="0">
+                    &#xa;
                     <mxGeometry x="0.55" y="2" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="18" as="offset"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-12" value="手作業で変更" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="530" width="120" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=17;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-13" target="FA0ZY51cPl-vO5pHPwS9-12" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="220" y="530"/>
+                            &#xa;
                             <mxPoint x="220" y="530"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-17" value="no" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=17;" parent="FA0ZY51cPl-vO5pHPwS9-16" vertex="1" connectable="0">
+                    &#xa;
                     <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="19" as="offset"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-13" value="作り直す" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="430" width="120" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-14" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-13" target="FA0ZY51cPl-vO5pHPwS9-3" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="390" y="460" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="440" y="410" as="targetPoint"/>
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="360" y="470"/>
+                            &#xa;
                             <mxPoint x="360" y="340"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-15" value="yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontSize=17;" parent="FA0ZY51cPl-vO5pHPwS9-14" vertex="1" connectable="0">
+                    &#xa;
                     <mxGeometry x="0.2207" y="-1" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="19" y="27" as="offset"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-19" value="手作業作成" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="354" y="610" width="120" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-20" value="" style="endArrow=classic;html=1;fontSize=17;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-12" target="FA0ZY51cPl-vO5pHPwS9-19" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="390" y="520" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="440" y="470" as="targetPoint"/>
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="414" y="570"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-21" value="yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=17;" parent="FA0ZY51cPl-vO5pHPwS9-20" vertex="1" connectable="0">
+                    &#xa;
                     <mxGeometry x="-0.2528" y="2" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="6" y="-18" as="offset"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FA0ZY51cPl-vO5pHPwS9-22" value="" style="endArrow=classic;html=1;fontSize=17;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FA0ZY51cPl-vO5pHPwS9-19" target="WIyWlLk6GJQsqaUBKTNV-11" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="390" y="520" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="440" y="470" as="targetPoint"/>
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="414" y="710"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SOiAL_RHciGtd8sG_Pv3-0" value="月間人員配置を元にシフトを作成します" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="90" y="30" width="330" height="20" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SOiAL_RHciGtd8sG_Pv3-1" value="&lt;font style=&quot;font-size: 12px&quot;&gt;人員、仕事&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=26;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="390" y="220" width="120" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SOiAL_RHciGtd8sG_Pv3-2" value="月間人員配置" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="410" y="190" width="80" height="20" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="9BBWGu5newCWS0TUFZKI-1" value="" style="endArrow=none;dashed=1;html=1;fontSize=17;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="480" y="770" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="480" y="350" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="yYn8OdS9xvGBYCVe_7Vl" name="月間人員配置">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="7ivjyY709VusoGsk7G7s-0"/>
+                &#xa;
                 <mxCell id="7ivjyY709VusoGsk7G7s-1" parent="7ivjyY709VusoGsk7G7s-0"/>
+                &#xa;
                 <mxCell id="odh_jx5B7-V23JYs113w-0" value="登録データを元に月間人員配置作成、出勤日振替などはここで行う。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;" parent="7ivjyY709VusoGsk7G7s-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="110" y="30" width="550" height="20" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-0" value="人員登録データを元に月間人員配置を作成" style="rounded=0;whiteSpace=wrap;html=1;" parent="7ivjyY709VusoGsk7G7s-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="325" y="90" width="155" height="90" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-1" value="出勤日振替の入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="7ivjyY709VusoGsk7G7s-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="40" y="200" width="160" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-2" value="" style="endArrow=classic;html=1;fontSize=17;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="7ivjyY709VusoGsk7G7s-1" source="FP7F9tNHqtwl30B7Jy7C-0" target="FP7F9tNHqtwl30B7Jy7C-4" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="390" y="320" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="403" y="400" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-3" value="" style="endArrow=classic;html=1;fontSize=17;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="7ivjyY709VusoGsk7G7s-1" source="FP7F9tNHqtwl30B7Jy7C-1" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="390" y="320" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="400" y="240" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-4" value="人員配置アップデート" style="rounded=0;whiteSpace=wrap;html=1;" parent="7ivjyY709VusoGsk7G7s-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="330" y="370" width="150" height="70" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-5" value="" style="endArrow=classic;html=1;fontSize=17;entryX=1.013;entryY=0.356;entryDx=0;entryDy=0;entryPerimeter=0;" parent="7ivjyY709VusoGsk7G7s-1" target="FP7F9tNHqtwl30B7Jy7C-0" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="600" y="120" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="440" y="270" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="FP7F9tNHqtwl30B7Jy7C-6" value="人員出勤曜日、時間" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;" parent="7ivjyY709VusoGsk7G7s-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="600" y="80" width="120" height="90" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="fYE-bFdFz8GRPvOUDyS9" name="人員仕事の管理">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="nGqUpJj-VU4m9iy3R8_2-0"/>
+                &#xa;
                 <mxCell id="nGqUpJj-VU4m9iy3R8_2-1" parent="nGqUpJj-VU4m9iy3R8_2-0"/>
+                &#xa;
                 <mxCell id="huFbEBNBkNbaL7n2ms7_-0" value="&lt;font style=&quot;font-size: 17px&quot;&gt;人員と仕事の登録、削除、変更を行う&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="nGqUpJj-VU4m9iy3R8_2-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="234" y="30" width="360" height="70" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="huFbEBNBkNbaL7n2ms7_-2" value="&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;4&quot; style=&quot;width: 100% ; height: 100% ; border-collapse: collapse ; font-size: 23px&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 23px&quot;&gt;人員&lt;/font&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 23px&quot;&gt;名前&lt;br&gt;性別&lt;br&gt;生年月日&lt;br&gt;人員区分&lt;br&gt;入社年数&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;html=1;strokeColor=none;fillColor=none;overflow=fill;" parent="nGqUpJj-VU4m9iy3R8_2-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="80" y="130" width="280" height="420" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="huFbEBNBkNbaL7n2ms7_-3" value="&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;4&quot; style=&quot;width: 100% ; height: 100% ; border-collapse: collapse ; font-size: 23px&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 23px&quot;&gt;仕事&lt;/font&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 23px&quot;&gt;仕事名&lt;br&gt;日時&lt;br&gt;人数&lt;br&gt;人固定&lt;br&gt;優先度&lt;br&gt;要望人員区分&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;html=1;strokeColor=none;fillColor=none;overflow=fill;" parent="nGqUpJj-VU4m9iy3R8_2-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="430" y="130" width="280" height="420" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="hXmvLXeVp9waXMqIlB87" name="シフト作成内部">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="2jajkmkZYfr-5iO5_2HZ-0"/>
+                &#xa;
                 <mxCell id="2jajkmkZYfr-5iO5_2HZ-1" parent="2jajkmkZYfr-5iO5_2HZ-0"/>
+                &#xa;
                 <mxCell id="2jajkmkZYfr-5iO5_2HZ-2" value="&lt;p style=&quot;line-height: 100% ; font-size: 25px&quot;&gt;シフト作成の構造&lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="96" y="8" width="220" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.438;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="2jajkmkZYfr-5iO5_2HZ-1" source="c2KVlF99RBAMLboCiqgJ-1" target="SEsO_a_8aoUVhpv3Vek7-1" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="c2KVlF99RBAMLboCiqgJ-1" value="その人専用の特別仕事から特別シフトを作成。" style="rounded=0;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="240" width="280" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2jajkmkZYfr-5iO5_2HZ-1" source="c2KVlF99RBAMLboCiqgJ-2" target="c2KVlF99RBAMLboCiqgJ-1" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="260" y="200"/>
+                            &#xa;
                             <mxPoint x="260" y="200"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.938;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="2jajkmkZYfr-5iO5_2HZ-1" source="c2KVlF99RBAMLboCiqgJ-2" target="SEsO_a_8aoUVhpv3Vek7-1" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="420" y="230"/>
+                            &#xa;
                             <mxPoint x="420" y="230"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="c2KVlF99RBAMLboCiqgJ-2" value="&lt;font style=&quot;font-size: 14px&quot;&gt;入力値『従業員（Worker）、常設仕事（Job）、特別仕事（SpecialJob）』&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="120" width="320" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2jajkmkZYfr-5iO5_2HZ-1" source="SEsO_a_8aoUVhpv3Vek7-1" target="SEsO_a_8aoUVhpv3Vek7-5" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-1" value="休憩が必要な人を選定し、特別シフトにかぶらないように休憩シフトを作成" style="rounded=0;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="360" width="320" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2jajkmkZYfr-5iO5_2HZ-1" source="SEsO_a_8aoUVhpv3Vek7-5" target="SEsO_a_8aoUVhpv3Vek7-8" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-5" value="特別シフトと休憩シフトにかぶらないように常設シフトを作成する。" style="rounded=0;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="480" width="320" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-8" value="&lt;font style=&quot;font-size: 15px&quot;&gt;出力「常設シフト(Shift)、特別シフト(SpShift)、休息シフト(RestShift)』&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="630" width="320" height="90" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-10" value="" style="endArrow=none;dashed=1;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" edge="1">
+                    &#xa;
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="40" y="760" as="sourcePoint"/>
+                        &#xa;
                         <mxPoint x="480" y="760" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="SEsO_a_8aoUVhpv3Vek7-12" value="&lt;font style=&quot;font-size: 15px&quot;&gt;各シフトを人ごとにひとまとめにする&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2jajkmkZYfr-5iO5_2HZ-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="800" width="320" height="90" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="BxqtqR719J9RadCLmx_1" name="restshift">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-0"/>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-1" parent="49wRA7Z9Lt4UhW-aWFbU-0"/>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-2" target="49wRA7Z9Lt4UhW-aWFbU-3" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-2" value="Worker" style="rounded=0;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="80" width="240" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-3" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="240" y="400" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-3" target="49wRA7Z9Lt4UhW-aWFbU-15" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-3" value="need a rest?" style="rhombus;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="140" y="240" width="200" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-6" target="49wRA7Z9Lt4UhW-aWFbU-7" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-6" value="tmp_shifts append(worker)&lt;br&gt;sorted by mediun&lt;br&gt;make tmp_restshift" style="rounded=0;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="160" y="400" width="160" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-7" target="49wRA7Z9Lt4UhW-aWFbU-12" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-7" value="not have a scheduling conflict?" style="rhombus;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="140" y="560" width="200" height="80" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-8" value="&lt;font style=&quot;font-size: 35px&quot;&gt;make a restshift&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="95" y="20" width="260" height="30" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-10" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="240" y="530" as="targetPoint"/>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-10" value="SpecialShift" style="rounded=0;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="20" y="500" width="120" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" source="49wRA7Z9Lt4UhW-aWFbU-12" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry">
+                        &#xa;
                         <mxPoint x="240" y="540" as="targetPoint"/>
+                        &#xa;
                         <Array as="points">
+                            &#xa;
                             <mxPoint x="460" y="540"/>
+                            &#xa;
                         </Array>
+                        &#xa;
                     </mxGeometry>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-12" value="reschedule the restshift" style="rounded=0;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="400" y="570" width="120" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="49wRA7Z9Lt4UhW-aWFbU-15" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="49wRA7Z9Lt4UhW-aWFbU-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="560" y="480" width="120" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="qXIUMwrjTWQ7KLgZSk8b" name="normal_shift">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-0"/>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-1" parent="gwkXLi2ghH2n7SNzl7U1-0"/>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="gwkXLi2ghH2n7SNzl7U1-1" source="gwkXLi2ghH2n7SNzl7U1-2" target="gwkXLi2ghH2n7SNzl7U1-3" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-2" value="&lt;font style=&quot;font-size: 19px&quot;&gt;for time in times:&lt;br&gt;make worker_list,&lt;br&gt;job_list&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="gwkXLi2ghH2n7SNzl7U1-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="80" width="240" height="120" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="dWHf77hRLNfX9t3v4BHk-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="gwkXLi2ghH2n7SNzl7U1-1" source="gwkXLi2ghH2n7SNzl7U1-3" target="gwkXLi2ghH2n7SNzl7U1-7" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-3" value="&lt;font style=&quot;font-size: 16px&quot;&gt;job_list = sorted by priority&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="gwkXLi2ghH2n7SNzl7U1-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="280" width="240" height="120" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-7" value="&lt;font style=&quot;font-size: 16px&quot;&gt;job_listの数だけ繰り返す&lt;br&gt;worker_list sorted by aptitude&lt;br&gt;Shift(worker,job)&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="gwkXLi2ghH2n7SNzl7U1-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="480" width="240" height="120" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="gwkXLi2ghH2n7SNzl7U1-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="gwkXLi2ghH2n7SNzl7U1-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="880" width="240" height="120" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="7r8qoN5eVsBfc1cJlkUL" name="aptitude">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="C8BgpRv5TwTMBGLcX7Ka-0"/>
+                &#xa;
                 <mxCell id="C8BgpRv5TwTMBGLcX7Ka-1" parent="C8BgpRv5TwTMBGLcX7Ka-0"/>
+                &#xa;
                 <mxCell id="HUYG24kRzlh0bdJJOi2H-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="C8BgpRv5TwTMBGLcX7Ka-1" source="zV04Z283m2T4SptVRy3Z-0" target="zV04Z283m2T4SptVRy3Z-1" edge="1">
+                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="zV04Z283m2T4SptVRy3Z-0" value="&lt;font style=&quot;font-size: 18px&quot;&gt;worker Classの中のshift_listの文だけ回す&lt;br&gt;シフトと今入れたい時間との距離を計算し距離に反比例したaptitudeを計算&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="C8BgpRv5TwTMBGLcX7Ka-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="40" width="290" height="160" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="zV04Z283m2T4SptVRy3Z-1" value="&lt;font style=&quot;font-size: 18px&quot;&gt;同じ名前の仕事が入っている時aptitudeを増やす。&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="C8BgpRv5TwTMBGLcX7Ka-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="120" y="320" width="290" height="140" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="5L7HnWQSWnYzlmgrOk5C" name="論文構想">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="uxJevHfwjFm3UieGwA_Y-0"/>
+                &#xa;
                 <mxCell id="uxJevHfwjFm3UieGwA_Y-1" parent="uxJevHfwjFm3UieGwA_Y-0"/>
+                &#xa;
                 <mxCell id="uxJevHfwjFm3UieGwA_Y-2" value="&lt;font style=&quot;font-size: 24px&quot;&gt;システムの評価&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="uxJevHfwjFm3UieGwA_Y-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="80" y="40" width="360" height="100" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
                 <mxCell id="uxJevHfwjFm3UieGwA_Y-3" value="&lt;font style=&quot;font-size: 17px&quot;&gt;今シフト作りにかかっている時間を計算する&lt;br&gt;&lt;br&gt;このアプリを使ったときの作成時間と比較する&lt;br&gt;両者の満足度を比較する&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="uxJevHfwjFm3UieGwA_Y-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="80" y="200" width="360" height="240" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="W19S9wuLiy6dQwIRameo" name="次回への課題">
+        &#xa;
         <mxGraphModel dx="1448" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="dXLN7do0zq8ytgIncnit-0"/>
+                &#xa;
                 <mxCell id="dXLN7do0zq8ytgIncnit-1" parent="dXLN7do0zq8ytgIncnit-0"/>
+                &#xa;
                 <mxCell id="dXLN7do0zq8ytgIncnit-2" value="&lt;font style=&quot;font-size: 36px&quot;&gt;今後の課題&lt;br&gt;&lt;br&gt;シフト時間測定アプリを実装する&lt;br&gt;シフト変更画面の作成&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="dXLN7do0zq8ytgIncnit-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="80" y="40" width="480" height="480" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
 </mxfile>

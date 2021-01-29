@@ -89,23 +89,30 @@ def new_shift():
 def edit_shift(id):
   one_date = session['date']
   shift = Shift.query.get_or_404(id)
+  workers = Dayworker.query.filter_by(one_date = one_date).all()
+  return render_template("shift/edit.html",shift=shift)
+  
+@app.route("/shift/<int:id>/changeworker", methods=["GET","POST"])
+@login_required
+@date_chosen
+def change_worker(id):
+  one_date = session['date']
+  shift = Shift.query.get_or_404(id)
   form = ShiftForm()
   if request.method == 'POST':
+    
+    flash('変更しました',"success")
     shift.workername = form.workername.data
-    shift.starttime = datetime.combine(one_date,form.starttime.data)
-    shift.endtime = datetime.combine(one_date,form.endtime.data)
     db.session.commit()
     return redirect(url_for('shift'))
+
   
   workers = Dayworker.query.filter_by(one_date = one_date).all()
   worker_list = []
+  flash('従業員を変更します',"warning")
   for worker in workers:
     worker_list.append(worker.workername)
   form.workername.choices = worker_list
   form.workername.data = shift.workername
-  form.starttime.data = shift.starttime
-  form.endtime.data = shift.endtime
-  return render_template("shift/edit.html",shift=shift,form=form)
-  
-
+  return render_template("shift/changeworker.html",shift=shift,form=form)
 

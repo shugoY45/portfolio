@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag()}}
+    <h1>{{ shift.jobname }}</h1><hr>
+    <h3>従業員：{{ shift.workername }}</h3>
+    <div class="form-group">
+      {{ form.workername.label(class="form-control-label")}}
+      {{ form.workername(class="form-control form-control-lg") }}
+    </div>
+    <h5>開始時間：{{ shift.starttime.strftime('%H:%M') }}</h5>
+    <h5>終了時間：{{ shift.endtime.strftime('%H:%M') }}</h5>
+    <button type="submit" class="btn btn-primary" style="margin-left: 5px;" style="margin-right: 5px;">変更</button>
+  </form>
+</div>
+{% endblock %}
