@@ -4,8 +4,11 @@ from flask import render_template, url_for, flash, redirect, request, session
 from flask_schedule import app, db
 from flask_schedule.models import Test
 from flask_schedule.views.login import login_required
+from flask_schedule.views.date import date_select
+from flask_schedule.models import Dayworker,Shift,Dayjob
 from flask_schedule.forms import TestForm
 from functools import wraps
+
 
 
 @app.context_processor
@@ -37,7 +40,10 @@ def date_chosen(view):
 def index():
   session['logged_in'] = True
   flash('ログインしました',"success")
-  return redirect(url_for('date'))
+  today = datetime.today()
+  today = datetime(year=today.year,month=today.month,day=today.day)
+  date_select(today)
+  return redirect(url_for('shift'))
         
   return render_template("index.html")
 
@@ -60,3 +66,19 @@ def test():
 
 
   return render_template("test.html",form=form)
+
+@app.route("/reset", methods=["GET", "POST"])
+def reset():
+  shifts = Shift.query.all()
+  for shift in shifts:
+    db.session.delete(shift)
+    db.session.commit()
+  jobs = Dayjob.query.all()
+  for job in jobs:
+    db.session.delete(job)
+    db.session.commit()
+  workers = Dayworker.query.all()
+  for worker in workers:
+    db.session.delete(worker)
+    db.session.commit()
+  return redirect(url_for("date"))
