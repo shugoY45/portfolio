@@ -108,6 +108,7 @@ def date_select(one_date):
         if worker.Fri:
           dayworker = Dayworker()
           dayworker.one_date = one_date
+          dayworker.position = worker.position
           dayworker.workername = worker.workername
           dayworker.starttime = worker.Fristarttime
           dayworker.endtime = worker.Friendtime
