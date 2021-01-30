@@ -14,6 +14,8 @@ import make_shift
 def shift():
   one_date = session['date']
   shifts = Shift.query.filter_by(one_date=one_date).all()
+  if not shifts:
+    return redirect(url_for('new_shift'))
 
   config = Shiftconfig.query.first()
   dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
@@ -35,29 +37,29 @@ def shift():
 @login_required
 @date_chosen
 def new_shift():
-  if request.method == 'POST':
-    one_date = session['date']
-    preshifts = Shift.query.filter_by(one_date=one_date).all()
-    if preshifts:
-      for shift in preshifts:
-        db.session.delete(shift)
-      db.session.commit()
-      
-    dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
-    for dayworker in dayworkers:
-      dayworker.shift_init(one_date)
-    jobs = Dayjob.query.filter_by(one_date=one_date).all()
-    spjobs = SpecialJob.query.all()
-    config = Shiftconfig.query.first()
-    config.timecombine(one_date)
-    shifts = make_shift.main(dayworkers,jobs,spjobs,config)
-    for shift in shifts:
-      shift.one_date = one_date
-      db.session.add(shift)
-      db.session.commit()
-    return redirect(url_for('shift'))
+  # if request.method == 'POST':
+  one_date = session['date']
+  preshifts = Shift.query.filter_by(one_date=one_date).all()
+  if preshifts:
+    for shift in preshifts:
+      db.session.delete(shift)
+    db.session.commit()
+    
+  dayworkers = Dayworker.query.filter_by(one_date=one_date).all()
+  for dayworker in dayworkers:
+    dayworker.shift_init(one_date)
+  jobs = Dayjob.query.filter_by(one_date=one_date).all()
+  spjobs = SpecialJob.query.all()
+  config = Shiftconfig.query.first()
+  config.timecombine(one_date)
+  shifts = make_shift.main(dayworkers,jobs,spjobs,config)
+  for shift in shifts:
+    shift.one_date = one_date
+    db.session.add(shift)
+    db.session.commit()
+  return redirect(url_for('shift'))
   
-  return render_template("shift/new.html")
+  # return render_template("shift/new.html")
 
 # @app.route("/shift", methods=["GET", "POST"])
 # @login_required

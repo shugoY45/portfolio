@@ -33,10 +33,11 @@ def date_chosen(view):
   return inner
 
 @app.route("/", methods=["GET", "POST"])
-@login_required
+# @login_required
 def index():
-  
-    
+  session['logged_in'] = True
+  flash('ログインしました',"success")
+  return redirect(url_for('date'))
         
   return render_template("index.html")
 
